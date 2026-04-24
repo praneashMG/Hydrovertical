@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, shrink-to-fit=no">
+    <title>HydroVertical | Premium Vertical Hydroponic Systems</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <!-- Google Fonts & Font Awesome -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ========== GLOBAL RESET & VARIABLES (Same as Homepage) ========== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --g1: #0a1f0a;
+            --g2: #143d14;
+            --g3: #1b5e20;
+            --accent: #2e7d32;
+            --accent2: #8bc48b;
+            --lime: #c8e6c8;
+            --text: #0d1f13;
+            --text-muted: #4a6a52;
+            --bg: #f3f8f4;
+            --surface: #ffffff;
+            --border: rgba(0, 0, 0, 0.07);
+            --radius: 20px;
+            --radius-lg: 32px;
+            --shadow: 0 8px 32px rgba(11, 46, 26, 0.1);
+            --shadow-lg: 0 24px 60px rgba(11, 46, 26, 0.16);
+            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+        }
+
+        body.dark {
+            --text: #e8f0e8;
+            --text-muted: #a4c4a4;
+            --bg: #0a1a0a;
+            --surface: #112814;
+            --border: rgba(255, 255, 255, 0.07);
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(12px, 4vw, 32px);
+            position: relative;
+        }
+
+        /* Background decorative elements - responsive scaling */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(86, 194, 122, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(200, 240, 74, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ========== UTILITY CLASSES - Fully Responsive Container ========== */
+        .container {
+            width: 100%;
+            max-width: min(500px, 90%);
+            margin: 0 auto;
+        }
+
+        /* Larger screens */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 560px;
+            }
+        }
+
+        @media (min-width: 1600px) {
+            .container {
+                max-width: 600px;
+            }
+        }
+
+        /* ========== THEME TOGGLE BUTTONS (External Controls) ========== */
+        .theme-controls {
+            position: fixed;
+            top: clamp(12px, 3vw, 24px);
+            right: clamp(12px, 3vw, 24px);
+            display: flex;
+            gap: clamp(8px, 2vw, 12px);
+            z-index: 100;
+        }
+
+        body[dir="rtl"] .theme-controls {
+            right: auto;
+            left: clamp(12px, 3vw, 24px);
+        }
+
+        .control-btn {
+            width: clamp(36px, 6vw, 44px);
+            height: clamp(36px, 6vw, 44px);
+            border-radius: 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ========== LOGIN CARD - Fully Responsive Padding ========== */
+        .login-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: clamp(24px, 6vw, 48px) clamp(20px, 5vw, 40px);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            width: 100%;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: clamp(28px, 6vw, 40px);
+        }
+
+        .logo-icon {
+            width: clamp(55px, 10vw, 70px);
+            height: clamp(55px, 10vw, 70px);
+            background: linear-gradient(135deg, var(--g2), var(--g3));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .logo-icon i {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            color: var(--lime);
+        }
+
+        .login-header h1 {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -1px;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--g1), var(--g3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+
+        body.dark .login-header h1 {
+            background: linear-gradient(135deg, var(--accent2), var(--lime));
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .login-header p {
+            color: var(--text-muted);
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
+        }
+
+        /* ========== FORM STYLES - Fully Responsive ========== */
+        .form-group {
+            margin-bottom: clamp(18px, 5vw, 24px);
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+            color: var(--text);
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            padding: clamp(10px, 3vw, 14px) clamp(14px, 4vw, 18px);
+            transition: var(--transition);
+        }
+
+        .input-wrapper:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(86, 194, 122, 0.15);
+        }
+
+        .input-wrapper i {
+            color: var(--accent);
+            margin-right: clamp(8px, 2vw, 12px);
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            width: 20px;
+            text-align: center;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .input-wrapper input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(0.8rem, 2.8vw, 0.95rem);
+            color: var(--text);
+            outline: none;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .input-wrapper input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        .password-toggle {
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .password-toggle:hover {
+            color: var(--accent);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: clamp(20px, 5vw, 28px);
+        }
+
+        .forgot-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .forgot-link:hover {
+            color: var(--lime);
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--g2), var(--g3));
+            color: white;
+            border: none;
+            padding: clamp(11px, 3.5vw, 14px);
+            border-radius: 14px;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(31, 107, 62, 0.3);
+            background: linear-gradient(135deg, var(--g3), var(--accent));
+        }
+
+        /* ========== DIVIDER - Responsive ========== */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: clamp(24px, 5vw, 32px) 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .divider span {
+            padding: 0 clamp(10px, 3vw, 16px);
+            color: var(--text-muted);
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+        }
+
+        /* ========== SOCIAL LOGIN - Fully Responsive Row Layout ========== */
+        .social-login {
+            display: flex;
+            gap: clamp(8px, 3vw, 16px);
+            justify-content: center;
+            margin-bottom: clamp(24px, 5vw, 32px);
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: clamp(8px, 2.5vw, 12px) clamp(12px, 4vw, 18px);
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0;
+            color: var(--text);
+            text-decoration: none;
+            flex: 0 1 auto;
+            min-width: clamp(44px, 12vw, 52px);
+        }
+
+        .social-btn i {
+            font-size: clamp(1rem, 3.5vw, 1.3rem);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+        }
+
+        .social-btn.facebook i {
+            color: #1877f2;
+        }
+
+        .social-btn.google i {
+            color: #db4437;
+        }
+
+        .social-btn.apple i {
+            color: var(--text);
+        }
+
+        /* ========== SIGNUP SECTION ========== */
+        .signup-section {
+            text-align: center;
+            padding-top: clamp(18px, 4vw, 24px);
+            border-top: 1px solid var(--border);
+        }
+
+        .signup-text {
+            color: var(--text-muted);
+            font-size: clamp(0.75rem, 2.8vw, 0.9rem);
+            margin-bottom: 12px;
+        }
+
+        .signup-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
+        }
+
+        .signup-link:hover {
+            color: var(--lime);
+            gap: 10px;
+        }
+
+        /* ========== RTL SUPPORT ========== */
+        body[dir="rtl"] {
+            direction: rtl;
+        }
+
+        body[dir="rtl"] .input-wrapper i {
+            margin-right: 0;
+            margin-left: 12px;
+        }
+
+        body[dir="rtl"] .social-btn {
+            flex-direction: row-reverse;
+        }
+
+        body[dir="rtl"] .signup-link i {
+            transform: rotate(180deg);
+        }
+
+        /* ========== ADDITIONAL RESPONSIVE FINE-TUNING ========== */
+        
+        /* Tablet specific adjustments */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                max-width: 85%;
+            }
+            .login-card {
+                padding: 36px 32px;
+            }
+            .social-btn {
+                padding: 10px 16px;
+            }
+        }
+
+        /* Mobile landscape */
+        @media (min-width: 376px) and (max-width: 480px) {
+            .container {
+                max-width: 95%;
+            }
+            .social-login {
+                gap: 12px;
+            }
+            .social-btn {
+                padding: 9px 14px;
+                min-width: 48px;
+            }
+        }
+
+        /* Mobile portrait */
+        @media (max-width: 375px) {
+            .container {
+                max-width: 100%;
+            }
+            .login-card {
+                padding: 24px 20px;
+            }
+            .social-login {
+                gap: 10px;
+            }
+            .social-btn {
+                padding: 8px 12px;
+                min-width: 44px;
+            }
+            .social-btn i {
+                font-size: 1rem;
+            }
+            .theme-controls {
+                gap: 6px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 280px) {
+            body {
+                padding: 8px;
+            }
+            .login-card {
+                padding: 18px 14px;
+            }
+            .social-login {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .social-btn {
+                width: 100%;
+                padding: 10px;
+            }
+            .theme-controls {
+                top: 8px;
+                right: 8px;
+            }
+            .control-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+            .login-header h1 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Prevent overflow for all elements */
+        img, svg, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+
+        button, input, select, textarea {
+            max-width: 100%;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        #signInLink {
+            text-decoration: none;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 2vw, 12px);
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            font-weight: 800;
+            text-decoration: none;
+            color: #4ade80 !important;
+            transition: var(--transition);
+        }
+
+        .logo i {
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            color: #4ade80 !important;
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+
+        .logo span {
+            color: #4ade80 !important;
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+
+        /* Ensure proper scaling for the logo container */
+        .login-header div[style*="display:flex"] {
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #4ade80 !important; /* Premium Emerald for "Hydro" */
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+            text-decoration: none;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+        .logo i {
+            font-size: 1.5rem;
+            color: #4ade80 !important; /* Premium Emerald for Icon */
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+        .logo span {
+            color: #4ade80 !important; /* Premium Emerald for "Vertical" */
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+       
+    </style>
+</head>
+
+<body>
+    <!-- External Controls (Dark Mode & RTL Toggle) -->
+    <div class="theme-controls">
+        <button class="control-btn" id="darkModeToggle" title="Toggle Dark/Light Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="control-btn" id="rtlToggle" title="Toggle RTL Layout">
+            <i class="fas fa-exchange-alt"></i>
+        </button>
+    </div>
+
+    <!-- Login Container -->
+    <div class="container">
+        <div class="login-card">
+            <div class="login-header">
+                <div
+                    style="display:flex; justify-content:center; align-items:center; gap:8px; font-size:2rem; font-weight:800; margin-bottom:16px; flex-wrap:wrap;">
+                    <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+                </div>
+                <h1>Welcome Back</h1>
+                <p>Login to your HydroVertical account</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="input-label">Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="farmer@hydronex.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="input-label">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                        <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <a href="#" class="forgot-link" id="forgotPassword">Forgot Password?</a>
+                </div>
+
+                <a href="./index.html" id="signInLink">
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                </a>
+            </form>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span>or continue with</span>
+            </div>
+
+            <!-- Social Login Section - Icons Only -->
+            <div class="social-login">
+                <button class="social-btn facebook" id="facebookLogin">
+                    <i class="fab fa-facebook-f"></i> 
+                </button>
+                <button class="social-btn google" id="googleLogin">
+                    <i class="fab fa-google"></i> 
+                </button>
+                <button class="social-btn apple" id="appleLogin">
+                    <i class="fab fa-apple"></i> 
+                </button>
+            </div>
+
+            <!-- Signup Section -->
+            <div class="signup-section">
+                <p class="signup-text">Don't have an account?</p>
+                <a href="./Registeration.html" class="signup-link" id="createAccount">
+                    Create New Account <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            // ========== DARK MODE TOGGLE ==========
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const savedTheme = localStorage.getItem('theme');
+
+            // Create dark mode styles dynamically
+            const darkModeStyle = document.createElement('style');
+            darkModeStyle.id = 'login-dark-styles';
+            darkModeStyle.textContent = `
+                body.dark .login-card {
+                    background: var(--surface);
+                }
+                body.dark .social-btn {
+                    background: var(--bg);
+                }
+                body.dark .social-btn:hover {
+                    background: var(--surface);
+                }
+                body.dark .control-btn {
+                    background: var(--surface);
+                }
+            `;
+
+            function enableDarkMode() {
+                document.body.classList.add('dark');
+                if (!document.getElementById('login-dark-styles')) {
+                    document.head.appendChild(darkModeStyle);
+                }
+                const icon = darkModeToggle.querySelector('i');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+
+            function disableDarkMode() {
+                document.body.classList.remove('dark');
+                const styleEl = document.getElementById('login-dark-styles');
+                if (styleEl) styleEl.remove();
+                const icon = darkModeToggle.querySelector('i');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+
+            function toggleDarkMode() {
+                if (document.body.classList.contains('dark')) {
+                    disableDarkMode();
+                } else {
+                    enableDarkMode();
+                }
+            }
+
+            // Apply saved theme
+            if (savedTheme === 'dark') {
+                enableDarkMode();
+            } else if (savedTheme === 'light') {
+                disableDarkMode();
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                enableDarkMode();
+            }
+
+            darkModeToggle.addEventListener('click', toggleDarkMode);
+
+            // ========== RTL TOGGLE ==========
+            const rtlToggle = document.getElementById('rtlToggle');
+            const savedDir = localStorage.getItem('dir');
+
+            function toggleRTL() {
+                const currentDir = document.body.getAttribute('dir');
+                if (currentDir === 'rtl') {
+                    document.body.removeAttribute('dir');
+                    localStorage.setItem('dir', 'ltr');
+                } else {
+                    document.body.setAttribute('dir', 'rtl');
+                    localStorage.setItem('dir', 'rtl');
+                }
+            }
+
+            if (savedDir === 'rtl') {
+                document.body.setAttribute('dir', 'rtl');
+            }
+
+            rtlToggle.addEventListener('click', toggleRTL);
+
+            // ========== PASSWORD VISIBILITY TOGGLE ==========
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+
+            togglePassword.addEventListener('click', function () {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+
+            // ========== FORM SUBMISSION ==========
+            const loginForm = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+
+                if (!email) {
+                    showToast('Please enter your email address', 'error');
+                    return;
+                }
+                if (!password) {
+                    showToast('Please enter your password', 'error');
+                    return;
+                }
+                if (!email.includes('@')) {
+                    showToast('Please enter a valid email address', 'error');
+                    return;
+                }
+
+                // Simulate successful login
+                showToast(`Welcome back! Redirecting to your dashboard...`, 'success');
+                setTimeout(() => {
+                    // Redirect would go here
+                    console.log('Login successful for:', email);
+                }, 1500);
+            });
+
+            // ========== FORGOT PASSWORD ==========
+            const forgotLink = document.getElementById('forgotPassword');
+            forgotLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                showToast('Password reset link sent to your registered email', 'info');
+            });
+
+            // ========== SOCIAL LOGIN HANDLERS ==========
+            const facebookBtn = document.getElementById('facebookLogin');
+            const googleBtn = document.getElementById('googleLogin');
+            const appleBtn = document.getElementById('appleLogin');
+
+            facebookBtn.addEventListener('click', () => showToast('Facebook login - Demo feature', 'info'));
+            googleBtn.addEventListener('click', () => showToast('Google login - Demo feature', 'info'));
+            appleBtn.addEventListener('click', () => showToast('Apple login - Demo feature', 'info'));
+
+            // ========== CREATE ACCOUNT ==========
+            const createAccountLink = document.getElementById('createAccount');
+            createAccountLink.addEventListener('click', function (e) {
+                window.location.href = "./Registration.html";
+                showToast('Redirecting to registration page...', 'info');
+                setTimeout(() => {
+                    console.log('Navigate to signup page');
+                }, 800);
+            });
+
+            // ========== TOAST NOTIFICATION ==========
+            function showToast(message, type = 'info') {
+                // Remove existing toast
+                const existingToast = document.querySelector('.toast-notification');
+                if (existingToast) existingToast.remove();
+
+                const toast = document.createElement('div');
+                toast.className = 'toast-notification';
+                toast.innerHTML = `
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+                    <span>${message}</span>
+                `;
+
+                // Style the toast - responsive positioning
+                toast.style.cssText = `
+                    position: fixed;
+                    bottom: clamp(16px, 5vw, 24px);
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: ${type === 'success' ? '#2e7d32' : type === 'error' ? '#c62828' : '#174d2e'};
+                    color: white;
+                    padding: clamp(10px, 3vw, 12px) clamp(16px, 5vw, 24px);
+                    border-radius: 50px;
+                    font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+                    font-weight: 500;
+                    z-index: 1000;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+                    animation: slideUp 0.3s ease;
+                    font-family: 'Inter', sans-serif;
+                    max-width: 90%;
+                    text-align: center;
+                    white-space: nowrap;
+                `;
+
+                // Adjust for very small screens
+                if (window.innerWidth <= 480) {
+                    toast.style.whiteSpace = 'normal';
+                    toast.style.textAlign = 'center';
+                }
+
+                document.body.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
+
+            // Add animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideUp {
+                    from {
+                        opacity: 0;
+                        transform: translateX(-50%) translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(-50%) translateY(0);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // ========== ENTER KEY SUPPORT ==========
+            passwordInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    loginForm.dispatchEvent(new Event('submit'));
+                }
+            });
+
+            emailInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    passwordInput.focus();
+                }
+            });
+
+            // ========== Handle window resize for toast responsiveness ==========
+            window.addEventListener('resize', function() {
+                const toast = document.querySelector('.toast-notification');
+                if (toast && window.innerWidth <= 480) {
+                    toast.style.whiteSpace = 'normal';
+                } else if (toast) {
+                    toast.style.whiteSpace = 'nowrap';
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>

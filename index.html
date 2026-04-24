@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>HydroVertical | Premium Vertical Hydroponic Systems</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./nav.css">
+        <style>
+        :root {
+            --bg-color: #fdfefd;
+            --text-color: #0d1a10;
+            --card-bg: #ffffff;
+            --accent: #26a844;
+            --accent-dark: #1b6329;
+            --shadow: 0 30px 60px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 40px 80px rgba(38, 168, 68, 0.15);
+            --border-radius: 20px;
+        }
+
+        body.dark {
+            --bg-color: #070a08;
+            --text-color: #f0f5f1;
+            --card-bg: #0f1c12;
+            --shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 40px 80px rgba(38, 168, 68, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* custom scroll */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+        /* The NEW 'glass-card' format - No more glass! Pure solid Neumorphic / Geometric */
+        .glass-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            border: 2px solid rgba(150, 150, 150, 0.05);
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(38, 168, 68, 0.3);
+        }
+
+        /* glowing buttons */
+        .btn-primary {
+            background: var(--accent);
+            border: none;
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(38, 168, 68, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            padding: 14px 34px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: var(--text-color);
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* section spacing */
+        .section {
+            padding: 100px 24px;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        .section-sub {
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin: 0 auto 60px auto;
+            font-size: 0.95rem;
+        }
+
+        /* animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 1) Hero - Unique Floating White Card */
+        .hero {
+            position: relative;
+            min-height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            filter: grayscale(20%);
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: -1;
+        }
+        .hero-content {
+            background: var(--card-bg);
+            padding: 60px 80px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            color: var(--text-color);
+            opacity: 0.8;
+            font-weight: 400;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* benefits grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        .benefit-card {
+            padding: 40px 30px;
+            text-align: left;
+            position: relative;
+        }
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        /* product showcase */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .product-card {
+            padding: 30px;
+            text-align: center;
+        }
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        /* how it works steps */
+        .steps-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        .step-item {
+            flex: 1;
+            min-width: 240px;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: transparent;
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--accent);
+            margin: 0 auto 30px;
+        }
+
+        /* use cases grid */
+        .usecase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+        }
+        .usecase-item {
+            padding: 40px 30px;
+            text-align: left;
+        }
+        .usecase-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        /* features / advantages */
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .feature-item {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            padding: 30px;
+        }
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--bg-color);
+            background: var(--text-color);
+            width: 100px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+        }
+
+        /* testimonials */
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .testi-card {
+            padding: 40px;
+            border-left: 6px solid var(--accent);
+        }
+        .testi-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        .testi-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+        }
+
+        /* final CTA */
+        .cta-section {
+            background: var(--text-color);
+            color: var(--bg-color);
+            border-radius: 40px;
+            margin: 0 40px 100px 40px;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        /* Override inline styles generated globally */
+        section[style*="background"] {
+            background: transparent !important;
+        }
+
+        /* responsive */
+        @media (max-width: 780px) {
+            .hero-content {
+                padding: 40px 20px;
+                margin: 0 20px;
+            }
+            .section { padding: 60px 20px; }
+            .section-title { font-size: 2.2rem; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-buttons { flex-direction: column; align-items: stretch; }
+            .cta-section { margin: 0 20px 60px 20px; padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+            <div class="nav-links">
+                <div class="nav-item">
+                    <a href="#" class="nav-link">Home <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="./index.html">Home 1</a>
+                        <a href="./home2.html">Home 2</a>
+                    </div>
+                </div>
+                <a href="./about.html" class="nav-link">About us</a>
+                <a href="./products.html" class="nav-link">Products</a>
+                <a href="./technology.html" class="nav-link">Technology</a>
+                <a href="./faq.html" class="nav-link">FAQ</a>
+                <a href="./contact.html" class="nav-link">Contact</a>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">Dashboard <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="./admin.html">Admin Page</a>
+                        <a href="./user.html">User Page</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <div class="desktop-rtl-dark">
+                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
+                    <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                    </button>
+                </div>
+                <!-- Profile dropdown - visible only on desktop (hidden on tablet/mobile via media query) -->
+                <div class="profile-dropdown">
+                    <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
+                    <div class="profile-dropdown-content">
+                        <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+                    </div>
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <div class="nav-item" style="display:block;">
+                <a href="#" class="nav-link">Home</a>
+                <div class="mobile-dropdown">
+                    <a href="./index.html">Home 1</a>
+                    <a href="./home2.html">Home 2</a>
+                </div>
+            </div>
+            <a href="./about.html" class="nav-link">About us</a>
+            <a href="./products.html" class="nav-link">Products</a>
+            <a href="./technology.html" class="nav-link">Technology</a>
+            <a href="./faq.html" class="nav-link">FAQ</a>
+            <a href="./contact.html" class="nav-link">Contact</a>
+            <div class="nav-item" style="display:block;">
+                <a href="#" class="nav-link">Dashboard</a>
+                <div class="mobile-dropdown">
+                    <a href="./admin.html">Admin Page</a>
+                    <a href="./user.html">User Page</a>
+                </div>
+            </div>
+            <div class="mobile-actions">
+                <button class="mobile-action-btn" id="mobileThemeToggle">
+                    <i class="fas fa-moon"></i> <span>Dark</span>
+                </button>
+                <button class="mobile-action-btn" id="mobileRtlToggle">
+                    <i class="fas fa-exchange-alt"></i> <span>RTL</span>
+                </button>
+            </div>
+            <!-- Mobile Profile Section (visible only on tablet/mobile) -->
+            <div class="mobile-profile-section">
+                <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+            </div>
+        </div>
+    </nav>
+    <!-- 1) HERO SECTION with background video + CTA -->
+    <section class="hero">
+        <video class="hero-video-bg" autoplay muted loop playsinline poster="./images/Home1_background.jpg">
+            <source src="./images/Home1_background.jpg" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content fade-up">
+            <h1>Grow the Future.<br>Vertical Hydroponics.</h1>
+            <p>Premium vertical farming systems — maximize yield, save 90% water, and grow anywhere, year-round.</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn-primary" style="justify-content: center;"><i class="fas fa-leaf"></i> Explore Systems</a>
+                <a href="#cta-final" class="btn-outline" style="justify-content: center;"><i class="fas fa-chart-line"></i> Estimate ROI</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2) KEY BENEFITS (eco-friendly, 90% less water, faster growth) -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title fade-up">Why hydroponics wins</div>
+            <div class="section-sub fade-up">Science-backed advantages for modern agriculture</div>
+            <div class="benefits-grid">
+                <div class="benefit-card glass-card fade-up">
+                    <div class="benefit-icon"><i class="fas fa-tint"></i></div>
+                    <h3>90% less water</h3>
+                    <p>Recirculating systems slash water usage compared to soil farming.</p>
+                </div>
+                <div class="benefit-card glass-card fade-up">
+                    <div class="benefit-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>2x faster growth</h3>
+                    <p>Optimized nutrient delivery accelerates plant cycles up to 50%.</p>
+                </div>
+                <div class="benefit-card glass-card fade-up">
+                    <div class="benefit-icon"><i class="fas fa-globe-americas"></i></div>
+                    <h3>Eco-friendly</h3>
+                    <p>Zero pesticides, less land, lower carbon footprint.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3) PRODUCT SHOWCASE (vertical systems, NFT, lights) -->
+    <section id="products" class="section" style="background: #fafffa;">
+        <div class="container">
+            <div class="section-title fade-up">Premium hydroponic solutions</div>
+            <div class="section-sub fade-up">Commercial grade towers, NFT channels & smart LED arrays</div>
+            <div class="products-grid">
+                <div class="product-card glass-card fade-up">
+                    <img class="product-img" src="./images/Vertical Tower Pro.jpg" alt="Vertical Tower">
+                    <h3>Vertical Tower Pro</h3>
+                    <p>8ft modular towers, 80 planting pockets, ideal for leafy greens & herbs.</p>
+                    <div class="price" style="font-weight:700; margin:12px 0; color:#2e7d32;">from $2,499</div>
+                    <a href="#cta-final" class="btn-primary" style="padding: 8px 24px; font-size:0.85rem;">Request quote</a>
+                </div>
+                <div class="product-card glass-card fade-up">
+                    <img class="product-img" src="./images/NFT Channel System.jpg" alt="NFT channels">
+                    <h3>NFT Channel System</h3>
+                    <p>Nutrient film technique for high-density lettuce, basil, and microgreens.</p>
+                    <div class="price" style="font-weight:700; margin:12px 0; color:#2e7d32;">from $1,899</div>
+                    <a href="#cta-final" class="btn-primary" style="padding: 8px 24px;">Get quote</a>
+                </div>
+                <div class="product-card glass-card fade-up">
+                    <img class="product-img" src="./images/Full-Spectrum LED Rack.jpg" alt="LED grow lights">
+                    <h3>Full-Spectrum LED Rack</h3>
+                    <p>Energy-efficient 800W LED, tunable spectrum, smart controller included.</p>
+                    <div class="price" style="font-weight:700; margin:12px 0; color:#2e7d32;">from $349</div>
+                    <a href="#cta-final" class="btn-primary" style="padding: 8px 24px;">Inquire now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4) HOW IT WORKS (step-by-step) -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title fade-up">From concept to harvest</div>
+            <div class="section-sub fade-up">A seamless 4‑step journey to your vertical farm</div>
+            <div class="steps-row">
+                <div class="step-item glass-card fade-up"><div class="step-number">1</div><h3>Consultation</h3><p>We discuss space, crops, budget and goals.</p></div>
+                <div class="step-item glass-card fade-up"><div class="step-number">2</div><h3>Custom design</h3><p>3D layout, equipment list & ROI projection.</p></div>
+                <div class="step-item glass-card fade-up"><div class="step-number">3</div><h3>Delivery & setup</h3><p>Global shipping, on-site or remote guidance.</p></div>
+                <div class="step-item glass-card fade-up"><div class="step-number">4</div><h3>Grow & scale</h3><p>AI monitoring + 24/7 agronomy support.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5) USE CASES (home, commercial, rooftop farming) -->
+    <section class="section" style="background: #eef7ee;">
+        <div class="container">
+            <div class="section-title fade-up">Where our systems thrive</div>
+            <div class="section-sub fade-up">From urban rooftops to industrial greenhouses</div>
+            <div class="usecase-grid">
+                <div class="usecase-item glass-card fade-up"><div class="usecase-icon"><i class="fas fa-home"></i></div><h3>Home Growing</h3><p>Compact indoor kits for fresh herbs & vegetables year-round.</p></div>
+                <div class="usecase-item glass-card fade-up"><div class="usecase-icon"><i class="fas fa-building"></i></div><h3>Commercial Farms</h3><p>High-density towers for large-scale leafy green production.</p></div>
+                <div class="usecase-item glass-card fade-up"><div class="usecase-icon"><i class="fas fa-sun"></i></div><h3>Rooftop Farming</h3><p>Turn unused urban roofs into productive green spaces.</p></div>
+                <div class="usecase-item glass-card fade-up"><div class="usecase-icon"><i class="fas fa-school"></i></div><h3>Educational & R&D</h3><p>Perfect for agtech labs and university research.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6) FEATURES / ADVANTAGES (smart automation, AI, etc) -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title fade-up">Why growers choose VerdantCore</div>
+            <div class="section-sub fade-up">Engineered for performance, backed by innovation</div>
+            <div class="features-list">
+                <div class="feature-item glass-card fade-up"><div class="feature-icon"><i class="fas fa-microchip"></i></div><div><h3>AI-Driven Automation</h3><p>Real-time nutrient dosing, pH balance, and climate adjustments.</p></div></div>
+                <div class="feature-item glass-card fade-up"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><div><h3>Cloud Dashboard</h3><p>Monitor your farm from anywhere — harvest predictions & alerts.</p></div></div>
+                <div class="feature-item glass-card fade-up"><div class="feature-icon"><i class="fas fa-leaf"></i></div><div><h3>Zero Pesticides</h3><p>Controlled environment eliminates need for harmful chemicals.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7) TESTIMONIALS / SUCCESS STORIES -->
+    <section class="section" style="background: linear-gradient(125deg, #f9fff9, #f0faf0);">
+        <div class="container">
+            <div class="section-title fade-up">Success stories from partners</div>
+            <div class="section-sub fade-up">Join 500+ farms using our vertical ecosystems</div>
+            <div class="testi-grid">
+                <div class="testi-card glass-card fade-up">
+                    <div class="testi-stars" style="color:#ffb74d;">★★★★★</div>
+                    <p class="testi-text">"Yield increased by 140% after switching to VerdantCore towers. Water costs dropped 85% — absolute game changer."</p>
+                    <div class="testi-author"><div class="avatar">MG</div><div><strong>M. Green</strong><br>UrbanHarvest, NYC</div></div>
+                </div>
+                <div class="testi-card glass-card fade-up">
+                    <div class="testi-stars" style="color:#ffb74d;">★★★★★</div>
+                    <p class="testi-text">"Their NFT system doubled our lettuce production per square meter. The support team is incredibly responsive."</p>
+                    <div class="testi-author"><div class="avatar">EL</div><div><strong>E. Laurent</strong><br>AgriTech Solutions, Netherlands</div></div>
+                </div>
+                <div class="testi-card glass-card fade-up">
+                    <div class="testi-stars" style="color:#ffb74d;">★★★★★</div>
+                    <p class="testi-text">"Rooftop farming has never been easier. The vertical towers are low-maintenance and look stunning."</p>
+                    <div class="testi-author"><div class="avatar">CR</div><div><strong>C. Rivera</strong><br>SkyGreens, Singapore</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8) FINAL CALL-TO-ACTION (Get Quote / Start Your Farm) -->
+    <div id="cta-final" style="scroll-margin-top: 30px;">
+        <div class="cta-section glass-card" style="background:rgb(38,168,68); backdrop-filter: blur(8px);">
+            <div class="cta-glow"></div>
+            <div class="fade-up" style="position: relative; z-index: 2;">
+                <i class="fas fa-seedling" style="font-size: 3rem; color: #2e7d32; margin-bottom: 16px; display: inline-block;"></i>
+                <h2 style="font-size: 2rem; font-weight: 800;">Ready to build your vertical farm?</h2>
+                <p style="max-width: 580px; margin: 20px auto; font-size: 1.1rem;">Get a custom quote, free design consultation, and ROI analysis.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" class="btn-primary" style="background: #2e7d32;"><i class="fas fa-file-invoice"></i> Request Quote</a>
+                    <a href="#" class="btn-outline"><i class="fas fa-calendar-alt"></i> Schedule Demo</a>
+                </div>
+                <p style="margin-top: 28px; font-size: 0.85rem; opacity: 0.7;">📞 +1 (888) 429-7765  |  ✉️ grow@verdantcore.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== NEW SECTIONS APPENDED BELOW (without modifying any existing code) ========== -->
+    
+    <!-- NEW SECTION 1: DEEP DIVE FEATURES (Smart Sensors & Data Insights) -->
+    <section class="section" style="background: #ffffff;">
+        <div class="container">
+            <div class="section-title fade-up">Precision agriculture, redefined</div>
+            <div class="section-sub fade-up">Leverage real-time data to maximize every harvest cycle</div>
+            <div class="benefits-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                <div class="benefit-card glass-card fade-up">
+                    <div class="benefit-icon"><i class="fas fa-wifi"></i></div>
+                    <h3>IoT Sensor Network</h3>
+                    <p>Monitor EC, pH, temperature, and humidity remotely with 24/7 alerts.</p>
+                </div>
+                <div class="benefit-card glass-card fade-up">
+                    <div class="benefit-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <h3>Predictive Analytics</h3>
+                    <p>Machine learning forecasts harvest dates and potential nutrient deficits.</p>
+                </div>
+                <div class="benefit-card glass-card fade-up">
+                    <div class="benefit-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Mobile Farm Manager</h3>
+                    <p>Control pumps, lights, and dosing from your smartphone anywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION 2: SUSTAINABILITY & IMPACT METRICS -->
+    <section class="section" style="background: linear-gradient(115deg, #eef5ea, #e2f0e2);">
+        <div class="container">
+            <div class="section-title fade-up">Environmental impact that matters</div>
+            <div class="section-sub fade-up">Every tower contributes to a greener planet</div>
+            <div class="features-list" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                <div class="feature-item glass-card fade-up" style="flex-direction: column; text-align: center; align-items: center;">
+                    <div class="feature-icon"><i class="fas fa-cloud-sun"></i></div>
+                    <h3>Carbon negative potential</h3>
+                    <p>Local farming slashes food miles and reduces CO₂ emissions by up to 85%.</p>
+                </div>
+                <div class="feature-item glass-card fade-up" style="flex-direction: column; text-align: center; align-items: center;">
+                    <div class="feature-icon"><i class="fas fa-recycle"></i></div>
+                    <h3>Zero runoff agriculture</h3>
+                    <p>Closed-loop system eliminates fertilizer pollution in waterways.</p>
+                </div>
+                <div class="feature-item glass-card fade-up" style="flex-direction: column; text-align: center; align-items: center;">
+                    <div class="feature-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Biodiversity preservation</h3>
+                    <p>Vertical farms free up 95% of land compared to traditional agriculture.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION 3: COMPACT CALL-TO-ACTION (Partnership / Distributor) -->
+    <div style="margin-bottom: 70px;">
+        <div class="container" style="max-width: 1100px;">
+            <div class="glass-card fade-up" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px; padding: 40px 44px; background: rgba(235, 248, 235, 0.8);">
+                <div style="flex: 1;">
+                    <h3 style="font-size: 1.7rem; font-weight: 700;">Become a certified partner</h3>
+                    <p style="margin-top: 12px; color: #2c5e2c;">Join our global network of distributors and integrators. Get priority pricing, training, and marketing support.</p>
+                </div>
+                <div>
+                    <a href="#" class="btn-primary" style="white-space: nowrap; font-size: clamp(12px, 1.2vw, 16px); justify-content: center; padding: 12px 28px;"><!-- Updated padding for better fit -->
+                        <i class="fas fa-handshake"></i> Apply for partnership
+                    </a>                
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="./index.html" class="logo" id="wow" style="color:white"><i class="fas fa-leaf"></i>Hydro<span>Vertical</span></a>
+                    <p>Leading supplier of innovative vertical hydroponic solutions for sustainable agriculture since 2015. Helping farms around the world grow smarter.</p>
+                    <div class="footer-socials" id="so">
+                        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="./products.html">All Systems</a></li>
+                        <li><a href="./products.html" onclick="filterProducts('home'); return false;">Home & Starter</a></li>
+                        <li><a href="./products.html" onclick="filterProducts('commercial'); return false;">Commercial</a></li>
+                        <li><a href="./products.html" onclick="filterProducts('industrial'); return false;">Industrial</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./products.html">Products</a></li>
+                        <li><a href="./technology.html">Technology</a></li>
+                        <li><a href="./faq.html">FAQ</a></li>
+                        <li><a href="./contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Stay Updated</h4>
+                    <p style="color:rgba(255,255,255,0.85);font-size:0.83rem;line-height:1.6;margin-bottom:16px;">Get the latest growing tips, product launches, and industry news delivered to your inbox.</p>
+                    <div class="newsletter-input-wrap">
+                        <input type="email" class="newsletter-input" placeholder="your@email.com">
+                        <button class="btn-subscribe">→</button>
+                    </div>
+                    <p style="color:rgba(255,255,255,0.7);font-size:0.75rem;margin-top:10px;">No spam. Unsubscribe anytime.</p>
+                    <div style="margin-top:20px;">
+                        <p style="color:rgba(255,255,255,0.85);font-size:0.83rem;margin-bottom:6px;"><i class="fas fa-envelope" style="color:var(--accent);margin-right:6px;"></i> suppliers@hvfs.com</p>
+                        <p style="color:rgba(255,255,255,0.85);font-size:0.83rem;"><i class="fas fa-phone" style="color:var(--accent);margin-right:6px;"></i> +1 (800) 123-HVFS</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 HydroVertical Systems. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <button class="btt" id="btt" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+    <!-- subtle floating effect for glass cards -->
+    <script src="./nav.js"></script>
+    <script>
+        const faders = document.querySelectorAll('.fade-up');
+        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -30px 0px" };
+        const appearOnScroll = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+        faders.forEach(el => appearOnScroll.observe(el));
+    </script>
+</body>
+</html>

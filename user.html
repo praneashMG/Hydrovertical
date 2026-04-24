@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, shrink-to-fit=no">
+    <title>HydroVertical | Premium Vertical Hydroponic Systems</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Chart.js for performance chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4fbf4;
+            color: #132e13;
+            overflow-x: hidden;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        /* Dark Mode Overrides - Applied to entire page */
+        body.dark {
+            background: #0a1a0a !important;
+            color: #e8f0e8 !important;
+        }
+        body.dark .sidebar {
+            background: linear-gradient(180deg, #05160b 0%, #082212 100%) !important;
+            border-right: 1px solid #1a331a;
+        }
+        body.dark .stat-card,
+        body.dark .module-card,
+        body.dark .user-profile,
+        body.dark .roi-calculator {
+            background: #112814 !important;
+            border-color: #1a361c !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+        }
+        body.dark h1, body.dark h2, body.dark h3, body.dark strong {
+            color: #c8e6c8 !important;
+        }
+        body.dark p, body.dark .insight-text, body.dark small, body.dark span, body.dark .stat-info h3 {
+            color: #a4c4a4 !important;
+        }
+        body.dark .card-header {
+            border-bottom-color: #1a361c !important;
+        }
+        body.dark .stat-number {
+            color: #e8f0e8 !important;
+        }
+        body.dark .stat-icon, body.dark .card-header i {
+            background: #0d1e0d !important;
+            color: #8bc48b !important;
+        }
+        body.dark .badge {
+            background: #0d1e0d !important;
+            color: #8bc48b !important;
+        }
+        body.dark .roi-input {
+            background: #0b1f0d !important;
+            border-color: #1a361c !important;
+        }
+        body.dark .roi-input input {
+            background: transparent !important;
+            color: #e8f0e8 !important;
+        }
+        body.dark .btn-calc {
+            background: #1b5e20 !important;
+            color: #e8f0e8 !important;
+        }
+        body.dark .top-bar-search {
+            background: #112814 !important;
+            border-color: #1a361c !important;
+        }
+        body.dark .top-bar-search input {
+            color: #e8f0e8 !important;
+        }
+        body.dark .dropdown-menu {
+            background: #112814 !important;
+            border-color: #1a361c !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+        }
+        body.dark .dropdown-header {
+            border-bottom-color: #1a361c !important;
+            color: #c8e6c8 !important;
+        }
+        body.dark .dropdown-item {
+            color: #a4c4a4 !important;
+        }
+        body.dark .dropdown-item:hover {
+            background: rgba(46,125,50,0.2) !important;
+            color: #c8f04a !important;
+        }
+        body.dark .nav-badge {
+            border-color: #112814 !important;
+        }
+        body.dark .nav-btn:hover {
+            background: rgba(200, 240, 74, 0.1) !important;
+        }
+        body.dark .contact-line i.fa-map-marker-alt,
+        body.dark .contact-line i.fa-calendar-alt {
+            color: #8bc48b !important;
+        }
+        body.dark .cta-banner {
+            background: linear-gradient(115deg, #0a2a18, #0f3a20) !important;
+        }
+        body.dark .greeting h1 {
+            color: #c8e6c8 !important;
+        }
+        body.dark .greeting p {
+            color: #a4c4a4 !important;
+        }
+        body.dark .hamburger-btn {
+            color: #e8f0e8;
+            background: rgba(17, 40, 20, 0.8);
+            border-color: #1a361c;
+        }
+        body.dark .hamburger-btn:hover {
+            background: #1a361c;
+        }
+
+        /* RTL Overrides - Applied to entire page */
+        body.rtl {
+            direction: rtl;
+        }
+        body.rtl .sidebar {
+            right: 0;
+            left: auto;
+            position: sticky;
+        }
+        body.rtl .sidebar-header, body.rtl .nav-menu {
+            text-align: right;
+        }
+        body.rtl .nav-item {
+            flex-direction: row;
+        }
+        body.rtl .top-bar, body.rtl .card-header, body.rtl .contact-line {
+            flex-direction: row-reverse;
+        }
+        body.rtl .top-bar {
+            text-align: right;
+        }
+        body.rtl .user-profile {
+            flex-direction: row-reverse;
+            gap: 16px;
+        }
+        body.rtl .stat-card {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+        body.rtl .roi-calculator {
+            text-align: right;
+        }
+        body.rtl .roi-input-group {
+            flex-direction: row-reverse;
+        }
+        body.rtl .greeting {
+            text-align: right;
+        }
+        body.rtl .navbar-advanced {
+            flex-direction: row;
+        }
+        body.rtl .hamburger-btn {
+            margin-right: 0;
+            margin-left: 12px;
+        }
+
+        /* New Navbar and Dropdown Styles */
+        .nav-action-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .nav-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: #2e7d32;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            transition: background 0.2s;
+            position: relative;
+        }
+        .nav-btn:hover { background: rgba(46,125,50,0.1); }
+        .nav-badge {
+            position: absolute;
+            top: 4px; right: 4px;
+            background: #ff5252;
+            color: white;
+            font-size: 0.6rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 10px;
+            border: 2px solid white;
+            line-height: 1;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 115%;
+            right: 0;
+            width: 280px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s ease;
+            z-index: 100;
+        }
+        .dropdown-menu.show {
+            opacity: 1; visibility: visible; transform: translateY(0);
+        }
+        .dropdown-header {
+            padding: 16px;
+            border-bottom: 1px solid #edf3ea;
+            font-weight: 700;
+            color: #1a3b1a;
+            font-size: 0.95rem;
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #2a472a;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+        .dropdown-item:hover { background: #eef5ec; color: #2e7d32; }
+        .dropdown-item i { width: 20px; text-align: center; color: #6c8e6c; font-size: 1.1rem; }
+        .dropdown-item:hover i { color: #2e7d32; }
+        .dropdown-divider { height: 1px; background: #edf3ea; margin: 4px 0; }
+        
+        .top-bar-search {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            border: 1px solid #edf3ea;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: border-color 0.2s;
+            flex-grow: 1;
+        }
+        .top-bar-search:focus-within { border-color: #8bc48b; }
+        .top-bar-search i { color: #6c8e6c; margin-right: 12px; font-size: 1.1rem; }
+        .top-bar-search input {
+            border: none; outline: none; width: 100%;
+            font-family: inherit; color: #1a3b1a; background: transparent;
+            font-size: 0.95rem;
+        }
+        .navbar-advanced {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 24px;
+            width: 100%;
+            position: relative;
+        }
+        .hamburger-btn {
+            display: none;
+            background: rgba(238, 245, 236, 0.8);
+            border: 1px solid #edf3ea;
+            border-radius: 12px;
+            color: #1a3b1a;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-right: 12px;
+            width: 44px; height: 44px;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .hamburger-btn:hover { background: #e0ecd8; }
+        
+        .sidebar-overlay { display: none; }
+
+        /* Dashboard Layout */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ========== SIDEBAR ========== */
+        .sidebar {
+            width: 270px;
+            background: linear-gradient(180deg, #0a2a18 0%, #0f3a20 100%);
+            color: white;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+        }
+        .sidebar-header {
+            padding: 28px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            margin-bottom: 24px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: #4ade80 !important; /* Premium Emerald */
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+        .logo i {
+            font-size: 1.3rem;
+            color: #4ade80 !important; /* Premium Emerald */
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+        .logo span {
+            color: #4ade80 !important; /* Premium Emerald */
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+        .nav-menu {
+            padding: 0 16px;
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            margin-bottom: 6px;
+            color: rgba(255, 255, 255, 0.75);
+            transition: all 0.2s;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .nav-item i {
+            width: 24px;
+            font-size: 1.2rem;
+        }
+        .nav-item.active, .nav-item:hover {
+            background: rgba(200, 240, 74, 0.15);
+            color: #c8f04a;
+        }
+        .nav-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px 16px;
+        }
+        .logout-nav {
+            margin-top: 10px;
+            color: #ff8a6f !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding-top: 14px;
+        }
+        .logout-nav:hover {
+            background: rgba(255, 138, 111, 0.15) !important;
+            color: #ffaa8f !important;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .main-content {
+            flex: 1;
+            padding: 28px 32px;
+            overflow-x: auto;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .greeting h1 {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            font-weight: 700;
+            color: #1a3b1a;
+        }
+        .greeting p {
+            color: #5a7a5a;
+            font-size: 0.85rem;
+        }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 60px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-left: auto;
+        }
+
+        /* Metric Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 28px;
+            padding: 22px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 28px rgba(0, 0, 0, 0.08);
+        }
+        .stat-info h3 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6c8e6c;
+            margin-bottom: 8px;
+        }
+        .stat-number {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 800;
+            color: #1a4d1a;
+        }
+        .stat-icon {
+            width: 52px;
+            height: 52px;
+            background: #eef5ec;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2e7d32;
+            font-size: 1.5rem;
+        }
+
+        /* Card Sections */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 28px;
+            margin-bottom: 36px;
+        }
+        .module-card {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+            transition: all 0.2s;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .module-card:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid #eaf3e8;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+        .card-header i {
+            font-size: 1.4rem;
+            color: #2e7d32;
+            background: #eef5ec;
+            padding: 8px;
+            border-radius: 16px;
+        }
+        .card-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1b4d1b;
+        }
+
+        /* ROI Calculator Section (highlighted) */
+        .roi-calculator {
+            background: linear-gradient(125deg, #e2f0e2, #cde3cd);
+            border-radius: 32px;
+            padding: 28px 32px;
+            margin-bottom: 36px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+        .roi-info h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #1b4d1b;
+        }
+        .roi-info p {
+            color: #2a5e2a;
+            margin-top: 8px;
+        }
+        .roi-input-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .roi-input {
+            background: white;
+            padding: 12px 18px;
+            border-radius: 48px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #c8e6c9;
+        }
+        .roi-input span {
+            font-weight: 600;
+            color: #1b4d1b;
+        }
+        .roi-input input {
+            border: none;
+            outline: none;
+            width: 100px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .btn-calc {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 48px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-calc:hover {
+            background: #1b5e20;
+            transform: scale(1.02);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(115deg, #0b2e1a, #1a5330);
+            border-radius: 32px;
+            padding: 40px 32px;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+        }
+        .cta-banner h2 {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .cta-banner p {
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+        .cta-btn {
+            background: #c8f04a;
+            color: #0b2e1a;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 48px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .cta-btn:hover {
+            transform: scale(1.02);
+            background: #d9ff50;
+        }
+
+        /* Chart */
+        .chart-container {
+            height: 200px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        /* Content Section Styles */
+        .contact-line {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: #eef5ec;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #2e7d32;
+        }
+        .insight-text {
+            font-size: 0.8rem;
+            color: #5a7a5a;
+            margin-top: 12px;
+            text-align: center;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active-section {
+            display: block;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+        }
+
+        /* Mobile Controls Section inside Sidebar */
+        .mobile-controls {
+            display: none;
+            margin-top: 20px;
+            padding: 0 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        .mobile-control-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.75);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .mobile-control-item:hover {
+            background: rgba(200, 240, 74, 0.15);
+            color: #c8f04a;
+        }
+        .mobile-control-item i {
+            width: 24px;
+            font-size: 1.2rem;
+        }
+        .mobile-notif-badge {
+            background: #ff5252;
+            color: white;
+            font-size: 0.6rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: auto;
+        }
+
+        /* Responsive: Hide search bar & desktop controls, show mobile controls in sidebar */
+        @media (max-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                left: -300px;
+                top: 0;
+                bottom: 0;
+                width: 280px;
+                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1000;
+            }
+            .sidebar.show {
+                left: 0;
+            }
+            .sidebar .logo span, .sidebar .nav-item span {
+                display: inline;
+            }
+            .sidebar .logo i {
+                margin: 0;
+            }
+            .sidebar .nav-item {
+                justify-content: flex-start;
+                padding: 12px 16px;
+            }
+            .sidebar-header {
+                padding: 24px 24px;
+                text-align: left;
+            }
+            .sidebar-header a{
+                text-decoration: none;
+            }
+            .nav-divider {
+                margin: 16px 16px;
+            }
+            .main-content {
+                padding: 24px 20px;
+                width: 100%;
+            }
+            .stats-grid {
+                gap: 20px;
+            }
+            .hamburger-btn {
+                display: flex;
+            }
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(0,0,0,0.5);
+                backdrop-filter: blur(2px);
+                z-index: 999;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            .sidebar-overlay.show {
+                display: block;
+                opacity: 1;
+            }
+            
+            /* Hide search bar on tablet and mobile */
+            .top-bar-search {
+                display: none !important;
+            }
+            
+            /* Hide desktop user profile action buttons (they move to hamburger) */
+            .user-profile .nav-action-wrapper,
+            .user-profile #themeToggle,
+            .user-profile #rtlToggle {
+                display: none !important;
+            }
+            
+            /* Show mobile controls inside sidebar */
+            .mobile-controls {
+                display: block !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .roi-calculator {
+                flex-direction: column;
+                text-align: center;
+            }
+            .roi-input-group {
+                justify-content: center;
+            }
+            .stats-grid {
+                gap: 16px;
+            }
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .user-profile { 
+                margin-left: 0; 
+                display: none !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .stat-card {
+                padding: 16px;
+            }
+            .module-card {
+                padding: 20px;
+            }
+            .roi-calculator {
+                padding: 24px 20px;
+            }
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #4ade80 !important; /* Premium Emerald for "Hydro" */
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+            text-decoration: none;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+        .logo i {
+            font-size: 1.5rem;
+            color: #4ade80 !important; /* Premium Emerald for Icon */
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+        .logo span {
+            color: #4ade80 !important; /* Premium Emerald for "Vertical" */
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+        .logo:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="./index.html" class="logo" style="font-size: 1.4rem;"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+        </div>
+        <div class="nav-menu">
+            <div class="nav-item active" data-section="dashboard-main"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></div>
+            <div class="nav-item" data-section="analytics"><i class="fas fa-chart-line"></i><span>Analytics</span></div>
+            <div class="nav-item" data-section="my-farms"><i class="fas fa-tractor"></i><span>My Farms</span></div>
+            <div class="nav-item" data-section="orders"><i class="fas fa-box"></i><span>Orders</span></div>
+            <div class="nav-item" data-section="suppliers"><i class="fas fa-handshake"></i><span>Suppliers</span></div>
+            <div class="nav-item" data-section="settings"><i class="fas fa-cog"></i><span>Settings</span></div>
+            <div class="nav-divider"></div>
+            <div class="nav-item" data-section="support"><i class="fas fa-life-ring"></i><span>Support</span></div>
+            <a href="./login.html" class="nav-item logout-nav" id="logoutSidebar"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+        </div>
+        
+        <!-- Mobile Controls: Dark Mode, RTL, Notifications, Profile moved inside hamburger menu -->
+        <div class="mobile-controls">
+            <div class="mobile-control-item" id="mobileThemeToggle">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </div>
+            <div class="mobile-control-item" id="mobileRtlToggle">
+                <i class="fas fa-exchange-alt"></i>
+                <span>RTL Layout</span>
+            </div>
+            <div class="mobile-control-item" id="mobileNotifications">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+                <span class="mobile-notif-badge">2</span>
+            </div>
+            <div class="mobile-control-item" id="mobileProfile">
+                <i class="fas fa-user-circle"></i>
+                <span>My Profile</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="top-bar">
+            <div class="navbar-advanced">
+                <button class="hamburger-btn" id="sidebarToggleBtn"><i class="fas fa-bars"></i></button>
+                <div class="greeting" id="dynamicGreeting">
+                    <h1 id="pageHeading">Welcome back, Alex</h1>
+                    <p id="pageSubtext">Track your vertical farm performance, orders, and ROI insights</p>
+                </div>
+                
+                <div class="top-bar-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search systems, metrics, or support...">
+                </div>
+
+                <div class="user-profile" style="position:relative; overflow:visible;">
+                    <button id="themeToggle" class="nav-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="rtlToggle" class="nav-btn" title="Toggle RTL/LTR">
+                        <i class="fas fa-exchange-alt"></i>
+                    </button>
+                    
+                    <div class="nav-action-wrapper">
+                        <button class="nav-btn dropdown-toggle" data-target="notifDropdownUser"><i class="fas fa-bell"></i><span class="nav-badge">2</span></button>
+                        <div class="dropdown-menu" id="notifDropdownUser">
+                            <div class="dropdown-header">Notifications (2)</div>
+                            <div class="dropdown-item"><i class="fas fa-tint" style="color:#03a9f4;"></i><span>Refill nutrient tank soon</span></div>
+                            <div class="dropdown-item"><i class="fas fa-box"></i><span>LED Grow Lights delivered</span></div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-item" style="justify-content:center;font-weight:600;">View All Notifications</div>
+                        </div>
+                    </div>
+
+                    <div class="nav-action-wrapper">
+                        <button class="nav-btn dropdown-toggle" data-target="profDropdownUser" style="width:auto; padding:0 8px; border-radius:20px; gap:8px;">
+                            <i class="fas fa-user-circle" style="font-size: 1.6rem;"></i>
+                            <span style="font-weight:600; font-size:0.9rem;">Alex Morgan</span>
+                            <i class="fas fa-chevron-down" style="font-size: 0.7rem; color: #5a7a5a;"></i>
+                        </button>
+                        <div class="dropdown-menu" id="profDropdownUser" style="width:220px;">
+                            <div class="dropdown-header">Alex Morgan <br><small style="color:#6c8e6c; font-weight:400;">Pro Grower</small></div>
+                            <div class="dropdown-item"><i class="fas fa-user"></i> My Profile</div>
+                            <div class="dropdown-item"><i class="fas fa-box"></i> Orders</div>
+                            <div class="dropdown-item"><i class="fas fa-cog"></i> Account Settings</div>
+                            <div class="dropdown-divider"></div>
+                            <a href="./login.html" class="dropdown-item" style="color: #ff5252;"><i class="fas fa-sign-out-alt" style="color:#ff5252;"></i> Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Main Section -->
+        <div id="dashboard-main-section" class="content-section active-section">
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-info"><h3>Active Systems</h3><div class="stat-number">12</div><small>+2 this quarter</small></div><div class="stat-icon"><i class="fas fa-microchip"></i></div></div>
+                <div class="stat-card"><div class="stat-info"><h3>Total Yield (kg)</h3><div class="stat-number">3,280</div><small>↑ 18% vs last month</small></div><div class="stat-icon"><i class="fas fa-seedling"></i></div></div>
+                <div class="stat-card"><div class="stat-info"><h3>Active Subscriptions</h3><div class="stat-number">4</div><small>Premium plan</small></div><div class="stat-icon"><i class="fas fa-leaf"></i></div></div>
+                <div class="stat-card"><div class="stat-info"><h3>Pending Tasks</h3><div class="stat-number">3</div><small>2 maintenance, 1 harvest</small></div><div class="stat-icon"><i class="fas fa-clipboard-list"></i></div></div>
+            </div>
+
+            <div class="roi-calculator">
+                <div class="roi-info"><h3>📊 Estimate Your ROI</h3><p>Calculate potential returns from your hydroponic investment</p></div>
+                <div class="roi-input-group">
+                    <div class="roi-input"><span>💰 Investment ($)</span><input type="number" id="investment" value="5000"></div>
+                    <div class="roi-input"><span>🌿 Monthly Yield (kg)</span><input type="number" id="yieldKg" value="120"></div>
+                    <div class="roi-input"><span>💵 Price per kg ($)</span><input type="number" id="priceKg" value="8"></div>
+                    <button class="btn-calc" id="calcRoiBtn">Calculate ROI</button>
+                </div>
+                <div id="roiResult" style="margin-top: 12px; font-weight: 700; background: white; padding: 8px 20px; border-radius: 40px; color:#1b4d1b;">Estimated Annual ROI: $6,520 (130%)</div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="module-card"><div class="card-header"><i class="fas fa-tags"></i><h3>Active Subscriptions</h3></div>
+                    <div class="contact-line"><strong>🌿 Commercial Tower Pro</strong> – 2 units – Renews: Dec 2025 <span class="badge">Active</span></div>
+                    <div class="contact-line"><strong>🔬 NFT Channel System</strong> – 1 unit – Renews: Jan 2026 <span class="badge">Active</span></div>
+                    <div class="contact-line"><strong>💡 Full-Spectrum LED Rack</strong> – 4 units – Renews: Feb 2026 <span class="badge">Active</span></div>
+                    <div class="contact-line"><strong>📦 Home Grow Kit</strong> – 1 unit – Lifetime access</div>
+                    <div style="margin-top:12px;"><span class="badge">Next billing: $1,240 on Dec 15</span></div>
+                </div>
+                <div class="module-card"><div class="card-header"><i class="fas fa-shopping-cart"></i><h3>Recent Orders</h3></div>
+                    <div class="contact-line"><strong>#ORD-2391</strong> – Vertical Tower Pro (2 units) – <span class="badge">Shipped</span></div>
+                    <div class="contact-line"><strong>#ORD-2385</strong> – Nutrient Package – <span class="badge">Delivered</span></div>
+                    <div class="contact-line"><strong>#ORD-2372</strong> – LED Grow Lights (6 pcs) – <span class="badge">Processing</span></div>
+                    <div class="contact-line"><strong>#ORD-2368</strong> – Aeroponic X System – <span class="badge">Pending</span></div>
+                    <div style="margin-top:12px; text-align:right;"><i class="fas fa-arrow-right"></i> View all orders</div>
+                </div>
+                <div class="module-card"><div class="card-header"><i class="fas fa-tasks"></i><h3>Upcoming Tasks</h3></div>
+                    <div class="contact-line"><i class="fas fa-calendar-alt" style="color:#2e7d32;"></i> <strong>Harvest lettuce</strong> – Tower 2 & 3 (Due in 2 days)</div>
+                    <div class="contact-line"><i class="fas fa-wrench"></i> <strong>pH sensor calibration</strong> – NFT system (Due tomorrow)</div>
+                    <div class="contact-line"><i class="fas fa-tint"></i> <strong>Nutrient refill</strong> – All towers (Due in 5 days)</div>
+                    <div class="contact-line"><i class="fas fa-chart-line"></i> <strong>Monthly report</strong> – Submit by Dec 5</div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="module-card"><div class="card-header"><i class="fas fa-chart-line"></i><h3>Performance Overview</h3></div>
+                    <div class="chart-container"><canvas id="performanceChart" width="400" height="180"></canvas></div>
+                    <div class="insight-text">📈 Yield increased by 28% since AI upgrade</div>
+                </div>
+                <div class="module-card"><div class="card-header"><i class="fas fa-headset"></i><h3>Support & Resources</h3></div>
+                    <div class="contact-line"><i class="fas fa-life-ring"></i> <strong>24/7 Technical Support</strong> – <span class="badge">Live chat available</span></div>
+                    <div class="contact-line"><i class="fas fa-book-open"></i> <strong>Knowledge Base</strong> – Video tutorials & guides</div>
+                    <div class="contact-line"><i class="fas fa-users"></i> <strong>Community Forum</strong> – Connect with 500+ growers</div>
+                    <div class="contact-line"><i class="fas fa-envelope"></i> <strong>support@hydrovertical.com</strong> – Response within 2h</div>
+                    <div style="margin-top:16px;"><button class="btn-calc" style="background:#2e7d32; padding:8px 20px;">Contact Support →</button></div>
+                </div>
+            </div>
+            <div class="cta-banner"><h2>🌱 Ready to expand your vertical farm?</h2><p>Unlock exclusive discounts, priority support, and AI growth insights.</p><button class="cta-btn">Upgrade to Pro Plan <i class="fas fa-arrow-right"></i></button></div>
+        </div>
+
+        <div id="analytics-section" class="content-section"><div class="module-card" style="padding: 32px;"><h2 style="color: #1b4d1b; margin-bottom: 20px;">Performance Analytics</h2><div class="chart-container" style="height: 300px;"><canvas id="analyticsChart"></canvas></div><div class="insight-text" style="margin-top: 20px;">📊 Monthly yield trend: +23% growth over last quarter</div><div class="stats-grid" style="margin-top: 24px;"><div class="stat-card"><div class="stat-info"><h3>Avg. Daily Yield</h3><div class="stat-number">78 kg</div></div><div class="stat-icon"><i class="fas fa-chart-simple"></i></div></div><div class="stat-card"><div class="stat-info"><h3>Water Savings</h3><div class="stat-number">92%</div></div><div class="stat-icon"><i class="fas fa-tint"></i></div></div><div class="stat-card"><div class="stat-info"><h3>Energy Efficiency</h3><div class="stat-number">35%</div></div><div class="stat-icon"><i class="fas fa-bolt"></i></div></div></div></div></div>
+        <div id="my-farms-section" class="content-section"><div class="module-card"><h2 style="color: #1b4d1b; margin-bottom: 20px;">My Farms Overview</h2><div class="contact-line"><i class="fas fa-map-marker-alt" style="color:#2e7d32;"></i> <strong>Urban Farm - Brooklyn, NY</strong> – 4 towers active – <span class="badge">Harvesting</span></div><div class="contact-line"><i class="fas fa-building"></i> <strong>Rooftop Garden - Chicago, IL</strong> – 2 towers active – <span class="badge">Growing</span></div><div class="contact-line"><i class="fas fa-warehouse"></i> <strong>Warehouse Farm - Portland, OR</strong> – 6 towers active – <span class="badge">Expanding</span></div><div style="margin-top: 20px;"><button class="btn-calc">+ Add New Farm</button></div></div></div>
+        <div id="orders-section" class="content-section"><div class="module-card"><h2 style="color: #1b4d1b; margin-bottom: 20px;">Order History</h2><div class="contact-line"><strong>#ORD-2391</strong> – Vertical Tower Pro (2 units) – <span class="badge">Delivered</span> – $4,998</div><div class="contact-line"><strong>#ORD-2385</strong> – Nutrient Package – <span class="badge">Delivered</span> – $129</div><div class="contact-line"><strong>#ORD-2372</strong> – LED Grow Lights (6 pcs) – <span class="badge">Shipped</span> – $2,094</div><div class="contact-line"><strong>#ORD-2368</strong> – Aeroponic X System – <span class="badge">Processing</span> – $3,499</div><div style="margin-top: 20px;"><button class="btn-calc">Browse Products</button></div></div></div>
+        <div id="suppliers-section" class="content-section"><div class="module-card"><h2 style="color: #1b4d1b; margin-bottom: 20px;">Supplier Directory</h2><div class="contact-line"><strong>GreenHarvest Farms</strong> – Vertical towers, LED lights – <span class="badge">Preferred</span></div><div class="contact-line"><strong>AgriSupply International</strong> – Nutrients, pH meters – <span class="badge">Active</span></div><div class="contact-line"><strong>Urban Roots Collective</strong> – Seeds, grow media – <span class="badge">Pending</span></div><div class="contact-line"><strong>FreshLeaf Co.</strong> – Aeroponic components – <span class="badge">Active</span></div></div></div>
+        <div id="settings-section" class="content-section"><div class="module-card"><h2 style="color: #1b4d1b; margin-bottom: 20px;">Account Settings</h2><div class="contact-line"><strong>Profile Information:</strong> Alex Morgan | alex@hydrovertical.com</div><div class="contact-line"><strong>Notification Preferences:</strong> Email alerts, SMS updates enabled</div><div class="contact-line"><strong>Billing Address:</strong> 123 Green Valley Drive, Portland, OR 97201</div><div class="contact-line"><strong>Subscription Plan:</strong> Pro Grower – Renews Dec 15, 2025</div><div style="margin-top: 20px;"><button class="btn-calc">Update Settings</button></div></div></div>
+        <div id="support-section" class="content-section"><div class="module-card"><h2 style="color: #1b4d1b; margin-bottom: 20px;">Help & Support</h2><div class="contact-line"><i class="fas fa-headset"></i> <strong>24/7 Technical Support:</strong> +1 (888) 429-7765</div><div class="contact-line"><i class="fas fa-envelope"></i> <strong>Email:</strong> support@hydrovertical.com</div><div class="contact-line"><i class="fas fa-comments"></i> <strong>Live Chat:</strong> Available 9 AM - 9 PM EST</div><div class="contact-line"><i class="fas fa-book"></i> <strong>Documentation:</strong> Video tutorials, setup guides, FAQs</div><div style="margin-top: 20px;"><button class="btn-calc">Open Support Ticket</button></div></div></div>
+    </main>
+</div>
+
+<script>
+    // ROI Calculator
+    const investmentInput = document.getElementById('investment');
+    const yieldInput = document.getElementById('yieldKg');
+    const priceInput = document.getElementById('priceKg');
+    const roiResultDiv = document.getElementById('roiResult');
+    const calcBtn = document.getElementById('calcRoiBtn');
+    function updateROI() {
+        const investment = parseFloat(investmentInput.value) || 0;
+        const monthlyYield = parseFloat(yieldInput.value) || 0;
+        const pricePerKg = parseFloat(priceInput.value) || 0;
+        const annualRevenue = monthlyYield * pricePerKg * 12;
+        const annualProfit = annualRevenue - investment;
+        const roiPercent = investment > 0 ? (annualProfit / investment) * 100 : 0;
+        roiResultDiv.innerHTML = `Estimated Annual ROI: $${Math.round(annualProfit).toLocaleString()} (${Math.round(roiPercent)}%)`;
+    }
+    calcBtn.addEventListener('click', updateROI);
+    updateROI();
+
+    // Charts
+    const ctx = document.getElementById('performanceChart')?.getContext('2d');
+    if(ctx) new Chart(ctx, { type: 'line', data: { labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'], datasets: [{ label: 'Yield (kg)', data: [320,345,378,412,460,498], borderColor: '#2e7d32', backgroundColor: 'rgba(46,125,50,0.05)', tension: 0.3, fill: true }] }, options: { responsive: true, maintainAspectRatio: true } });
+    const analyticsCtx = document.getElementById('analyticsChart')?.getContext('2d');
+    if(analyticsCtx) new Chart(analyticsCtx, { type: 'bar', data: { labels: ['Jan','Feb','Mar','Apr','May','Jun'], datasets: [{ label: 'Yield (kg)', data: [2100,2450,2780,3100,3450,3800], backgroundColor: '#2e7d32', borderRadius: 8 }] }, options: { responsive: true, maintainAspectRatio: true } });
+
+    // Navigation
+    const pageTitleMap = { 'dashboard-main': { heading: 'Welcome back, Alex', subtext: 'Track your vertical farm performance, orders, and ROI insights' }, 'analytics': { heading: 'Analytics Dashboard', subtext: 'Deep dive into yield trends and efficiency metrics' }, 'my-farms': { heading: 'My Farms', subtext: 'Monitor and manage your vertical farming locations' }, 'orders': { heading: 'Order History', subtext: 'Track your purchases and deliveries' }, 'suppliers': { heading: 'Supplier Directory', subtext: 'Connect with trusted partners' }, 'settings': { heading: 'Account Settings', subtext: 'Manage your profile, billing, and preferences' }, 'support': { heading: 'Help & Support', subtext: 'Get assistance and access resources' } };
+    document.querySelectorAll('.nav-item[data-section]').forEach(item => { item.addEventListener('click', function() { const sectionName = this.getAttribute('data-section'); document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active-section')); document.getElementById(`${sectionName}-section`).classList.add('active-section'); document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active')); this.classList.add('active'); const titleInfo = pageTitleMap[sectionName] || { heading: 'HydroVertical', subtext: 'User Dashboard' }; document.getElementById('pageHeading').innerText = titleInfo.heading; document.getElementById('pageSubtext').innerText = titleInfo.subtext; }); });
+    document.getElementById('logoutSidebar')?.addEventListener('click', e => { e.window.location.href = './login.html'; alert('You have been logged out successfully.'); });
+
+    // Hamburger menu
+    const sidebar = document.querySelector('.sidebar'), overlay = document.getElementById('sidebarOverlay'), toggleBtn = document.getElementById('sidebarToggleBtn');
+    if(toggleBtn && sidebar && overlay) { toggleBtn.addEventListener('click', () => { sidebar.classList.add('show'); overlay.classList.add('show'); }); overlay.addEventListener('click', () => { sidebar.classList.remove('show'); overlay.classList.remove('show'); }); }
+
+    // IMPORTANT: Only close sidebar when clicking on regular nav items, NOT on mobile control items
+    document.querySelectorAll('.sidebar .nav-item[data-section]').forEach(item => { 
+        item.addEventListener('click', () => { 
+            if(window.innerWidth <= 1024) { 
+                sidebar.classList.remove('show'); 
+                overlay.classList.remove('show'); 
+            } 
+        }); 
+    });
+    
+    // Mobile control items should NOT close the sidebar when clicked
+    // They only perform their specific actions - no sidebar closing
+
+    // Dropdowns
+    document.addEventListener('click', function(e) { const toggle = e.target.closest('.dropdown-toggle'); if(!toggle && !e.target.closest('.dropdown-menu')) { document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show')); return; } if(toggle) { e.preventDefault(); e.stopPropagation(); const targetId = toggle.getAttribute('data-target'); const targetMenu = document.getElementById(targetId); document.querySelectorAll('.dropdown-menu').forEach(m => { if(m.id !== targetId) m.classList.remove('show'); }); if(targetMenu) targetMenu.classList.toggle('show'); } });
+
+    // Global Dark Mode & RTL Functions (affect entire page)
+    function setDarkMode(isDark) {
+        if(isDark) document.body.classList.add('dark');
+        else document.body.classList.remove('dark');
+        localStorage.setItem('dashboard-theme', isDark ? 'dark' : 'light');
+        const desktopThemeBtn = document.getElementById('themeToggle');
+        const mobileThemeBtn = document.getElementById('mobileThemeToggle');
+        if(desktopThemeBtn) desktopThemeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        if(mobileThemeBtn) mobileThemeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i><span>Dark Mode</span>' : '<i class="fas fa-moon"></i><span>Dark Mode</span>';
+    }
+    function setRTL(isRTL) {
+        if(isRTL) document.body.classList.add('rtl');
+        else document.body.classList.remove('rtl');
+        localStorage.setItem('dashboard-rtl', isRTL ? 'true' : 'false');
+    }
+    // Initialize from localStorage (only theme, RTL should NOT auto-apply - but keeping existing behavior)
+    if(localStorage.getItem('dashboard-theme') === 'dark') setDarkMode(true);
+    if(localStorage.getItem('dashboard-rtl') === 'true') setRTL(true);
+    
+    // Desktop buttons
+    document.getElementById('themeToggle')?.addEventListener('click', () => setDarkMode(!document.body.classList.contains('dark')));
+    document.getElementById('rtlToggle')?.addEventListener('click', () => setRTL(!document.body.classList.contains('rtl')));
+    
+    // Mobile buttons - these ONLY toggle their respective features, they do NOT close the sidebar or navigate
+    document.getElementById('mobileThemeToggle')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setDarkMode(!document.body.classList.contains('dark'));
+    });
+    document.getElementById('mobileRtlToggle')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setRTL(!document.body.classList.contains('rtl'));
+    });
+    document.getElementById('mobileNotifications')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        alert('🔔 You have 2 new notifications:\n• Refill nutrient tank soon\n• LED Grow Lights delivered');
+    });
+    document.getElementById('mobileProfile')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        alert('👤 Profile: Alex Morgan (Pro Grower)\n📧 Email: alex@hydrovertical.com');
+    });
+</script>
+</body>
+</html>
