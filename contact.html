@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, shrink-to-fit=no">
+    <title>HydroVertical | Premium Vertical Hydroponic Systems</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./nav.css">
+    <style>
+        /* ========== GLOBAL RESET & VARIABLES (Same as Homepage) ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --g1: #0b2e1a;
+            --g2: #174d2e;
+            --g3: #1f6b3e;
+            --accent: #56c27a;
+            --accent2: #a3e4b8;
+            --lime: #c8f04a;
+            --text: #0d1f13;
+            --text-muted: #4a6a52;
+            --bg: #f3f8f4;
+            --surface: #ffffff;
+            --border: rgba(0,0,0,0.07);
+            --radius: 20px;
+            --radius-lg: 32px;
+            --shadow: 0 8px 32px rgba(11,46,26,0.1);
+            --shadow-lg: 0 24px 60px rgba(11,46,26,0.16);
+            --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+        }
+
+        body.dark {
+            --text: #e2f0e6;
+            --text-muted: #7aaa8a;
+            --bg: #09150e;
+            --surface: #111d15;
+            --border: rgba(255,255,255,0.07);
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* ========== UTILITY CLASSES ========== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--g1) 0%, var(--g3) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        body.dark .section-title {
+            background: linear-gradient(135deg, var(--accent2) 0%, var(--lime) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 48px;
+            line-height: 1.6;
+        }
+
+        /* ========== GLASSMORPHISM COMPONENTS ========== */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--g2) 0%, var(--g3) 100%);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(31, 107, 62, 0.3);
+            background: linear-gradient(135deg, var(--g3) 0%, var(--accent) 100%);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero-contact {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(11,46,26,0.92) 0%, rgba(31,107,62,0.85) 100%), url('./images/Contact\ Us.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-contact-content {
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .hero-contact h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-contact .highlight {
+            color: var(--lime);
+        }
+
+        .hero-contact p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        /* ========== CONTACT GRID ========== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        /* Contact Form */
+        .form-container {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .form-container h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 18px;
+            transition: var(--transition);
+        }
+
+        .input-group:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(86, 194, 122, 0.1);
+        }
+
+        .input-group i {
+            color: var(--accent);
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text);
+            outline: none;
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* Contact Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .info-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--g2), var(--g3));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .info-icon i {
+            font-size: 1.8rem;
+            color: var(--lime);
+        }
+
+        .info-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .info-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Map Section */
+        .map-section {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--g2), var(--g3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+        }
+
+        .map-container i {
+            font-size: 4rem;
+            color: var(--lime);
+            margin-bottom: 20px;
+        }
+
+        .map-container p {
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* Quick Contact Options */
+        .quick-contact {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .quick-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 28px 20px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .quick-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .quick-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .quick-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .quick-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* FAQ Section */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .faq-item {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 24px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        .faq-question i {
+            color: var(--accent);
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-top: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            margin-top: 16px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--g1) 0%, var(--g3) 100%);
+            border-radius: var(--radius-lg);
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto 32px;
+            font-size: 1.1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .section { padding: 60px 0; }
+            .hero-contact h1 { font-size: 2.8rem; }
+            .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+            .faq-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .hero-contact h1 { font-size: 2rem; }
+            .hero-contact p { font-size: 1rem; }
+            .form-container { padding: 28px; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            .info-grid { grid-template-columns: 1fr; }
+            .quick-contact { grid-template-columns: 1fr; gap: 16px; }
+            .section-title { font-size: 1.8rem; }
+            .cta-section { padding: 40px 24px; }
+            .cta-section h2 { font-size: 1.6rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-contact h1 { font-size: 1.6rem; }
+            .btn-primary, .btn-outline { padding: 10px 20px; font-size: 0.85rem; width: 100%; justify-content: center; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .form-container { padding: 20px; }
+        }
+                /* ========== ENHANCED RESPONSIVE FIXES FOR CONTACT PAGE ========== */
+        
+        /* Ultra-wide screen optimization */
+        @media (min-width: 1920px) {
+            .container {
+                max-width: 1600px;
+            }
+            .hero-contact h1 {
+                font-size: 4rem;
+            }
+            .section-title {
+                font-size: 3rem;
+            }
+            .contact-grid {
+                gap: 60px;
+            }
+            .form-container {
+                padding: 50px;
+            }
+            .info-grid {
+                gap: 30px;
+            }
+        }
+
+        /* Small desktop / laptop (1280px - 1440px) */
+        @media (min-width: 1280px) and (max-width: 1440px) {
+            .container {
+                max-width: 1200px;
+            }
+            .hero-contact h1 {
+                font-size: 3rem;
+            }
+        }
+
+        /* Tablet landscape (1025px - 1280px) */
+        @media (min-width: 1025px) and (max-width: 1280px) {
+            .container {
+                padding: 0 32px;
+            }
+            .hero-contact h1 {
+                font-size: 2.8rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .contact-grid {
+                gap: 32px;
+            }
+            .form-container {
+                padding: 32px;
+            }
+            .info-grid {
+                gap: 16px;
+            }
+            .quick-contact {
+                gap: 20px;
+            }
+        }
+
+        /* Tablet portrait (768px - 1024px) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .section {
+                padding: 60px 0;
+            }
+            .hero-contact {
+                min-height: 60vh;
+                background-attachment: scroll;
+            }
+            .hero-contact h1 {
+                font-size: 2.5rem;
+            }
+            .hero-contact p {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .section-subtitle {
+                font-size: 1rem;
+                margin-bottom: 40px;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .form-container {
+                padding: 36px;
+            }
+            .form-container h3 {
+                font-size: 1.6rem;
+            }
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .quick-contact {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .map-container {
+                height: 350px;
+            }
+            .cta-section {
+                padding: 50px 30px;
+            }
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Mobile large (481px - 768px) */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            .section {
+                padding: 50px 0;
+            }
+            .hero-contact {
+                min-height: 55vh;
+                background-attachment: scroll;
+                text-align: center;
+            }
+            .hero-contact h1 {
+                font-size: 2rem;
+            }
+            .hero-contact p {
+                font-size: 1rem;
+                padding: 0 16px;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .section-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 32px;
+                padding: 0 16px;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .form-container {
+                padding: 28px;
+            }
+            .form-container h3 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .info-card {
+                padding: 20px;
+            }
+            .info-icon {
+                width: 50px;
+                height: 50px;
+            }
+            .info-icon i {
+                font-size: 1.5rem;
+            }
+            .quick-contact {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            .quick-card {
+                padding: 20px;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .faq-item {
+                padding: 20px;
+            }
+            .faq-question {
+                font-size: 0.95rem;
+            }
+            .map-container {
+                height: 300px;
+                padding: 20px;
+                text-align: center;
+            }
+            .map-container i {
+                font-size: 3rem;
+            }
+            .map-container h4 {
+                font-size: 1.1rem;
+            }
+            .map-container p {
+                font-size: 0.85rem;
+            }
+            .cta-section {
+                padding: 40px 24px;
+            }
+            .cta-section h2 {
+                font-size: 1.6rem;
+            }
+            .cta-section p {
+                font-size: 0.95rem;
+                padding: 0 16px;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+            .btn-primary, .btn-outline {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+
+        /* Mobile small (321px - 480px) */
+        @media (min-width: 321px) and (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            .section {
+                padding: 40px 0;
+            }
+            .hero-contact {
+                min-height: 70vh;
+                background-attachment: scroll;
+            }
+            .hero-contact h1 {
+                font-size: 1.6rem;
+            }
+            .hero-contact p {
+                font-size: 0.9rem;
+                padding: 0 12px;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .section-subtitle {
+                font-size: 0.85rem;
+                margin-bottom: 28px;
+            }
+            .contact-grid {
+                gap: 28px;
+            }
+            .form-container {
+                padding: 20px;
+            }
+            .form-container h3 {
+                font-size: 1.3rem;
+                text-align: center;
+            }
+            .input-group {
+                padding: 10px 14px;
+            }
+            .input-group i {
+                font-size: 0.9rem;
+            }
+            .input-group input,
+            .input-group select,
+            .input-group textarea {
+                font-size: 0.85rem;
+            }
+            .info-card {
+                padding: 16px;
+            }
+            .info-icon {
+                width: 45px;
+                height: 45px;
+            }
+            .info-icon i {
+                font-size: 1.3rem;
+            }
+            .info-card h4 {
+                font-size: 1rem;
+            }
+            .info-card p {
+                font-size: 0.75rem;
+            }
+            .quick-card {
+                padding: 16px;
+            }
+            .quick-card i {
+                font-size: 1.5rem;
+            }
+            .quick-card h4 {
+                font-size: 0.9rem;
+            }
+            .quick-card p {
+                font-size: 0.7rem;
+            }
+            .faq-item {
+                padding: 16px;
+            }
+            .faq-question {
+                font-size: 0.85rem;
+            }
+            .faq-answer {
+                font-size: 0.75rem;
+            }
+            .map-container {
+                height: 280px;
+                padding: 16px;
+            }
+            .map-container i {
+                font-size: 2.5rem;
+            }
+            .map-container h4 {
+                font-size: 1rem;
+            }
+            .map-container p {
+                font-size: 0.75rem;
+            }
+            .cta-section {
+                padding: 32px 20px;
+            }
+            .cta-section h2 {
+                font-size: 1.3rem;
+            }
+            .cta-section p {
+                font-size: 0.85rem;
+                margin-bottom: 24px;
+            }
+            .btn-primary, .btn-outline {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+                max-width: 240px;
+            }
+        }
+
+        /* Extra small devices (280px - 320px) */
+        @media (max-width: 320px) {
+            .container {
+                padding: 0 12px;
+            }
+            .hero-contact h1 {
+                font-size: 1.3rem;
+            }
+            .hero-contact p {
+                font-size: 0.8rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .section-subtitle {
+                font-size: 0.75rem;
+            }
+            .form-container {
+                padding: 16px;
+            }
+            .form-container h3 {
+                font-size: 1.2rem;
+            }
+            .info-card h4 {
+                font-size: 0.9rem;
+            }
+            .info-card p {
+                font-size: 0.7rem;
+            }
+            .quick-card {
+                padding: 14px;
+            }
+            .faq-question {
+                font-size: 0.8rem;
+            }
+            .cta-section h2 {
+                font-size: 1.2rem;
+            }
+            .btn-primary, .btn-outline {
+                font-size: 0.75rem;
+                padding: 8px 16px;
+                max-width: 200px;
+            }
+        }
+
+        /* Landscape orientation fixes for mobile */
+        @media (max-width: 900px) and (orientation: landscape) {
+            .hero-contact {
+                min-height: 100vh;
+            }
+            .hero-contact h1 {
+                font-size: 1.8rem;
+            }
+            .section {
+                padding: 30px 0;
+            }
+            .contact-grid {
+                gap: 24px;
+            }
+            .form-container {
+                padding: 20px;
+            }
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .quick-contact {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .faq-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .map-container {
+                height: 250px;
+            }
+        }
+
+        /* Prevent horizontal overflow on all elements */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Ensure all containers and cards respect viewport */
+        .container,
+        .contact-grid,
+        .info-grid,
+        .quick-contact,
+        .faq-grid,
+        .form-container,
+        .info-card,
+        .quick-card,
+        .faq-item,
+        .map-section,
+        .cta-section {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Improve touch targets on mobile devices */
+        @media (max-width: 768px) {
+            .btn-primary, 
+            .btn-outline,
+            .quick-card,
+            .faq-question,
+            .info-card {
+                cursor: pointer;
+                min-height: 44px;
+            }
+            .input-group input,
+            .input-group select,
+            .input-group textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        /* Smooth text wrapping */
+        @media (max-width: 768px) {
+            body {
+                font-size: 15px;
+            }
+            p, li, a, .info-card p, .faq-answer {
+                word-break: break-word;
+            }
+        }
+
+        /* Fix for buttons on mobile */
+        @media (max-width: 768px) {
+            .cta-buttons {
+                width: 100%;
+            }
+            .btn-primary, .btn-outline {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Ensure map section doesn't overflow */
+        .map-container iframe,
+        .map-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Fix for form inputs on mobile */
+        @media (max-width: 480px) {
+            .input-group {
+                flex-wrap: wrap;
+            }
+            .input-group i {
+                margin-bottom: 8px;
+            }
+        }
+        .btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid white;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-outline i {
+  font-size: 1rem;
+  margin: 0;
+  transition: transform 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: white;
+  color: #1a252f;
+  transform: translateY(-2px);
+}
+
+.btn-outline:hover i {
+  transform: translateX(4px);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .btn-outline {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    gap: 6px;
+  }
+  
+  .btn-outline i {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .btn-outline {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+  
+  .btn-outline i {
+    font-size: 0.85rem;
+  }
+}
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+            <div class="nav-links">
+                <div class="nav-item">
+                    <a href="#" class="nav-link">Home <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="./index.html">Home 1</a>
+                        <a href="./home2.html">Home 2</a>
+                    </div>
+                </div>
+                <a href="./about.html" class="nav-link">About us</a>
+                <a href="./products.html" class="nav-link">Products</a>
+                <a href="./technology.html" class="nav-link">Technology</a>
+                <a href="./faq.html" class="nav-link">FAQ</a>
+                <a href="./contact.html" class="nav-link">Contact</a>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">Dashboard <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="./admin.html">Admin Page</a>
+                        <a href="./user.html">User Page</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <div class="desktop-rtl-dark">
+                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
+                    <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                    </button>
+                </div>
+                <!-- Profile dropdown - visible only on desktop (hidden on tablet/mobile via media query) -->
+                <div class="profile-dropdown">
+                    <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
+                    <div class="profile-dropdown-content">
+                        <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+                    </div>
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <div class="nav-item" style="display:block;">
+                <a href="#" class="nav-link">Home</a>
+                <div class="mobile-dropdown">
+                    <a href="./index.html">Home 1</a>
+                    <a href="./home2.html">Home 2</a>
+                </div>
+            </div>
+            <a href="./about.html" class="nav-link">About us</a>
+            <a href="./products.html" class="nav-link">Products</a>
+            <a href="./technology.html" class="nav-link">Technology</a>
+            <a href="./faq.html" class="nav-link">FAQ</a>
+            <a href="./contact.html" class="nav-link">Contact</a>
+            <div class="nav-item" style="display:block;">
+                <a href="#" class="nav-link">Dashboard</a>
+                <div class="mobile-dropdown">
+                    <a href="./admin.html">Admin Page</a>
+                    <a href="./user.html">User Page</a>
+                </div>
+            </div>
+            <div class="mobile-actions">
+                <button class="mobile-action-btn" id="mobileThemeToggle">
+                    <i class="fas fa-moon"></i> <span>Dark</span>
+                </button>
+                <button class="mobile-action-btn" id="mobileRtlToggle">
+                    <i class="fas fa-exchange-alt"></i> <span>RTL</span>
+                </button>
+            </div>
+            <!-- Mobile Profile Section (visible only on tablet/mobile) -->
+            <div class="mobile-profile-section">
+                <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+            </div>
+        </div>
+    </nav>
+    <!-- ========== SECTION 1: HERO SECTION ========== -->
+    <section class="hero-contact">
+        <div class="container">
+            <div class="hero-contact-content fade-up">
+                <h1>Let's Grow <span class="highlight">Together</span></h1>
+                <p>Connect with our team of vertical farming experts. Whether you're starting your first farm or scaling an existing operation, we're here to help.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 2: CONTACT FORM + COMPANY DETAILS ========== -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="form-container fade-up">
+                    <h3>Send us a message</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="fullName" placeholder="Full Name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <i class="fas fa-building"></i>
+                                    <input type="text" id="company" placeholder="Company Name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="email" placeholder="Email Address" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <i class="fas fa-phone"></i>
+                                    <input type="tel" id="phone" placeholder="Phone Number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <i class="fas fa-tag"></i>
+                                <select id="inquiryType">
+                                    <option value="general">General Inquiry</option>
+                                    <option value="sales">Sales & Quotes</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="partnership">Partnership Opportunity</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <i class="fas fa-comment"></i>
+                                <textarea id="message" placeholder="Tell us about your project..." required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Company Contact Details -->
+                <div>
+                    <div class="info-grid">
+                        <div class="info-card fade-up">
+                            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <h4>Visit Us</h4>
+                            <p>123 Green Valley Drive<br>Suite 400, Portland, OR 97201<br>United States</p>
+                        </div>
+                        <div class="info-card fade-up">
+                            <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                            <h4>Call Us</h4>
+                            <p>Toll Free: +1 (800) 123-HVFS<br>Direct: +1 (503) 555-7890<br>Mon-Fri, 8AM-8PM EST</p>
+                        </div>
+                        <div class="info-card fade-up">
+                            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                            <h4>Email Us</h4>
+                            <p>Sales: sales@hvfs.com<br>Support: support@hvfs.com<br>Suppliers: suppliers@hvfs.com</p>
+                        </div>
+                        <div class="info-card fade-up">
+                            <div class="info-icon"><i class="fas fa-clock"></i></div>
+                            <h4>Hours</h4>
+                            <p>Mon-Fri: 8AM - 8PM EST<br>Sat: 9AM - 5PM EST<br>Emergency: 24/7/365</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 3: EMBEDDED MAP ========== -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="map-section fade-up">
+                <div class="map-container">
+                    <i class="fas fa-globe-americas"></i>
+                    <h4>Global Headquarters – Portland, Oregon</h4>
+                    <p>📍 123 Green Valley Drive, Portland, OR 97201</p>
+                    <p style="font-size: 0.85rem;">🌎 Serving customers in 28+ countries worldwide</p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="#" class="btn-outline" style="background: rgba(255,255,255,0.1); border-color: white; color: white; padding: 10px 12px;">Get Directions <i class="fas fa-arrow-right" style="font-size: 25px;"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 4: QUICK CONTACT OPTIONS ========== -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <h2 class="section-title fade-up">Quick Connect</h2>
+            <p class="section-subtitle fade-up">Reach us instantly through your preferred channel</p>
+            <div class="quick-contact">
+                <div class="quick-card fade-up" id="callBtn">
+                    <i class="fas fa-phone-alt"></i>
+                    <h4>Call Us</h4>
+                    <p>+1 (800) 123-HVFS</p>
+                    <p style="font-size: 0.7rem;">Response within 2 minutes</p>
+                </div>
+                <div class="quick-card fade-up" id="whatsappBtn">
+                    <i class="fab fa-whatsapp"></i>
+                    <h4>WhatsApp</h4>
+                    <p>+1 (503) 555-7890</p>
+                    <p style="font-size: 0.7rem;">Chat with an expert</p>
+                </div>
+                <div class="quick-card fade-up" id="emailQuickBtn">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email Us</h4>
+                    <p>hello@hvfs.com</p>
+                    <p style="font-size: 0.7rem;">Reply within 24 hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 5: FAQ SUPPORT INFORMATION ========== -->
+    <section class="section" style="background: var(--surface);">
+        <div class="container">
+            <h2 class="section-title fade-up">Frequently Asked Questions</h2>
+            <p class="section-subtitle fade-up">Everything you need to know about working with us</p>
+            <div class="faq-grid">
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>🌱 How do I get started with vertical farming?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">Schedule a free consultation with our team. We'll assess your space, budget, and goals to design a custom solution. Most farms are operational within 60-90 days.</div>
+                </div>
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>💰 What is the typical ROI for your systems?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">Our clients typically see ROI within 14-24 months. Commercial operations achieve 45-60% gross margins with payback periods varying based on scale and crop selection.</div>
+                </div>
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>🚚 Do you offer international shipping?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">Yes! We ship to 28+ countries worldwide. Our logistics team handles customs clearance and provides on-site installation support for international clients.</div>
+                </div>
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>🛠️ What kind of support do you provide?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">24/7 technical support, remote monitoring, quarterly performance reviews, software updates, and annual on-site maintenance. Plus, you get a dedicated account manager.</div>
+                </div>
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>📦 How to become an authorized supplier?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">Visit our supplier portal at suppliers.hvfs.com. Complete the application with your certifications and product catalog. Our procurement team reviews within 2-3 business days.</div>
+                </div>
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>🔧 Do you offer training for my team?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">Absolutely! We provide comprehensive on-site training, certification programs, and ongoing educational resources. Our training center in Oregon hosts monthly workshops.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 6: FINAL CALL TO ACTION ========== -->
+    <section class="section">
+        <div class="container">
+            <div class="cta-section fade-up">
+                <h2>Ready to Transform Your Farming Operation?</h2>
+                <p>Join hundreds of successful growers who've partnered with HydroVertical. Get a personalized quote and farm design consultation today.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn-primary" id="startFarmBtn"><i class="fas fa-seedling"></i> Start Your Farm</a>
+                    <a href="#" class="btn-outline" style="background: rgba(255,255,255,0.1); border-color: white; color: white;" id="getQuoteBtn"><i class="fas fa-file-invoice"></i> Request Free Quote</a>
+                </div>
+                <p style="margin-top: 32px; font-size: 0.85rem; color: rgba(255,255,255,0.6);">
+                    <i class="fas fa-headset"></i> Need immediate assistance? Call our priority support: +1 (888) 999-4321
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="./index.html" class="logo" id="wow" style="color:white"><i class="fas fa-leaf"></i>Hydro<span>Vertical</span></a>
+                    <p>Leading supplier of innovative vertical hydroponic solutions for sustainable agriculture since 2015. Helping farms around the world grow smarter.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="./products.html">All Systems</a></li>
+                        <li><a href="./products.html" onclick="filterProducts('home'); return false;">Home & Starter</a></li>
+                        <li><a href="./products.html" onclick="filterProducts('commercial'); return false;">Commercial</a></li>
+                        <li><a href="./products.html" onclick="filterProducts('industrial'); return false;">Industrial</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./products.html">Products</a></li>
+                        <li><a href="./technology.html">Technology</a></li>
+                        <li><a href="./faq.html">FAQ</a></li>
+                        <li><a href="./contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Stay Updated</h4>
+                    <p style="color:rgba(255,255,255,0.85);font-size:0.83rem;line-height:1.6;margin-bottom:16px;">Get the latest growing tips, product launches, and industry news delivered to your inbox.</p>
+                    <div class="newsletter-input-wrap">
+                        <input type="email" class="newsletter-input" placeholder="your@email.com">
+                        <button class="btn-subscribe">→</button>
+                    </div>
+                    <p style="color:rgba(255,255,255,0.7);font-size:0.75rem;margin-top:10px;">No spam. Unsubscribe anytime.</p>
+                    <div style="margin-top:20px;">
+                        <p style="color:rgba(255,255,255,0.85);font-size:0.83rem;margin-bottom:6px;"><i class="fas fa-envelope" style="color:var(--accent);margin-right:6px;"></i> suppliers@hvfs.com</p>
+                        <p style="color:rgba(255,255,255,0.85);font-size:0.83rem;"><i class="fas fa-phone" style="color:var(--accent);margin-right:6px;"></i> +1 (800) 123-HVFS</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 HydroVertical Systems. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <button class="btt" id="btt" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+    <script src="./nav.js"></script>
+    <script>
+        // Intersection Observer for fade-up animations
+        const faders = document.querySelectorAll('.fade-up');
+        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -30px 0px" };
+        const appearOnScroll = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+        faders.forEach(el => appearOnScroll.observe(el));
+
+        // Dark mode detection and sync with homepage
+        (function() {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark');
+            }
+            
+            // Create dark mode styles if not exists
+            if (!document.getElementById('contact-dark-styles')) {
+                const darkStyle = document.createElement('style');
+                darkStyle.id = 'contact-dark-styles';
+                darkStyle.textContent = `
+                    body.dark .form-container,
+                    body.dark .info-card,
+                    body.dark .map-section,
+                    body.dark .quick-card,
+                    body.dark .faq-item {
+                        background: var(--surface);
+                    }
+                    body.dark .input-group {
+                        background: var(--bg);
+                        border-color: var(--border);
+                    }
+                    body.dark .input-group input,
+                    body.dark .input-group select,
+                    body.dark .input-group textarea {
+                        color: var(--text);
+                    }
+                `;
+                document.head.appendChild(darkStyle);
+            }
+        })();
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('fullName')?.value;
+                alert(`Thank you ${name}! Your message has been sent. Our team will respond within 24 hours.`);
+                contactForm.reset();
+            });
+        }
+
+        // Quick contact buttons
+        const callBtn = document.getElementById('callBtn');
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        const emailQuickBtn = document.getElementById('emailQuickBtn');
+        const startFarmBtn = document.getElementById('startFarmBtn');
+        const getQuoteBtn = document.getElementById('getQuoteBtn');
+
+        if (callBtn) callBtn.addEventListener('click', () => alert("📞 Call us at +1 (800) 123-HVFS. Our team is ready to assist you."));
+        if (whatsappBtn) whatsappBtn.addEventListener('click', () => alert("💬 Chat with us on WhatsApp: +1 (503) 555-7890"));
+        if (emailQuickBtn) emailQuickBtn.addEventListener('click', () => alert("✉️ Send an email to hello@hvfs.com. We'll respond within 24 hours."));
+        if (startFarmBtn) startFarmBtn.addEventListener('click', (e) => { e.preventDefault(); alert("🌱 Let's start your vertical farm journey! Our experts will contact you shortly."); });
+        if (getQuoteBtn) getQuoteBtn.addEventListener('click', (e) => { e.preventDefault(); alert("📄 Request a free, no-obligation quote. A specialist will reach out within 24 hours."); });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

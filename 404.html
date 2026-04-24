@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, shrink-to-fit=no">
+    <title>HydroVertical | Premium Vertical Hydroponic Systems</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f4fbf4 0%, #e8f5e9 100%);
+            color: #132e13;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Subtle animated background pattern */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 10% 20%, rgba(46, 125, 50, 0.05) 2%, transparent 2.5%);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        /* Floating leaf animation */
+        @keyframes floatLeaf {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-20px) rotate(10deg); opacity: 0.6; }
+            100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+        }
+
+        .floating-leaf {
+            position: absolute;
+            font-size: clamp(1rem, 3vw, 2rem);
+            color: #2e7d32;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: floatLeaf 6s ease-in-out infinite;
+        }
+
+        .leaf-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .leaf-2 { bottom: 15%; right: 8%; animation-delay: 1s; font-size: clamp(1.2rem, 4vw, 2.5rem); }
+        .leaf-3 { top: 20%; right: 15%; animation-delay: 2s; font-size: clamp(0.9rem, 2.5vw, 1.8rem); }
+        .leaf-4 { bottom: 25%; left: 12%; animation-delay: 1.5s; font-size: clamp(1rem, 3vw, 2.2rem); }
+        .leaf-5 { top: 50%; left: 20%; animation-delay: 0.5s; font-size: clamp(0.8rem, 2vw, 1.5rem); }
+        .leaf-6 { bottom: 40%; right: 25%; animation-delay: 2.5s; font-size: clamp(0.9rem, 2.5vw, 1.8rem); }
+
+        /* Main 404 Container */
+        .error-container {
+            max-width: 900px;
+            width: 90%;
+            margin: 40px auto;
+            padding: 40px 32px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 56px;
+            border: 1px solid rgba(46, 125, 50, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        .error-container:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Stylized 404 Text */
+        .error-code {
+            font-size: clamp(5rem, 15vw, 10rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 20px;
+            background: linear-gradient(125deg, #1b4d1b, #2e7d32, #c8f04a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 4px 20px rgba(46, 125, 50, 0.15);
+            letter-spacing: -0.02em;
+        }
+
+        /* Illustration Area (animated plant icon) */
+        .illustration {
+            margin: 20px 0 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .plant-icon {
+            font-size: clamp(3rem, 8vw, 5rem);
+            color: #2e7d32;
+            animation: bounce 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* Friendly Error Message */
+        .error-message {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            font-weight: 600;
+            color: #1a4d1a;
+            margin-bottom: 12px;
+        }
+
+        .error-description {
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            color: #4a6a5a;
+            max-width: 450px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        /* Call-to-Action Button */
+        .btn-home {
+            background: linear-gradient(115deg, #2b6e2b, #1c4f1c);
+            border: none;
+            padding: 14px 36px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(30, 80, 30, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-home:hover {
+            transform: scale(1.03);
+            background: linear-gradient(115deg, #1c5e1c, #2e7d32);
+            box-shadow: 0 12px 28px rgba(46, 125, 50, 0.4);
+            gap: 14px;
+        }
+
+        .btn-home i {
+            transition: transform 0.2s ease;
+        }
+
+        .btn-home:hover i {
+            transform: translateX(-4px);
+        }
+
+        /* Search Suggestion (optional friendly UX) */
+        .search-suggestion {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(46, 125, 50, 0.15);
+        }
+
+        .search-suggestion p {
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            color: #6c8e6c;
+            margin-bottom: 12px;
+        }
+
+        .suggestion-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .suggestion-links a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-size: clamp(0.7rem, 2vw, 0.85rem);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .suggestion-links a:hover {
+            color: #1b5e20;
+            text-decoration: underline;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .error-container {
+                padding: 32px 24px;
+                margin: 20px;
+                width: 92%;
+            }
+            .plant-icon {
+                font-size: 3.5rem;
+            }
+            .btn-home {
+                padding: 12px 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-container {
+                padding: 28px 20px;
+                width: 94%;
+                margin: 16px auto;
+            }
+            .suggestion-links {
+                gap: 12px;
+            }
+            .btn-home {
+                padding: 10px 24px;
+                gap: 8px;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .error-container {
+                max-width: 1000px;
+            }
+        }
+
+        /* Prevent overflow */
+        img, svg, .error-container, .floating-leaf {
+            max-width: 100%;
+        }
+
+        /* Touch-friendly button */
+        @media (max-width: 768px) {
+            .btn-home {
+                min-height: 48px;
+            }
+        }
+
+        /* Additional glassmorphism for extra polish */
+        .error-container {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 248, 0.85);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating decorative leaves -->
+    <div class="floating-leaf leaf-1"><i class="fas fa-leaf"></i></div>
+    <div class="floating-leaf leaf-2"><i class="fas fa-seedling"></i></div>
+    <div class="floating-leaf leaf-3"><i class="fas fa-leaf"></i></div>
+    <div class="floating-leaf leaf-4"><i class="fas fa-seedling"></i></div>
+    <div class="floating-leaf leaf-5"><i class="fas fa-leaf"></i></div>
+    <div class="floating-leaf leaf-6"><i class="fas fa-seedling"></i></div>
+
+    <!-- Main 404 Content -->
+    <div class="error-container">
+        <!-- Stylized 404 Text -->
+        <div class="error-code">404</div>
+
+        <!-- Illustration / Animation -->
+        <div class="illustration">
+            <div class="plant-icon">
+                <i class="fas fa-seedling"></i>
+            </div>
+        </div>
+
+        <!-- Friendly Error Message -->
+        <div class="error-message">
+            Oops! This page seems to have wilted.
+        </div>
+        <div class="error-description">
+            The page you're looking for might have been moved, deleted, or never existed. 
+            But don't worry — our farm is still growing strong.
+        </div>
+
+        <!-- Call-to-Action Button -->
+        <a href="./index.html" class="btn-home" id="backToHomeBtn">
+            <i class="fas fa-arrow-left"></i> Back to Homepage
+        </a>
+
+        <!-- Optional: Helpful suggestion links -->
+        <div class="search-suggestion">
+            <p>🌱 Try one of these instead:</p>
+            <div class="suggestion-links">
+                <a href="#">Our Systems</a>
+                <a href="#">Technology</a>
+                <a href="#">Contact Support</a>
+                <a href="#">FAQs</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple interactive button to simulate "Back to Home" (can be replaced with actual homepage URL)
+        const homeBtn = document.getElementById('backToHomeBtn');
+        if (homeBtn) {
+            homeBtn.addEventListener('click', function(e) {
+                e.window.location.href = "./index.html";
+                // In a real scenario, this would redirect to the homepage.
+                // For demonstration, we show a friendly toast/alert and simulate redirect.
+                alert("🌿 Welcome back to HydroVertical! Redirecting to homepage...");
+                // window.location.href = "/";   // Uncomment for actual redirect
+            });
+        }
+
+        // Optional: Add a subtle console log for developers
+        console.log("404 page — designed with care for HydroVertical");
+    </script>
+</body>
+</html>

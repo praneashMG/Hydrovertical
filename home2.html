@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, shrink-to-fit=no">
+    <title>HydroVertical | Premium Vertical Hydroponic Systems</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <!-- Google Fonts & Font Awesome -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./nav.css">
+    <style>
+        :root {
+            --surface-color: #ffffff;
+            --bg-color: #f6f9f6;
+            --text-main: #0c1c11;
+            --text-sec: #456149;
+            --accent-green: #38a342;
+            --accent-neon: #a0dc28;
+            --border: rgba(0, 0, 0, 0.08);
+            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.05);
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body.dark {
+            --surface-color: #122215;
+            --bg-color: #070d08;
+            --text-main: #f0f7f1;
+            --text-sec: #9db5a1;
+            --border: rgba(255, 255, 255, 0.08);
+            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-green);
+            border-radius: 4px;
+        }
+
+        /* ====== UNIQUE HERO SPLIT ====== */
+        .hero-split {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 60px 5%;
+            position: relative;
+            background: radial-gradient(circle at 10% 20%, rgba(160, 220, 40, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(56, 163, 66, 0.08) 0%, transparent 40%);
+        }
+
+        .hero-text-side {
+            flex: 1;
+            padding-right: 40px;
+            z-index: 2;
+        }
+
+        .hero-text-side h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-text-side p {
+            font-size: 1.15rem;
+            color: var(--text-sec);
+            max-width: 500px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            border-left: 4px solid var(--accent-neon);
+            padding-left: 20px;
+        }
+
+        .btn-modern {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--text-main);
+            color: var(--bg-color);
+            padding: 16px 36px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-modern:hover {
+            transform: translateY(-4px);
+            background: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+
+        .btn-neon {
+            background: var(--accent-neon);
+            color: #000;
+        }
+
+        .btn-neon:hover {
+            background: transparent;
+            color: var(--accent-green);
+            border-color: var(--accent-green);
+            box-shadow: 0 0 20px rgba(160, 220, 40, 0.4);
+        }
+
+        .hero-img-side {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-stack {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 600px;
+        }
+
+        .img-main {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 40px;
+            box-shadow: var(--shadow-soft);
+            z-index: 2;
+            border: 4px solid var(--surface-color);
+        }
+
+        .img-sec {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60%;
+            height: 60%;
+            object-fit: cover;
+            border-radius: 40px;
+            box-shadow: var(--shadow-soft);
+            z-index: 3;
+            border: 4px solid var(--surface-color);
+        }
+
+        /* ====== BENTO GRID FEATURES ====== */
+        .bento-section {
+            padding: 100px 5%;
+        }
+
+        .section-tag {
+            background: rgba(56, 163, 66, 0.1);
+            color: var(--accent-green);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .bento-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .bento-header h2 {
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            margin-bottom: 16px;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 280px;
+            gap: 24px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .bento-card {
+            background: var(--surface-color);
+            border-radius: 32px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .bento-card.wide {
+            grid-column: span 2;
+        }
+
+        .bento-card.tall {
+            grid-row: span 2;
+        }
+
+        .bento-img-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.15;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .bento-card:hover .bento-img-bg {
+            opacity: 0.3;
+            transform: scale(1.05);
+        }
+
+        .bento-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-color);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-green);
+            margin-bottom: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bento-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .bento-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .bento-content p {
+            color: var(--text-sec);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ====== PARALLAX BANNER ====== */
+        .parallax-banner {
+            height: 60vh;
+            background: url("./images/Contact\ Us.jpg") no-repeat center center/cover;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .parallax-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 28, 15, 0.75);
+            backdrop-filter: blur(2px);
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .parallax-content h2 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 20px;
+        }
+
+        /* ====== UNIQUE STATS ROWS ====== */
+        .stats-row {
+            padding: 80px 5%;
+            background: var(--surface-color);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .stat-circle {
+            text-align: center;
+        }
+
+        .circle-bar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 8px solid var(--accent-green);
+            border-top-color: var(--accent-neon);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px auto;
+            transform: rotate(-45deg);
+            box-shadow: inset 0 0 20px rgba(56, 163, 66, 0.1);
+        }
+
+        .circle-bar span {
+            transform: rotate(45deg);
+        }
+
+        /* ====== ANIMATIONS ====== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 992px) {
+            .hero-split {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 140px;
+                min-height: auto;
+                gap: 50px;
+            }
+
+            .hero-text-side {
+                padding-right: 0;
+                width: 100%;
+            }
+
+            .hero-text-side p {
+                margin: 0 auto 40px auto;
+                border-left: none;
+                border-top: 4px solid var(--accent-neon);
+                padding-left: 0;
+                padding-top: 20px;
+            }
+
+            .hero-img-side {
+                width: 100%;
+                order: 2;
+                margin-top: 20px;
+            }
+
+            .img-stack {
+                height: 350px;
+                width: 90%;
+                margin: 0 auto;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-split {
+                padding-top: 100px;
+            }
+
+            .img-stack {
+                height: 280px;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-card.wide,
+            .bento-card.tall {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        /* ====== TIMELINE PROCESS ====== */
+        .timeline-section {
+            padding: 100px 5%;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .timeline-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 100px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .timeline-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-img {
+            flex: 1;
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 40px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .timeline-text {
+            flex: 1;
+            position: relative;
+        }
+
+        .timeline-number {
+            font-size: 8rem;
+            font-weight: 800;
+            color: var(--border);
+            line-height: 1;
+            margin-bottom: -50px;
+            font-family: 'Outfit', sans-serif;
+            opacity: 0.5;
+            position: relative;
+            z-index: 0;
+        }
+
+        .timeline-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .timeline-info p {
+            color: var(--text-sec);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* ====== FAQ SECTION ====== */
+        .faq-section {
+            padding: 100px 5%;
+            background: var(--surface-color);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item-neo {
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            padding: 28px 0;
+            transition: var(--transition);
+        }
+
+        .faq-item-neo:hover .faq-q {
+            color: var(--accent-green);
+        }
+
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            transition: var(--transition);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            color: var(--text-sec);
+            margin-top: 0;
+            opacity: 0;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .faq-item-neo.active .faq-a {
+            max-height: 300px;
+            margin-top: 20px;
+            opacity: 1;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            color: var(--text-main);
+            background: var(--bg-color);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .faq-item-neo.active .faq-icon {
+            transform: rotate(45deg);
+            color: #fff;
+            background: #e53935;
+        }
+
+        /* ====== IMPACT GRID ====== */
+        .impact-section {
+            padding: 100px 5%;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .impact-card {
+            background: var(--surface-color);
+            border-radius: 32px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .impact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+            border-color: var(--accent-green);
+        }
+
+        body.dark .impact-card:hover {
+            box-shadow: 0 30px 60px rgba(86, 194, 122, 0.15);
+        }
+
+        .impact-icon {
+            font-size: 3rem;
+            color: var(--accent-neon);
+            margin-bottom: 24px;
+        }
+
+        .impact-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+        }
+
+        .impact-card p {
+            color: var(--text-sec);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 992px) {
+
+            .timeline-row,
+            .timeline-row:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .timeline-number {
+                font-size: 6rem;
+                margin-bottom: -30px;
+            }
+
+            .timeline-img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+            <div class="nav-links">
+                <div class="nav-item">
+                    <a href="#" class="nav-link active">Home <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="./index.html">Home 1</a>
+                        <a href="./home2.html">Home 2</a>
+                    </div>
+                </div>
+                <a href="./about.html" class="nav-link">About us</a>
+                <a href="./products.html" class="nav-link">Products</a>
+                <a href="./technology.html" class="nav-link">Technology</a>
+                <a href="./faq.html" class="nav-link">FAQ</a>
+                <a href="./contact.html" class="nav-link">Contact</a>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">Dashboard <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="./admin.html">Admin Page</a>
+                        <a href="./user.html">User Page</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <div class="desktop-rtl-dark">
+                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
+                        <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                    </button>
+                </div>
+                <!-- Profile dropdown - visible only on desktop (hidden on tablet/mobile via media query) -->
+                <div class="profile-dropdown">
+                    <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
+                    <div class="profile-dropdown-content">
+                        <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a href="./signup.html"><i class="fas fa-user-plus"></i> Signup</a>
+                    </div>
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <div class="nav-item" style="display:block;">
+                <a href="#" class="nav-link">Home</a>
+                <div class="mobile-dropdown">
+                    <a href="./index.html">Home 1</a>
+                    <a href="./home2.html">Home 2</a>
+                </div>
+            </div>
+            <a href="./about.html" class="nav-link">About us</a>
+            <a href="./products.html" class="nav-link">Products</a>
+            <a href="./technology.html" class="nav-link">Technology</a>
+            <a href="./faq.html" class="nav-link">FAQ</a>
+            <a href="./contact.html" class="nav-link">Contact</a>
+            <div class="nav-item" style="display:block;">
+                <a href="#" class="nav-link">Dashboard</a>
+                <div class="mobile-dropdown">
+                    <a href="./admin.html">Admin Page</a>
+                    <a href="./user.html">User Page</a>
+                </div>
+            </div>
+            <div class="mobile-actions">
+                <button class="mobile-action-btn" id="mobileThemeToggle">
+                    <i class="fas fa-moon"></i> <span>Dark</span>
+                </button>
+                <button class="mobile-action-btn" id="mobileRtlToggle">
+                    <i class="fas fa-exchange-alt"></i> <span>RTL</span>
+                </button>
+            </div>
+            <!-- Mobile Profile Section (visible only on tablet/mobile) -->
+            <div class="mobile-profile-section">
+                <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-split">
+        <div class="hero-text-side fade-up">
+            <span class="section-tag"
+                style="background-color: var(--surface-color); border: 1px solid var(--border);">Next Gen
+                Agriculture</span>
+            <h1>Redefining Growth.<br>Zero Boundaries.</h1>
+            <p>Experience the most advanced AI-powered vertical farming ecosystem on the planet. Maximum yield, pure
+                automation, zero soil.</p>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;" >
+                <a href="#explore" class="btn-modern btn-neon">Explore System <i class="fas fa-arrow-right"></i></a>
+                <a href="#stats" class="btn-modern">View Data <i class="fas fa-chart-pie"></i></a>
+            </div>
+        </div>
+        <div class="hero-img-side fade-up">
+            <div class="img-stack">
+                <img class="img-main"
+                    src="./images/Home2_bg1.jpg"
+                    alt="Hydroponic Plants">
+                <img class="img-sec"
+                    src="./images/Home2_bg2.jpg"
+                    alt="Tech Farm">
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-row" id="stats">
+        <div class="stat-circle fade-up">
+            <div class="circle-bar"><span>95%</span></div>
+            <p style="font-weight:600;">Water Saved</p>
+        </div>
+        <div class="stat-circle fade-up" style="transition-delay: 0.1s">
+            <div class="circle-bar"><span>3x</span></div>
+            <p style="font-weight:600;">Faster Growth</p>
+        </div>
+        <div class="stat-circle fade-up" style="transition-delay: 0.2s">
+            <div class="circle-bar"><span>0</span></div>
+            <p style="font-weight:600;">Pesticides</p>
+        </div>
+        <div class="stat-circle fade-up" style="transition-delay: 0.3s">
+            <div class="circle-bar"><span>24/7</span></div>
+            <p style="font-weight:600;">AI Monitoring</p>
+        </div>
+    </div>
+
+    <section class="bento-section" id="explore">
+        <div class="bento-header fade-up">
+            <span class="section-tag">Ecosystem Features</span>
+            <h2>Cultivation, Perfected.</h2>
+            <p style="color:var(--text-sec);">A symphony of hardware and software working in unison.</p>
+        </div>
+
+        <div class="bento-grid">
+            <div class="bento-card wide fade-up">
+                <img class="bento-img-bg"
+                    src="./images/Hydroponic Plants.jpg"
+                    alt="BG">
+                <div class="bento-icon"><i class="fas fa-microchip"></i></div>
+                <div class="bento-content">
+                    <h3>Cognitive Core</h3>
+                    <p>Machine learning algorithms analyze over 50 variables per second, adapting lighting spectrums,
+                        humidity, and airflow to optimize plant biology autonomously.</p>
+                </div>
+            </div>
+
+            <div class="bento-card fade-up">
+                <div class="bento-icon"><i class="fas fa-droplet"></i></div>
+                <div class="bento-content">
+                    <h3>Aero-Nutrient Delivery</h3>
+                    <p>High-pressure misting delivers precise molecular nutrition.</p>
+                </div>
+            </div>
+
+            <div class="bento-card tall fade-up">
+                <img class="bento-img-bg"
+                    src="./images/pexels-jonathanborba-15672380.jpg"
+                    alt="BG">
+                <div class="bento-icon"><i class="fas fa-network-wired"></i></div>
+                <div class="bento-content">
+                    <h3>Cloud Control</h3>
+                    <p>Manage your entire global fleet of vertical farms from a single pane of glass on any mobile
+                        device.</p>
+                </div>
+            </div>
+
+            <div class="bento-card fade-up">
+                <div class="bento-icon"><i class="fas fa-sun"></i></div>
+                <div class="bento-content">
+                    <h3>Dynamic Photonics</h3>
+                    <p>LED arrays mimic the perfect sunrise and sunset.</p>
+                </div>
+            </div>
+
+            <div class="bento-card wide fade-up">
+                <div class="bento-icon"><i class="fas fa-shield-halved"></i></div>
+                <div class="bento-content">
+                    <h3>Bio-Secure Architecture</h3>
+                    <p>Hospital-grade HEPA filtration and hermetic sealing prevent organic or chemical contamination,
+                        locking out pests entirely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ====== TIMELINE SECTION ====== -->
+    <section class="timeline-section" id="process">
+        <div class="timeline-header fade-up">
+            <span class="section-tag">Implementation</span>
+            <h2>Seamless Integration.</h2>
+            <p style="color:var(--text-sec); max-width:600px; margin: 0 auto;">From conceptual modeling to the final
+                autonomous harvest, our modular timeline guarantees frictionless scaling.</p>
+        </div>
+
+        <div class="timeline-row fade-up">
+            <img class="timeline-img"
+                src="./images/Seed & Incubation.jpg"
+                alt="Germination">
+            <div class="timeline-text">
+                <div class="timeline-number">01</div>
+                <div class="timeline-info">
+                    <h3>Seed & Incubation</h3>
+                    <p>Proprietary polymer trays automatically regulate humidity and pH balance to achieve a staggering
+                        99.8% germination guarantee, setting the foundation for robust plant biology.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-row fade-up">
+            <img class="timeline-img"
+                src="./images/Adaptive Growth Phase.jpg"
+                alt="Vegetative Stage">
+            <div class="timeline-text">
+                <div class="timeline-number">02</div>
+                <div class="timeline-info">
+                    <h3>Adaptive Growth Phase</h3>
+                    <p>Tower systems sync with our local climate emulation engine. High-pressure mist delivers exact
+                        nanoparticle droplets containing customized nutrient recipes formulated strictly for the plant
+                        strain.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-row fade-up">
+            <img class="timeline-img"
+                src="./images/Automated Yielding.jpg"
+                alt="Harvesting">
+            <div class="timeline-text">
+                <div class="timeline-number">03</div>
+                <div class="timeline-info">
+                    <h3>Automated Yielding</h3>
+                    <p>Computer vision algorithms analyze leaf pigmentation and structural density to predict harvest
+                        day seamlessly. Modular robotic arms carefully cut and sort produce directly into logistics
+                        containers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== IMPACT GRID ====== -->
+    <section class="impact-section">
+        <div class="timeline-header fade-up">
+            <span class="section-tag">Global Impact</span>
+            <h2>Shaping Resilient Horizons.</h2>
+        </div>
+        <div class="impact-grid">
+            <div class="impact-card fade-up">
+                <div class="impact-icon"><i class="fas fa-warehouse"></i></div>
+                <h3>Urban Revival</h3>
+                <p>Convert vacant basements, obsolete office blocks, or empty rooftops into hyper-local food hubs,
+                    producing thousands of pounds of fresh greens inside city limits.</p>
+            </div>
+            <div class="impact-card fade-up" style="transition-delay: 0.1s">
+                <div class="impact-icon"><i class="fas fa-truck-fast"></i></div>
+                <h3>Zero Food Miles</h3>
+                <p>By producing entirely locally, we completely bypass long-haul logistics. Produce moves from harvest
+                    to consumers in less than 3 hours.</p>
+            </div>
+            <div class="impact-card fade-up" style="transition-delay: 0.2s">
+                <div class="impact-icon"><i class="fas fa-shield-virus"></i></div>
+                <h3>Pesticide Exclusion</h3>
+                <p>An absolute sterile growing condition translates to pristine, immune-secure vegetables untainted by
+                    harmful agricultural runoff or heavy chemicals.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== UNIQUE FAQ ====== -->
+    <section class="faq-section">
+        <div class="timeline-header fade-up">
+            <span class="section-tag">Knowledge Base</span>
+            <h2>Common Inquiries.</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item-neo fade-up">
+                <div class="faq-q">What is the footprint req. for commercial viability? <div class="faq-icon"><i
+                            class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-a">Our modular vertical arrays begin establishing commercial margins at purely just
+                    2,500 sq.ft. They adapt horizontally or vertically depending on your warehouse dimensions.</div>
+            </div>
+            <div class="faq-item-neo fade-up">
+                <div class="faq-q">Can the software integrate into existing logic? <div class="faq-icon"><i
+                            class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-a">Absolutely. At its core, our command network runs fully REST APIs and interfaces
+                    securely via edge gateways with any modern greenhouse PLCs natively.</div>
+            </div>
+            <div class="faq-item-neo fade-up">
+                <div class="faq-q">Do you handle system commissioning? <div class="faq-icon"><i class="fas fa-plus"></i>
+                    </div>
+                </div>
+                <div class="faq-a">Yes. We dispatch elite certification crews to engineer, audit, and finalize the
+                    complete structure array assembly on-site over a swift two-week period.</div>
+            </div>
+            <div class="faq-item-neo fade-up">
+                <div class="faq-q">What financial modeling do you provide? <div class="faq-icon"><i
+                            class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-a">We offer comprehensive P&L simulations covering utility absorption rates, regional
+                    seed costs, and retail forecasting for 10-year horizons under dynamic markets.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="parallax-banner" style="margin-bottom:80px;">
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content fade-up">
+            <h2>The Future of Food is Here.</h2>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px auto; opacity: 0.9;">Join the revolution
+                of localized, pure, and high-yield agriculture today.</p>
+            <a href="#" class="btn-modern btn-neon">Start Your Farm</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo" id="wow" style="color:white"><i
+                            class="fas fa-leaf"></i>Hydro<span>Vertical</span></a>
+                    <p>Leading supplier of innovative vertical hydroponic solutions for sustainable agriculture since
+                        2015. Helping farms around the world grow smarter.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Vertical Towers</a></li>
+                        <li><a href="#">NFT Systems</a></li>
+                        <li><a href="#">DWC Systems</a></li>
+                        <li><a href="#">Aeroponic Systems</a></li>
+                        <li><a href="#">LED Grow Lights</a></li>
+                        <li><a href="#">Home Grow Kits</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Supplier Hub</a></li>
+                        <li><a href="#">Training Center</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Stay Updated</h4>
+                    <p style="color:rgba(255,255,255,0.85);font-size:0.83rem;line-height:1.6;margin-bottom:16px;">Get
+                        the latest growing tips, product launches, and industry news delivered to your inbox.</p>
+                    <div class="newsletter-input-wrap">
+                        <input type="email" class="newsletter-input" placeholder="your@email.com">
+                        <button class="btn-subscribe">→</button>
+                    </div>
+                    <p style="color:rgba(255,255,255,0.7);font-size:0.75rem;margin-top:10px;">No spam. Unsubscribe
+                        anytime.</p>
+                    <div style="margin-top:20px;">
+                        <p style="color:rgba(255,255,255,0.85);font-size:0.83rem;margin-bottom:6px;"><i
+                                class="fas fa-envelope" style="color:var(--accent);margin-right:6px;"></i>
+                            suppliers@hvfs.com</p>
+                        <p style="color:rgba(255,255,255,0.85);font-size:0.83rem;"><i class="fas fa-phone"
+                                style="color:var(--accent);margin-right:6px;"></i> +1 (800) 123-HVFS</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 HydroVertical Systems. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <button class="btt" id="btt" title="Back to top"
+        style="position:fixed;bottom:24px;right:24px;background:var(--accent-green);color:white;width:40px;height:40px;border:none;border-radius:50%;cursor:pointer;z-index:900;"><i
+            class="fas fa-arrow-up"></i></button>
+
+    <script src="./nav.js"></script>
+    <script>
+        const faders = document.querySelectorAll('.fade-up');
+        const appearOptions = { 
+            threshold: 0.1, 
+            rootMargin: "0px 0px -50px 0px" 
+        };
+
+        const appearOnScroll = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(el => {
+            appearOnScroll.observe(el);
+        });
+
+        document.getElementById('btt').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+
+        // FAQ logic
+        document.querySelectorAll('.faq-item-neo').forEach(item => {
+            item.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // close all
+                document.querySelectorAll('.faq-item-neo').forEach(el => {
+                    el.classList.remove('active');
+                });
+
+                // toggle clicked
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
