@@ -37,15 +37,16 @@
             --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
             --glass: rgba(255, 255, 255, 0.08);
             --glass-border: rgba(255, 255, 255, 0.12);
+            --page-padding: clamp(1rem, 5vw, 2.5rem);
         }
 
         body.dark {
-            --text: #e2f0e6;
-            --text-muted: #7aaa8a;
-            --bg: #09150e;
-            --surface: #111d15;
-            --border: rgba(255,255,255,0.07);
-            --glass: rgba(255, 255, 255, 0.03);
+            --text: #ffffff;
+            --text-muted: #b0b0b0;
+            --bg: #000000;
+            --surface: #121212;
+            --border: rgba(255,255,255,0.1);
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         html {
@@ -64,39 +65,13 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 var(--page-padding);
         }
 
         .section {
-            padding: 80px 0;
+            padding: 80px var(--page-padding);
         }
 
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            text-align: center;
-            background: linear-gradient(135deg, var(--g1) 0%, var(--g3) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        body.dark .section-title {
-            background: linear-gradient(135deg, var(--accent2) 0%, var(--lime) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 48px;
-            line-height: 1.6;
-        }
 
         /* ========== GLASSMORPHISM COMPONENTS ========== */
         .glass-card {
@@ -240,8 +215,16 @@
 
         .glass-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 16px;
+            margin: 20px 0 12px;
             color: var(--text);
+        }
+        
+        .tech-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 20px;
         }
 
         .glass-card p {
@@ -267,8 +250,6 @@
 
         .feature-content h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 20px;
             color: var(--text);
         }
 
@@ -376,7 +357,7 @@
         .cta-section {
             background: linear-gradient(135deg, var(--g1) 0%, var(--g3) 100%);
             border-radius: var(--radius-lg);
-            padding: 60px 40px;
+            padding: 60px var(--page-padding);
             text-align: center;
             margin: 40px 0;
         }
@@ -405,7 +386,7 @@
         /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
             .section {
-                padding: 60px 0;
+                padding: 60px var(--page-padding);
             }
             .hero-tech h1 {
                 font-size: 2.5rem;
@@ -453,7 +434,7 @@
 
         @media (max-width: 480px) {
             .section {
-                padding: 40px 0;
+                padding: 40px var(--page-padding);
             }
             .section-title {
                 font-size: 1.6rem;
@@ -541,7 +522,7 @@
         /* Tablet portrait (768px - 1024px) */
         @media (min-width: 768px) and (max-width: 1024px) {
             .section {
-                padding: 60px 0;
+                padding: 60px var(--page-padding);
             }
             .hero-tech {
                 min-height: 70vh;
@@ -604,7 +585,7 @@
                 padding: 0 24px;
             }
             .section {
-                padding: 50px 0;
+                padding: 50px var(--page-padding);
             }
             .hero-tech {
                 min-height: 60vh;
@@ -718,7 +699,7 @@
                 padding: 0 16px;
             }
             .section {
-                padding: 40px 0;
+                padding: 40px var(--page-padding);
             }
             .hero-tech {
                 min-height: 85vh;
@@ -973,7 +954,7 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-inner">
-            <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+            <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> HydroVertical</a>
             <div class="nav-links">
                 <div class="nav-item">
                     <a href="#" class="nav-link">Home <i class="fas fa-chevron-down"></i></a>
@@ -1000,16 +981,16 @@
                     <button class="btn-icon" id="themeToggle" title="Toggle theme">
                     <i class="fa-solid fa-moon"></i>
                     </button>
-                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
-                    <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                    <button class="btn-icon" id="rtlToggle" title="Toggle RTL">
+                        <i class="fas fa-exchange-alt"></i>
                     </button>
                 </div>
                 <!-- Profile dropdown - visible only on desktop (hidden on tablet/mobile via media query) -->
                 <div class="profile-dropdown">
                     <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
                     <div class="profile-dropdown-content">
-                        <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-                        <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+                        <a href="./login.html">Login</a>
+                        <a href="./Registeration.html">Signup</a>
                     </div>
                 </div>
                 <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -1082,23 +1063,23 @@
             <h2 class="section-title">Hydroponic Technologies</h2>
             <p class="section-subtitle">Cutting-edge growing systems designed for maximum efficiency and yield</p>
             <div class="tech-grid">
-                <div class="glass-card">
-                    <div class="tech-icon"><i class="fas fa-water"></i></div>
+                <div class="glass-card fade-up">
+                    <img src="./images/NFT System.jpg" alt="NFT System" class="tech-image">
                     <h3>NFT Systems</h3>
                     <p>Nutrient Film Technique delivers a thin stream of nutrient-rich water directly to plant roots. Ideal for leafy greens and herbs with 30% faster growth rates.</p>
                 </div>
-                <div class="glass-card">
-                    <div class="tech-icon"><i class="fas fa-fill-drip"></i></div>
+                <div class="glass-card fade-up">
+                    <img src="./images/DWC System.jpg" alt="DWC System" class="tech-image">
                     <h3>Deep Water Culture</h3>
                     <p>Plants suspended in oxygenated nutrient solution. Perfect for large root vegetables with superior aeration and nutrient absorption.</p>
                 </div>
-                <div class="glass-card">
-                    <div class="tech-icon"><i class="fas fa-layer-group"></i></div>
+                <div class="glass-card fade-up">
+                    <img src="./images/Vertical System.jpg" alt="Vertical System" class="tech-image">
                     <h3>Vertical Systems</h3>
                     <p>Stacked growing towers maximizing space efficiency. Grow up to 20x more plants per square foot compared to traditional farming.</p>
                 </div>
-                <div class="glass-card">
-                    <div class="tech-icon"><i class="fas fa-wind"></i></div>
+                <div class="glass-card fade-up">
+                    <img src="./images/Aeroponics.jpg" alt="Aeroponics" class="tech-image">
                     <h3>Aeroponics</h3>
                     <p>Mist-based nutrient delivery system. Uses 95% less water than traditional methods with 50% faster growth cycles.</p>
                 </div>
@@ -1204,6 +1185,11 @@
         <div class="container">
             <h2 class="section-title">Why Choose Our Technology</h2>
             <p class="section-subtitle">The competitive advantages that make our systems the industry standard</p>
+            
+            <div style="margin-bottom: 60px; text-align: center;">
+                <img src="./hightech_indoor_farm_interior_1777961517170.png" alt="High-tech Farm" style="width: 100%; max-width: 900px; border-radius: 32px; box-shadow: var(--shadow-lg);">
+            </div>
+
             <div class="advantages-grid">
                 <div class="advantage-card">
                     <div class="advantage-icon"><i class="fas fa-chart-line"></i></div>
@@ -1258,7 +1244,7 @@
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="./index.html" class="logo" id="wow" style="color:white"><i class="fas fa-leaf"></i>Hydro<span>Vertical</span></a>
+                    <a href="./index.html" class="logo" id="wow" style="color:white"><i class="fas fa-leaf"></i>HydroVertical</a>
                     <p>Leading supplier of innovative vertical hydroponic solutions for sustainable agriculture since 2015. Helping farms around the world grow smarter.</p>
                     <div class="footer-socials">
                         <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
@@ -1272,9 +1258,9 @@
                     <h4>Products</h4>
                     <ul class="footer-links">
                         <li><a href="./products.html">All Systems</a></li>
-                        <li><a href="./products.html" onclick="filterProducts('home'); return false;">Home & Starter</a></li>
-                        <li><a href="./products.html" onclick="filterProducts('commercial'); return false;">Commercial</a></li>
-                        <li><a href="./products.html" onclick="filterProducts('industrial'); return false;">Industrial</a></li>
+                        <li><a href="./products.html#home">Home & Starter</a></li>
+                        <li><a href="./products.html#commercial">Commercial</a></li>
+                        <li><a href="./products.html#industrial">Industrial</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

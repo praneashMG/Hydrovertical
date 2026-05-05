@@ -19,14 +19,21 @@
             --shadow: 0 30px 60px rgba(0, 0, 0, 0.04);
             --shadow-hover: 0 40px 80px rgba(38, 168, 68, 0.15);
             --border-radius: 20px;
+            --page-padding: clamp(1rem, 5vw, 2.5rem);
+            --section-bg-white: #ffffff;
+            --section-bg-alt: #fafffa;
+            --section-bg-impact: linear-gradient(115deg, #eef5ea, #e2f0e2);
         }
 
         body.dark {
-            --bg-color: #070a08;
-            --text-color: #f0f5f1;
-            --card-bg: #0f1c12;
-            --shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            --shadow-hover: 0 40px 80px rgba(38, 168, 68, 0.25);
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --card-bg: #121212;
+            --shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            --shadow-hover: 0 40px 80px rgba(38, 168, 68, 0.3);
+            --section-bg-white: #000000;
+            --section-bg-alt: #0a0a0a;
+            --section-bg-impact: linear-gradient(115deg, #121212, #000000);
         }
 
         * {
@@ -110,28 +117,11 @@
 
         /* section spacing */
         .section {
-            padding: 100px 24px;
+            padding: 100px var(--page-padding);
         }
         .container {
             max-width: 1280px;
             margin: 0 auto;
-        }
-        .section-title {
-            font-size: 3rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--text-color);
-        }
-        .section-sub {
-            text-align: center;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 700;
-            margin: 0 auto 60px auto;
-            font-size: 0.95rem;
         }
 
         /* animations */
@@ -176,7 +166,7 @@
         }
         .hero-content {
             background: var(--card-bg);
-            padding: 60px 80px;
+            padding: 60px var(--page-padding);
             border-radius: var(--border-radius);
             box-shadow: 0 40px 100px rgba(0,0,0,0.3);
             max-width: 800px;
@@ -233,8 +223,35 @@
             gap: 40px;
         }
         .product-card {
-            padding: 30px;
+            padding: 40px 30px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+        .product-card h3 {
+            font-size: 1.6rem;
+        }
+        .product-card p {
+            margin-bottom: 24px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        .product-card .price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 24px;
+            padding: 8px 16px;
+            background: rgba(38, 168, 68, 0.08);
+            border-radius: 10px;
+        }
+        .product-card .btn-primary {
+            width: 100%;
+            justify-content: center;
+            padding: 14px 24px;
+            font-size: 0.95rem;
         }
         .product-img {
             width: 100%;
@@ -253,10 +270,20 @@
         }
         .step-item {
             flex: 1;
-            min-width: 240px;
+            min-width: 260px;
             text-align: center;
-            padding: 40px 20px;
+            padding: 45px 30px;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .step-item h3 {
+            font-size: 1.4rem;
+        }
+        .step-item p {
+            line-height: 1.6;
+            opacity: 0.85;
         }
         .step-number {
             width: 70px;
@@ -282,6 +309,17 @@
         .usecase-item {
             padding: 40px 30px;
             text-align: left;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .usecase-item h3 {
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+        }
+        .usecase-item p {
+            line-height: 1.6;
+            flex-grow: 1;
         }
         .usecase-icon {
             font-size: 2.5rem;
@@ -299,19 +337,29 @@
         .feature-item {
             display: flex;
             gap: 20px;
-            align-items: center;
-            padding: 30px;
+            align-items: flex-start;
+            padding: 35px 30px;
+            height: 100%;
+        }
+        .feature-item h3 {
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+        }
+        .feature-item p {
+            line-height: 1.5;
+            font-size: 0.95rem;
         }
         .feature-icon {
-            font-size: 1.5rem;
-            color: var(--bg-color);
-            background: var(--text-color);
-            width: 100px;
+            font-size: 1.6rem;
+            color: #ffffff;
+            background: var(--accent);
+            min-width: 60px;
             height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 16px;
+            border-radius: 14px;
+            flex-shrink: 0;
         }
 
         /* testimonials */
@@ -350,12 +398,29 @@
 
         /* final CTA */
         .cta-section {
-            background: var(--text-color);
-            color: var(--bg-color);
+            background: var(--accent);
+            color: #ffffff !important;
             border-radius: 40px;
-            margin: 0 40px 100px 40px;
-            padding: 80px 40px;
+            margin: 0 var(--page-padding) 100px var(--page-padding);
+            padding: 80px var(--page-padding);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section h2, .cta-section p, .cta-section i {
+            color: #ffffff !important;
+        }
+        .cta-section .btn-outline {
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+        .cta-section .btn-outline:hover {
+            background: #ffffff;
+            color: var(--accent);
+        }
+        
+        body.dark .cta-section {
+            background: #1b6329;
         }
 
         /* Override inline styles generated globally */
@@ -366,14 +431,38 @@
         /* responsive */
         @media (max-width: 780px) {
             .hero-content {
-                padding: 40px 20px;
-                margin: 0 20px;
+                padding: 40px var(--page-padding);
+                margin: 0 var(--page-padding);
             }
-            .section { padding: 60px 20px; }
+            .section { padding: 60px var(--page-padding); }
             .section-title { font-size: 2.2rem; }
             .hero-content h1 { font-size: 2.5rem; }
             .hero-buttons { flex-direction: column; align-items: stretch; }
-            .cta-section { margin: 0 20px 60px 20px; padding: 60px 20px; }
+            .cta-section { margin: 0 var(--page-padding) 60px var(--page-padding); padding: 60px var(--page-padding); }
+        }
+        .testi-card.hidden {
+            display: none;
+        }
+        
+        .view-all-wrap {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .view-all-btn {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .view-all-btn:hover {
+            background: var(--accent);
+            color: white;
         }
     </style>
 </head>
@@ -381,7 +470,7 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-inner">
-            <a href="#" class="logo"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+            <a href="#" class="logo"><i class="fas fa-leaf"></i> HydroVertical</a>
             <div class="nav-links">
                 <div class="nav-item">
                     <a href="#" class="nav-link">Home <i class="fas fa-chevron-down"></i></a>
@@ -406,18 +495,18 @@
             <div class="nav-actions">
                 <div class="desktop-rtl-dark">
                     <button class="btn-icon" id="themeToggle" title="Toggle theme">
-                    <i class="fa-solid fa-moon"></i>
+                        <i class="fa-solid fa-moon"></i>
                     </button>
-                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
-                    <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                    <button class="btn-icon" id="rtlToggle" title="Toggle RTL">
+                        <i class="fas fa-exchange-alt"></i>
                     </button>
                 </div>
                 <!-- Profile dropdown - visible only on desktop (hidden on tablet/mobile via media query) -->
                 <div class="profile-dropdown">
                     <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
                     <div class="profile-dropdown-content">
-                        <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-                        <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+                        <a href="./login.html">Login</a>
+                        <a href="./Registeration.html">Signup</a>
                     </div>
                 </div>
                 <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -502,7 +591,7 @@
     </section>
 
     <!-- 3) PRODUCT SHOWCASE (vertical systems, NFT, lights) -->
-    <section id="products" class="section" style="background: #fafffa;">
+    <section id="products" class="section" style="background: var(--section-bg-alt);">
         <div class="container">
             <div class="section-title fade-up">Premium hydroponic solutions</div>
             <div class="section-sub fade-up">Commercial grade towers, NFT channels & smart LED arrays</div>
@@ -511,22 +600,22 @@
                     <img class="product-img" src="./images/Vertical Tower Pro.jpg" alt="Vertical Tower">
                     <h3>Vertical Tower Pro</h3>
                     <p>8ft modular towers, 80 planting pockets, ideal for leafy greens & herbs.</p>
-                    <div class="price" style="font-weight:700; margin:12px 0; color:#2e7d32;">from $2,499</div>
-                    <a href="#cta-final" class="btn-primary" style="padding: 8px 24px; font-size:0.85rem;">Request quote</a>
+                    <div class="price">from $2,499</div>
+                    <a href="#cta-final" class="btn-primary">Request quote</a>
                 </div>
                 <div class="product-card glass-card fade-up">
                     <img class="product-img" src="./images/NFT Channel System.jpg" alt="NFT channels">
                     <h3>NFT Channel System</h3>
                     <p>Nutrient film technique for high-density lettuce, basil, and microgreens.</p>
-                    <div class="price" style="font-weight:700; margin:12px 0; color:#2e7d32;">from $1,899</div>
-                    <a href="#cta-final" class="btn-primary" style="padding: 8px 24px;">Get quote</a>
+                    <div class="price">from $1,899</div>
+                    <a href="#cta-final" class="btn-primary">Get quote</a>
                 </div>
                 <div class="product-card glass-card fade-up">
                     <img class="product-img" src="./images/Full-Spectrum LED Rack.jpg" alt="LED grow lights">
                     <h3>Full-Spectrum LED Rack</h3>
                     <p>Energy-efficient 800W LED, tunable spectrum, smart controller included.</p>
-                    <div class="price" style="font-weight:700; margin:12px 0; color:#2e7d32;">from $349</div>
-                    <a href="#cta-final" class="btn-primary" style="padding: 8px 24px;">Inquire now</a>
+                    <div class="price">from $349</div>
+                    <a href="#cta-final" class="btn-primary">Inquire now</a>
                 </div>
             </div>
         </div>
@@ -547,7 +636,7 @@
     </section>
 
     <!-- 5) USE CASES (home, commercial, rooftop farming) -->
-    <section class="section" style="background: #eef7ee;">
+    <section class="section" style="background: var(--section-bg-alt);">
         <div class="container">
             <div class="section-title fade-up">Where our systems thrive</div>
             <div class="section-sub fade-up">From urban rooftops to industrial greenhouses</div>
@@ -574,7 +663,7 @@
     </section>
 
     <!-- 7) TESTIMONIALS / SUCCESS STORIES -->
-    <section class="section" style="background: linear-gradient(125deg, #f9fff9, #f0faf0);">
+    <section class="section" style="background: var(--section-bg-white); border-top: 1px solid var(--border);">
         <div class="container">
             <div class="section-title fade-up">Success stories from partners</div>
             <div class="section-sub fade-up">Join 500+ farms using our vertical ecosystems</div>
@@ -594,23 +683,44 @@
                     <p class="testi-text">"Rooftop farming has never been easier. The vertical towers are low-maintenance and look stunning."</p>
                     <div class="testi-author"><div class="avatar">CR</div><div><strong>C. Rivera</strong><br>SkyGreens, Singapore</div></div>
                 </div>
+                <div class="testi-card glass-card fade-up">
+                    <div class="testi-stars" style="color:#ffb74d;">★★★★★</div>
+                    <p class="testi-text">"The automation is flawless. We manage a 5,000 sq ft facility with just two people. High quality, low labor."</p>
+                    <div class="testi-author"><div class="avatar">SJ</div><div><strong>S. Jensen</strong><br>Apex Greens, London</div></div>
+                </div>
+                <div class="testi-card glass-card fade-up">
+                    <div class="testi-stars" style="color:#ffb74d;">★★★★★</div>
+                    <p class="testi-text">"Best investment for our restaurant. Fresh basil and cilantro on demand. Customers love seeing the towers in the lobby."</p>
+                    <div class="testi-author"><div class="avatar">CR</div><div><strong>Chef Ricardo</strong><br>La Trattoria</div></div>
+                </div>
+                <div class="testi-card glass-card fade-up">
+                    <div class="testi-stars" style="color:#ffb74d;">★★★★★</div>
+                    <p class="testi-text">"Excellent technical support. They helped us calibrate our LED spectrum for strawberries, and the flavor is unmatched."</p>
+                    <div class="testi-author"><div class="avatar">AL</div><div><strong>A. Lopez</strong><br>BerryTech Farms</div></div>
+                </div>
+            </div>
+            
+            <div class="view-all-wrap fade-up" id="testiViewAllWrap">
+                <button class="view-all-btn" id="viewAllTesti">View All Stories <i class="fas fa-chevron-down"></i></button>
             </div>
         </div>
     </section>
 
     <!-- 8) FINAL CALL-TO-ACTION (Get Quote / Start Your Farm) -->
     <div id="cta-final" style="scroll-margin-top: 30px;">
-        <div class="cta-section glass-card" style="background:rgb(38,168,68); backdrop-filter: blur(8px);">
-            <div class="cta-glow"></div>
-            <div class="fade-up" style="position: relative; z-index: 2;">
-                <i class="fas fa-seedling" style="font-size: 3rem; color: #2e7d32; margin-bottom: 16px; display: inline-block;"></i>
-                <h2 style="font-size: 2rem; font-weight: 800;">Ready to build your vertical farm?</h2>
-                <p style="max-width: 580px; margin: 20px auto; font-size: 1.1rem;">Get a custom quote, free design consultation, and ROI analysis.</p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="#" class="btn-primary" style="background: #2e7d32;"><i class="fas fa-file-invoice"></i> Request Quote</a>
+        <div class="cta-section">
+            <div class="container fade-up" style="text-align: center;">
+                <i class="fas fa-seedling" style="font-size: 3.5rem; margin-bottom: 24px; display: inline-block; color: white;"></i>
+                <h2 style="color: white !important;">Ready to build the future of farming?</h2>
+                <p style="color: white !important; opacity: 0.9;">Join 500+ commercial growers and urban farmers across the globe.</p>
+                <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" class="btn-primary" style="background: white; color: var(--accent);"><i class="fas fa-file-invoice"></i> Request Quote</a>
                     <a href="#" class="btn-outline"><i class="fas fa-calendar-alt"></i> Schedule Demo</a>
                 </div>
-                <p style="margin-top: 28px; font-size: 0.85rem; opacity: 0.7;">📞 +1 (888) 429-7765  |  ✉️ grow@verdantcore.com</p>
+                <div style="margin-top: 48px; font-size: 0.95rem; opacity: 0.8; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; color: white;">
+                    <span><i class="fas fa-phone"></i> +1 (888) 429-7765</span>
+                    <span><i class="fas fa-envelope"></i> grow@verdantcore.com</span>
+                </div>
             </div>
         </div>
     </div>
@@ -618,7 +728,7 @@
     <!-- ========== NEW SECTIONS APPENDED BELOW (without modifying any existing code) ========== -->
     
     <!-- NEW SECTION 1: DEEP DIVE FEATURES (Smart Sensors & Data Insights) -->
-    <section class="section" style="background: #ffffff;">
+    <section class="section" style="background: var(--section-bg-white);">
         <div class="container">
             <div class="section-title fade-up">Precision agriculture, redefined</div>
             <div class="section-sub fade-up">Leverage real-time data to maximize every harvest cycle</div>
@@ -643,7 +753,7 @@
     </section>
 
     <!-- NEW SECTION 2: SUSTAINABILITY & IMPACT METRICS -->
-    <section class="section" style="background: linear-gradient(115deg, #eef5ea, #e2f0e2);">
+    <section class="section" style="background: var(--section-bg-impact);">
         <div class="container">
             <div class="section-title fade-up">Environmental impact that matters</div>
             <div class="section-sub fade-up">Every tower contributes to a greener planet</div>
@@ -670,7 +780,7 @@
     <!-- NEW SECTION 3: COMPACT CALL-TO-ACTION (Partnership / Distributor) -->
     <div style="margin-bottom: 70px;">
         <div class="container" style="max-width: 1100px;">
-            <div class="glass-card fade-up" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px; padding: 40px 44px; background: rgba(235, 248, 235, 0.8);">
+            <div class="glass-card fade-up" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px; padding: 40px var(--page-padding); background: var(--section-bg-alt); border: 1px solid var(--accent);">
                 <div style="flex: 1;">
                     <h3 style="font-size: 1.7rem; font-weight: 700;">Become a certified partner</h3>
                     <p style="margin-top: 12px; color: #2c5e2c;">Join our global network of distributors and integrators. Get priority pricing, training, and marketing support.</p>
@@ -688,7 +798,7 @@
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="./index.html" class="logo" id="wow" style="color:white"><i class="fas fa-leaf"></i>Hydro<span>Vertical</span></a>
+                    <a href="./index.html" class="logo" id="wow" style="color:white"><i class="fas fa-leaf"></i>HydroVertical</a>
                     <p>Leading supplier of innovative vertical hydroponic solutions for sustainable agriculture since 2015. Helping farms around the world grow smarter.</p>
                     <div class="footer-socials" id="so">
                         <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
@@ -702,9 +812,9 @@
                     <h4>Products</h4>
                     <ul class="footer-links">
                         <li><a href="./products.html">All Systems</a></li>
-                        <li><a href="./products.html" onclick="filterProducts('home'); return false;">Home & Starter</a></li>
-                        <li><a href="./products.html" onclick="filterProducts('commercial'); return false;">Commercial</a></li>
-                        <li><a href="./products.html" onclick="filterProducts('industrial'); return false;">Industrial</a></li>
+                        <li><a href="./products.html#home">Home & Starter</a></li>
+                        <li><a href="./products.html#commercial">Commercial</a></li>
+                        <li><a href="./products.html#industrial">Industrial</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -758,6 +868,28 @@
             });
         }, appearOptions);
         faders.forEach(el => appearOnScroll.observe(el));
+
+        // Testimonials View All Logic
+        (function() {
+            const testiCards = document.querySelectorAll('.testi-grid .testi-card');
+            const viewAllBtn = document.getElementById('viewAllTesti');
+            const testiLimit = 3;
+
+            if (testiCards && testiCards.length > testiLimit) {
+                testiCards.forEach((card, index) => {
+                    if (index >= testiLimit) card.classList.add('hidden');
+                });
+            } else if (document.getElementById('testiViewAllWrap')) {
+                document.getElementById('testiViewAllWrap').style.display = 'none';
+            }
+
+            if (viewAllBtn) {
+                viewAllBtn.addEventListener('click', () => {
+                    testiCards.forEach(card => card.classList.remove('hidden'));
+                    document.getElementById('testiViewAllWrap').style.display = 'none';
+                });
+            }
+        })();
     </script>
 </body>
 </html>

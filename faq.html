@@ -14,6 +14,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            --page-padding: clamp(1rem, 5vw, 2.5rem);
         }
 
         body {
@@ -86,31 +87,14 @@
         }
 
         .section {
-            padding: 80px 24px;
+            padding: 80px var(--page-padding);
             width: 100%;
         }
         .container {
             max-width: 1280px;
             margin: 0 auto;
             width: 100%;
-            padding: 0 16px;
-        }
-        .section-title {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 16px;
-            background: linear-gradient(125deg, #1b4d1b, #2e7d32);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .section-sub {
-            text-align: center;
-            color: #416e41;
-            max-width: 680px;
-            margin: 0 auto 48px auto;
-            font-size: clamp(0.95rem, 2vw, 1.05rem);
+            padding: 0 var(--page-padding);
         }
 
         .fade-up {
@@ -200,13 +184,38 @@
             margin: 0 auto;
         }
         .faq-item {
-            background: rgba(255, 255, 245, 0.8);
+            background: #fdfdfb;
             backdrop-filter: blur(4px);
-            border-radius: 24px;
-            margin-bottom: 16px;
-            border: 1px solid rgba(46, 125, 50, 0.2);
+            border-radius: 20px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(46, 125, 50, 0.12);
             transition: all 0.3s ease;
             overflow: hidden;
+        }
+        
+        .faq-item.hidden {
+            display: none;
+        }
+        
+        .view-all-wrap {
+            text-align: center;
+            margin-top: 32px;
+        }
+        
+        .view-all-btn {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .view-all-btn:hover {
+            background: var(--accent);
+            color: white;
         }
         .faq-question {
             padding: 20px 28px;
@@ -302,7 +311,7 @@
 
         /* Responsive Media Queries */
         @media (max-width: 1024px) {
-            .section { padding: 70px 20px; }
+            .section { padding: 70px var(--page-padding); }
             .container { padding: 0 20px; }
         }
 
@@ -315,7 +324,7 @@
         }
 
         @media (max-width: 768px) {
-            .section { padding: 60px 16px; }
+            .section { padding: 60px var(--page-padding); }
             .popular-grid { grid-template-columns: 1fr; gap: 16px; }
             .faq-item.active .faq-answer { max-height: 400px; }
             .cta-banner { margin: 0 16px 60px 16px; }
@@ -342,13 +351,90 @@
 
         @media (min-width: 1400px) {
             .container { max-width: 1400px; }
-            .section { padding: 100px 32px; }
+            .section { padding: 100px var(--page-padding); }
         }
 
         /* Prevent overflow */
         img, video, .glass-card, .container, .section, .faq-item, .popular-card {
             max-width: 100%;
             overflow-x: hidden;
+        }
+
+        /* Support Section & Links */
+        .support-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: clamp(15px, 4vw, 40px);
+            margin: 0 auto 32px;
+            max-width: 700px;
+            width: 100%;
+            justify-content: center;
+        }
+        .support-link-item {
+            text-align: center;
+            transition: transform 0.3s ease;
+            padding: 10px;
+        }
+        .support-link-item:hover {
+            transform: translateY(-5px);
+        }
+        .support-link-item i {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            color: #2e7d32;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .support-link-item p {
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
+            font-weight: 700;
+            color: #1b4d1b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        /* Support Details */
+        .support-details {
+            margin-top: 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1b4d1b;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .support-details span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        /* CTA Banner Refinement */
+        .cta-banner {
+            background: rgba(230, 245, 230, 0.9) !important;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(46, 125, 50, 0.15);
+        }
+        .cta-banner i.banner-icon {
+            font-size: 3rem;
+            color: #2e7d32;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+        .cta-banner h2 {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 800;
+            color: #132e13;
+            margin-bottom: 16px;
+        }
+        .cta-banner p {
+            max-width: 580px;
+            margin: 0 auto 24px;
+            color: #2a5e2a;
+            line-height: 1.6;
         }
 
         /* Touch-friendly buttons */
@@ -359,6 +445,38 @@
             .faq-question {
                 min-height: 60px;
             }
+            .support-links {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 500px;
+            }
+            .support-details {
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .support-links {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            .support-link-item {
+                padding: 5px;
+            }
+            .support-link-item p {
+                font-size: 0.65rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .support-links {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .support-link-item i {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -366,7 +484,7 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-inner">
-            <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+            <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> HydroVertical</a>
             <div class="nav-links">
                 <div class="nav-item">
                     <a href="#" class="nav-link">Home <i class="fas fa-chevron-down"></i></a>
@@ -393,16 +511,16 @@
                     <button class="btn-icon" id="themeToggle" title="Toggle theme">
                     <i class="fa-solid fa-moon"></i>
                     </button>
-                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
-                    <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                    <button class="btn-icon" id="rtlToggle" title="Toggle RTL">
+                        <i class="fas fa-exchange-alt"></i>
                     </button>
                 </div>
                 <!-- Profile dropdown - visible only on desktop (hidden on tablet/mobile via media query) -->
                 <div class="profile-dropdown">
                     <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
                     <div class="profile-dropdown-content">
-                        <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-                        <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+                        <a href="./login.html">Login</a>
+                        <a href="./Registeration.html">Signup</a>
                     </div>
                 </div>
                 <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -440,8 +558,8 @@
             </div>
             <!-- Mobile Profile Section (visible only on tablet/mobile) -->
             <div class="mobile-profile-section">
-                <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-                <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+                <a href="./login.html">Login</a>
+                <a href="./Registeration.html">Signup</a>
             </div>
         </div>
     </nav>
@@ -477,61 +595,64 @@
             <div class="faq-accordion fade-up" id="faqContainer">
                 <!-- General Questions -->
                 <div class="faq-item" data-category="general">
-                    <div class="faq-question">What exactly is hydroponic vertical farming? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question">What exactly is hydroponic vertical farming?</div>
                     <div class="faq-answer"><p>Hydroponic vertical farming is a method of growing plants without soil, using nutrient-rich water solutions in vertically stacked layers. This system maximizes space efficiency, reduces water usage by up to 90%, and allows year-round cultivation in controlled environments — ideal for urban areas and locations with poor soil quality.</p></div>
                 </div>
                 <div class="faq-item" data-category="general">
-                    <div class="faq-question">How much space do I need to start a vertical farm? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question">How much space do I need to start a vertical farm?</div>
                     <div class="faq-answer"><p>Our systems are highly scalable. Home growers can start with as little as 20-50 sq ft (a corner of a room or balcony). Commercial operations typically begin with 200-500 sq ft, but we've successfully deployed farms in spaces as small as 100 sq ft and as large as 10,000+ sq ft warehouses. We offer free space assessment to recommend the optimal configuration.</p></div>
                 </div>
 
                 <!-- Technology & Systems -->
                 <div class="faq-item" data-category="technology">
-                    <div class="faq-question">What types of crops can I grow with your systems? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question">What types of crops can I grow with your systems?</div>
                     <div class="faq-answer"><p>Our vertical hydroponic systems support a wide variety of crops including leafy greens (lettuce, kale, spinach, arugula), herbs (basil, mint, cilantro, parsley), microgreens, strawberries, and even fruiting plants like cherry tomatoes and peppers. Each system is customizable based on your target crops, with adjustable lighting spectrums and nutrient formulations.</p></div>
                 </div>
                 <div class="faq-item" data-category="technology">
-                    <div class="faq-question">How does the AI monitoring system work? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question">How does the AI monitoring system work?</div>
                     <div class="faq-answer"><p>Our proprietary AI platform uses IoT sensors to track 30+ parameters including pH, EC (nutrient concentration), temperature, humidity, CO₂ levels, and light intensity. The system automatically adjusts nutrient dosing, lighting schedules, and climate controls in real-time. You can monitor everything remotely via our mobile dashboard, receive harvest predictions, and get proactive maintenance alerts.</p></div>
                 </div>
                 <div class="faq-item" data-category="technology">
-                    <div class="faq-question">Are the LED grow lights energy efficient? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question">Are the LED grow lights energy efficient?</div>
                     <div class="faq-answer"><p>Yes — our full-spectrum LED arrays consume up to 40% less energy than traditional grow lights while delivering optimal light wavelengths for each growth stage. They feature programmable schedules, dimming capabilities, and heat recovery systems that can reduce overall energy costs by 30-35% compared to conventional lighting solutions.</p></div>
                 </div>
 
                 <!-- Installation & Setup -->
                 <div class="faq-item" data-category="installation">
-                    <div class="faq-question">How long does installation take from order to operation? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question">How long does installation take from order to operation?</div>
                     <div class="faq-answer"><p>For home systems, delivery takes 5-7 business days with 2-4 hours of self-installation using our video guides. Commercial systems typically require 2-4 weeks for custom manufacturing, followed by 3-7 days of on-site installation by our certified technicians. We also offer remote installation support and training to minimize downtime.</p></div>
                 </div>
                 <div class="faq-item" data-category="installation">
-                    <div class="faq-question">Do you provide international shipping and support? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question">Do you provide international shipping and support?</div>
                     <div class="faq-answer"><p>Absolutely. We ship to over 35 countries worldwide with full export documentation, customs clearance assistance, and real-time tracking. Our global support team provides 24/7 technical assistance, and we have regional partners in North America, Europe, Asia Pacific, and the Middle East to ensure quick response times.</p></div>
                 </div>
 
                 <!-- Maintenance -->
                 <div class="faq-item" data-category="maintenance">
-                    <div class="faq-question">How much daily/weekly maintenance is required? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question">How much daily/weekly maintenance is required?</div>
                     <div class="faq-answer"><p>Thanks to our automation, daily tasks take only 10-15 minutes — mostly checking water levels and visual crop inspection. Weekly tasks include cleaning filters, calibrating sensors (5 minutes), and nutrient top-ups. Our AI system sends alerts when action is needed, so you never miss important maintenance. Commercial systems include optional automated cleaning cycles.</p></div>
                 </div>
                 <div class="faq-item" data-category="maintenance">
-                    <div class="faq-question">What is the lifespan of the equipment? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question">What is the lifespan of the equipment?</div>
                     <div class="faq-answer"><p>Our vertical towers and NFT channels are made from food-grade, UV-stabilized materials rated for 10+ years of continuous use. LED grow lights last 50,000+ hours (approximately 8-10 years of 16-hour daily cycles). Pumps have a 5-year warranty, and sensors typically last 3-5 years with proper maintenance. All components are modular and replaceable.</p></div>
                 </div>
 
                 <!-- Business / Commercial -->
                 <div class="faq-item" data-category="business">
-                    <div class="faq-question">What is the typical return on investment (ROI) for commercial farms? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question">What is the typical return on investment (ROI) for commercial farms?</div>
                     <div class="faq-answer"><p>Based on data from our 500+ commercial installations, the average payback period is 14-24 months. Gross margins typically range from 45-70% for leafy greens and herbs, depending on local market prices and operational efficiency. Factors affecting ROI include crop selection, local electricity costs, and distribution channels. We provide detailed financial modeling during consultation.</p></div>
                 </div>
                 <div class="faq-item" data-category="business">
-                    <div class="faq-question">Do you offer financing or leasing options? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question">Do you offer financing or leasing options?</div>
                     <div class="faq-answer"><p>Yes — we partner with agricultural lenders to offer flexible financing including equipment leasing, revenue-share agreements, and 0% interest installment plans for qualified commercial projects. Home systems can be purchased via installment payments through our checkout process. Contact our sales team for a customized financing proposal based on your credit and business plan.</p></div>
                 </div>
                 <div class="faq-item" data-category="business">
-                    <div class="faq-question">What support do you provide after purchase? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-question">What support do you provide after purchase?</div>
                     <div class="faq-answer"><p>All systems include 12 months of premium support with 24/7 technical assistance, remote diagnostics, and quarterly performance reviews. We also offer extended support plans with on-site visits, priority response (under 2 hours), and access to our agronomy team for crop optimization. Plus, lifetime software updates and a knowledge base with video tutorials.</p></div>
                 </div>
+            </div>
+            <div class="view-all-wrap fade-up" id="faqViewAllWrap">
+                <button class="view-all-btn" id="viewAllFaqs">View All FAQs</button>
             </div>
         </div>
     </section>
@@ -563,6 +684,9 @@
                     <h4>Daily maintenance effort?</h4>
                 </div>
             </div>
+            <div class="view-all-wrap fade-up" id="popularViewAllWrap">
+                <button class="view-all-btn" id="viewAllPopular">View All Questions</button>
+            </div>
         </div>
     </section>
 
@@ -570,24 +694,40 @@
     <section class="section">
         <div class="container">
             <div class="support-section glass-card fade-up">
-                <i class="fas fa-headset" style="font-size: 3rem; color: #2e7d32; margin-bottom: 20px; display: inline-block;"></i>
-                <h2 style="font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 700; margin-bottom: 12px;">Still have questions?</h2>
-                <p style="max-width: 550px; margin: 0 auto 24px; color: #2a5e2a;">Our hydroponic experts are ready to help you find the perfect solution.</p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="#" class="btn-primary"><i class="fas fa-envelope"></i> Ask an Expert</a>
-                    <a href="#" class="btn-outline"><i class="fas fa-phone-alt"></i> Live Chat</a>
+                <div class="support-links">
+                    <div class="support-link-item">
+                        <i class="fa-solid fa-book"></i>
+                        <p>KNOWLEDGE BASE</p>
+                    </div>
+                    <div class="support-link-item">
+                        <i class="fa-solid fa-message"></i>
+                        <p>LIVE SUPPORT</p>
+                    </div>
+                    <div class="support-link-item">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                        <p>QUOTATIONS</p>
+                    </div>
                 </div>
-                <p style="margin-top: 20px; font-size: 0.85rem;">📧 support@hydrovertical.com | 📞 +1 (888) 429-7765</p>
+                <h2>Still have questions?</h2>
+                <p>Our hydroponic experts are ready to help you find the perfect solution for your specific farming goals.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" class="btn-primary"><i class="fas fa-paper-plane"></i> Message Experts</a>
+                    <a href="#" class="btn-outline"><i class="fas fa-comment-dots"></i> Start Live Chat</a>
+                </div>
+                <div class="support-details">
+                    <span><i class="fas fa-envelope"></i> support@hydrovertical.com</span>
+                    <span><i class="fas fa-phone-alt"></i> +1 (888) 429-7765</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Final CTA Banner -->
     <div>
-        <div class="cta-banner glass-card fade-up" style="background: rgba(230, 245, 230, 0.9); backdrop-filter: blur(8px);">
-            <i class="fas fa-file-invoice" style="font-size: 3rem; color: #2e7d32; margin-bottom: 16px; display: inline-block;"></i>
-            <h2 style="font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 800;">Ready to start your vertical farming journey?</h2>
-            <p style="max-width: 580px; margin: 20px auto;">Get a free consultation, custom quote, and farm design assessment today.</p>
+        <div class="cta-banner glass-card fade-up">
+            <i class="fas fa-file-invoice banner-icon"></i>
+            <h2>Ready to start your vertical farming journey?</h2>
+            <p>Get a free consultation, custom quote, and farm design assessment today.</p>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                 <a href="#" class="btn-primary"><i class="fas fa-calculator"></i> Request Quote</a>
                 <a href="#" class="btn-outline"><i class="fas fa-calendar-alt"></i> Schedule Demo</a>
@@ -599,7 +739,7 @@
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="./index.html" class="logo" id="wow" style="color:white"><i class="fas fa-leaf"></i>Hydro<span>Vertical</span></a>
+                    <a href="./index.html" class="logo" id="wow" style="color:white"><i class="fas fa-leaf"></i>HydroVertical</a>
                     <p>Leading supplier of innovative vertical hydroponic solutions for sustainable agriculture since 2015. Helping farms around the world grow smarter.</p>
                     <div class="footer-socials">
                         <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
@@ -758,62 +898,64 @@
     darkModeStyle.textContent = `
         /* Dark mode global overrides */
         body.dark-mode {
-            background: #0a1a0a !important;
-            color: #e8f0e8 !important;
+            background: #000000 !important;
+            color: #ffffff !important;
         }
         
-        body.dark-mode .glass-card {
-            background: rgba(20, 40, 20, 0.85) !important;
-            border-color: rgba(70, 130, 70, 0.4) !important;
+        body.dark-mode .glass-card,
+        body.dark-mode .faq-item,
+        body.dark-mode .popular-card,
+        body.dark-mode .support-tool {
+            background: #121212 !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
         }
         
         body.dark-mode .btn-outline {
-            background: rgba(30, 60, 30, 0.6) !important;
-            color: #c8e6c8 !important;
-            border-color: #4a8c4a !important;
-        }
-        
-        body.dark-mode .btn-outline:hover {
-            background: #2e7d32 !important;
-            color: white !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            color: #ffffff !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
         }
         
         body.dark-mode .section-title {
-            background: linear-gradient(125deg, #8bc48b, #c8e6c8) !important;
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            color: transparent !important;
+            color: #ffffff !important;
+            background: none !important;
+            -webkit-background-clip: initial !important;
+            background-clip: initial !important;
         }
         
         body.dark-mode .section-sub,
-        body.dark-mode .story-text {
-            color: #bcd0bc !important;
+        body.dark-mode .faq-answer {
+            color: #b0b0b0 !important;
         }
         
-        body.dark-mode .mv-card,
-        body.dark-mode .service-card,
-        body.dark-mode .team-card,
-        body.dark-mode .milestone-item {
-            background: rgba(25, 50, 25, 0.8) !important;
-            border-color: rgba(70, 130, 70, 0.3) !important;
+        body.dark-mode .faq-question {
+            color: #ffffff !important;
         }
         
-        body.dark-mode .service-icon {
-            background: rgba(70, 130, 70, 0.2) !important;
-            color: #8bc48b !important;
-        }
-        
-        body.dark-mode .avatar {
-            background: linear-gradient(145deg, #2e7d32, #1b5e20) !important;
-        }
-        
-        body.dark-mode .cta-banner {
-            background: rgba(25, 55, 25, 0.95) !important;
+        body.dark-mode section {
+            background: #000000 !important;
         }
         
         body.dark-mode section[style*="background: #eef7ee"],
-        body.dark-mode section[style*="background: #fafffa"] {
-            background: #0e1a0e !important;
+        body.dark-mode section[style*="background: #fdfdfb"] {
+            background: #0a0a0a !important;
+        }
+
+        body.dark-mode .support-link-item p,
+        body.dark-mode .support-details,
+        body.dark-mode .support-details span,
+        body.dark-mode .cta-banner p {
+            color: #b0b0b0 !important;
+        }
+
+        body.dark-mode .support-link-item i,
+        body.dark-mode .cta-banner i.banner-icon {
+            color: #8bc48b !important;
+        }
+
+        body.dark-mode .cta-banner h2,
+        body.dark-mode .support-section h2 {
+            color: #ffffff !important;
         }
         
         body.dark-mode .hero-overlay {
@@ -952,6 +1094,43 @@
                 }
             }
         });
+        // FAQ View All Logic
+        (function() {
+            const faqItems = document.querySelectorAll('#faqContainer .faq-item');
+            const viewAllFaqsBtn = document.getElementById('viewAllFaqs');
+            const faqLimit = 5;
+
+            if (faqItems.length > faqLimit) {
+                faqItems.forEach((item, index) => {
+                    if (index >= faqLimit) item.classList.add('hidden');
+                });
+            } else {
+                document.getElementById('faqViewAllWrap').style.display = 'none';
+            }
+
+            viewAllFaqsBtn.addEventListener('click', () => {
+                faqItems.forEach(item => item.classList.remove('hidden'));
+                document.getElementById('faqViewAllWrap').style.display = 'none';
+            });
+
+            // Popular Questions View All Logic
+            const popularCards = document.querySelectorAll('#popularGrid .popular-card');
+            const viewAllPopularBtn = document.getElementById('viewAllPopular');
+            const popularLimit = 3;
+
+            if (popularCards.length > popularLimit) {
+                popularCards.forEach((card, index) => {
+                    if (index >= popularLimit) card.classList.add('hidden');
+                });
+            } else {
+                document.getElementById('popularViewAllWrap').style.display = 'none';
+            }
+
+            viewAllPopularBtn.addEventListener('click', () => {
+                popularCards.forEach(card => card.classList.remove('hidden'));
+                document.getElementById('popularViewAllWrap').style.display = 'none';
+            });
+        })();
     }
 })();
     </script>

@@ -40,16 +40,16 @@
             --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             --glass: rgba(255, 255, 255, 0.08);
             --glass-border: rgba(255, 255, 255, 0.12);
+            --page-padding: clamp(1rem, 5vw, 2.5rem);
         }
 
         body.dark {
-            --text: #e8f0e8;
-            --text-muted: #a4c4a4;
-            --bg: #0a1a0a;
-
-            --surface: #112814;
-            --border: rgba(255, 255, 255, 0.07);
-            --glass: rgba(255, 255, 255, 0.03);
+            --text: #ffffff;
+            --text-muted: #b0b0b0;
+            --bg: #000000;
+            --surface: #121212;
+            --border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         html {
@@ -66,7 +66,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 24px;
+            padding: 24px var(--page-padding);
             position: relative;
         }
 
@@ -298,7 +298,7 @@
         }
 
         .terms-group a:hover {
-            color: var(--lime);
+            color: var(--g3);
             text-decoration: underline;
         }
 
@@ -421,7 +421,7 @@
         }
 
         .login-link:hover {
-            color: var(--lime);
+            color: var(--g3);
             gap: 10px;
         }
 
@@ -1229,7 +1229,6 @@
             font-size: 1.5rem;
             font-weight: 900;
             color: #4ade80 !important; /* Premium Emerald for "Hydro" */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
             text-decoration: none;
             white-space: nowrap;
             display: flex;
@@ -1240,11 +1239,9 @@
         .logo i {
             font-size: 1.5rem;
             color: #4ade80 !important; /* Premium Emerald for Icon */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
         .logo span {
             color: #4ade80 !important; /* Premium Emerald for "Vertical" */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
         
     </style>
@@ -1266,7 +1263,7 @@
         <div class="register-card">
             <div class="register-header">
                 <div id="logo">
-                    <a href="./index.html" class="logo" style="justify-content: center; padding: 10px ;"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+                    <a href="./index.html" class="logo" style="justify-content: center; padding: 10px ;"><i class="fas fa-leaf"></i> HydroVertical</a>
                 </div>
                 <h1>Create Account</h1>
                 <p>Join the vertical farming revolution</p>
@@ -1309,19 +1306,6 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="input-label">Account Type</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-building"></i>
-                        <select id="accountType">
-                            <option value="farmer">🌱 Farmer / Grower</option>
-                            <option value="supplier">📦 Supplier / Partner</option>
-                            <option value="researcher">🔬 Researcher / Educator</option>
-                            <option value="investor">💰 Investor</option>
-                        </select>
-                    </div>
-                </div>
-
                 <div class="terms-group">
                     <input type="checkbox" id="termsCheckbox" required>
                     <label>
@@ -1335,12 +1319,13 @@
                 </button>
             </form>
 
-            <!-- Login Section -->
             <div class="login-section">
-                <p class="login-text">Already have an account?</p>
-                <a href="./login.html" class="login-link" id="loginLink">
-                    Sign In <i class="fas fa-arrow-right"></i>
-                </a>
+                <p class="login-text">
+                    <b>Already have an account?</b>
+                    <a href="./login.html" class="login-link" id="loginLink">
+                        Sign In <i class="fas fa-arrow-right"></i>
+                    </a>
+                </p>
             </div>
         </div>
     </div>

@@ -40,15 +40,16 @@
             --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             --glass: rgba(255, 255, 255, 0.08);
             --glass-border: rgba(255, 255, 255, 0.12);
+            --page-padding: clamp(1rem, 5vw, 2.5rem);
         }
 
         body.dark {
-            --text: #e8f0e8;
-            --text-muted: #a4c4a4;
-            --bg: #0a1a0a;
-            --surface: #112814;
-            --border: rgba(255, 255, 255, 0.07);
-            --glass: rgba(255, 255, 255, 0.03);
+            --text: #ffffff;
+            --text-muted: #b0b0b0;
+            --bg: #000000;
+            --surface: #121212;
+            --border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         html {
@@ -65,7 +66,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: clamp(12px, 4vw, 32px);
+            padding: clamp(12px, 4vw, 32px) var(--page-padding);
             position: relative;
         }
 
@@ -405,7 +406,7 @@
         .signup-link {
             color: var(--accent);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             transition: var(--transition);
             display: inline-flex;
             align-items: center;
@@ -414,7 +415,7 @@
         }
 
         .signup-link:hover {
-            color: var(--lime);
+            color: var(--g3);
             gap: 10px;
         }
 
@@ -562,12 +563,10 @@
         .logo i {
             font-size: clamp(1.1rem, 4vw, 1.5rem);
             color: #4ade80 !important;
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
 
         .logo span {
             color: #4ade80 !important;
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
 
         /* Ensure proper scaling for the logo container */
@@ -579,7 +578,6 @@
             font-size: 1.5rem;
             font-weight: 900;
             color: #4ade80 !important; /* Premium Emerald for "Hydro" */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
             text-decoration: none;
             white-space: nowrap;
             display: flex;
@@ -590,11 +588,9 @@
         .logo i {
             font-size: 1.5rem;
             color: #4ade80 !important; /* Premium Emerald for Icon */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
         .logo span {
             color: #4ade80 !important; /* Premium Emerald for "Vertical" */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
        
     </style>
@@ -617,7 +613,7 @@
             <div class="login-header">
                 <div
                     style="display:flex; justify-content:center; align-items:center; gap:8px; font-size:2rem; font-weight:800; margin-bottom:16px; flex-wrap:wrap;">
-                    <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+                    <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> HydroVertical</a>
                 </div>
                 <h1>Welcome Back</h1>
                 <p>Login to your HydroVertical account</p>
@@ -673,10 +669,12 @@
 
             <!-- Signup Section -->
             <div class="signup-section">
-                <p class="signup-text">Don't have an account?</p>
-                <a href="./Registeration.html" class="signup-link" id="createAccount">
-                    Create New Account <i class="fas fa-arrow-right"></i>
-                </a>
+                <p class="signup-text">
+                   <b>Don't have an account?</b>
+                    <a href="./Registeration.html" class="signup-link" id="createAccount">
+                        Create New Account <i class="fas fa-arrow-right"></i>
+                    </a>
+                </p>
             </div>
         </div>
     </div>

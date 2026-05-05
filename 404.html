@@ -13,6 +13,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            --page-padding: clamp(1rem, 5vw, 2.5rem);
         }
 
         body {
@@ -68,7 +69,7 @@
             max-width: 900px;
             width: 90%;
             margin: 40px auto;
-            padding: 40px 32px;
+            padding: 40px var(--page-padding);
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             border-radius: 56px;
@@ -203,7 +204,7 @@
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             .error-container {
-                padding: 32px 24px;
+                padding: 32px var(--page-padding);
                 margin: 20px;
                 width: 92%;
             }
@@ -217,7 +218,7 @@
 
         @media (max-width: 480px) {
             .error-container {
-                padding: 28px 20px;
+                padding: 28px var(--page-padding);
                 width: 94%;
                 margin: 16px auto;
             }

@@ -36,15 +36,16 @@
             --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
             --glass: rgba(255, 255, 255, 0.08);
             --glass-border: rgba(255, 255, 255, 0.12);
+            --page-padding: clamp(1rem, 5vw, 2.5rem);
         }
 
         body.dark {
-            --text: #e2f0e6;
-            --text-muted: #7aaa8a;
-            --bg: #09150e;
-            --surface: #111d15;
-            --border: rgba(255,255,255,0.07);
-            --glass: rgba(255, 255, 255, 0.03);
+            --text: #ffffff;
+            --text-muted: #b0b0b0;
+            --bg: #000000;
+            --surface: #121212;
+            --border: rgba(255,255,255,0.1);
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         html {
@@ -63,38 +64,11 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 var(--page-padding);
         }
 
         .section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            text-align: center;
-            background: linear-gradient(135deg, var(--g1) 0%, var(--g3) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        body.dark .section-title {
-            background: linear-gradient(135deg, var(--accent2) 0%, var(--lime) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 48px;
-            line-height: 1.6;
+            padding: 80px var(--page-padding);
         }
 
         /* ========== GLASSMORPHISM COMPONENTS ========== */
@@ -238,7 +212,7 @@
         }
 
         .input-group i {
-            color: var(--accent);
+            color: var(--text-muted);
             margin-right: 12px;
             font-size: 1.1rem;
         }
@@ -292,17 +266,18 @@
         .info-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--g2), var(--g3));
-            border-radius: 50%;
+            background: var(--bg);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 16px;
+            border: 1px solid var(--border);
         }
 
         .info-icon i {
-            font-size: 1.8rem;
-            color: var(--lime);
+            font-size: 1.5rem;
+            color: var(--text);
         }
 
         .info-card h4 {
@@ -374,7 +349,7 @@
 
         .quick-card i {
             font-size: 2rem;
-            color: var(--accent);
+            color: var(--text);
             margin-bottom: 12px;
         }
 
@@ -446,7 +421,7 @@
         .cta-section {
             background: linear-gradient(135deg, var(--g1) 0%, var(--g3) 100%);
             border-radius: var(--radius-lg);
-            padding: 60px 40px;
+            padding: 60px var(--page-padding);
             text-align: center;
         }
 
@@ -496,7 +471,7 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .section { padding: 60px 0; }
+            .section { padding: 60px var(--page-padding); }
             .hero-contact h1 { font-size: 2.8rem; }
             .contact-grid { grid-template-columns: 1fr; gap: 32px; }
             .faq-grid { grid-template-columns: 1fr; }
@@ -583,7 +558,7 @@
         /* Tablet portrait (768px - 1024px) */
         @media (min-width: 768px) and (max-width: 1024px) {
             .section {
-                padding: 60px 0;
+                padding: 60px var(--page-padding);
             }
             .hero-contact {
                 min-height: 60vh;
@@ -641,7 +616,7 @@
                 padding: 0 24px;
             }
             .section {
-                padding: 50px 0;
+                padding: 50px var(--page-padding);
             }
             .hero-contact {
                 min-height: 55vh;
@@ -753,7 +728,7 @@
                 padding: 0 16px;
             }
             .section {
-                padding: 40px 0;
+                padding: 40px var(--page-padding);
             }
             .hero-contact {
                 min-height: 70vh;
@@ -1077,7 +1052,7 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-inner">
-            <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+            <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> HydroVertical</a>
             <div class="nav-links">
                 <div class="nav-item">
                     <a href="#" class="nav-link">Home <i class="fas fa-chevron-down"></i></a>
@@ -1104,16 +1079,16 @@
                     <button class="btn-icon" id="themeToggle" title="Toggle theme">
                     <i class="fa-solid fa-moon"></i>
                     </button>
-                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
-                    <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                    <button class="btn-icon" id="rtlToggle" title="Toggle RTL">
+                        <i class="fas fa-exchange-alt"></i>
                     </button>
                 </div>
                 <!-- Profile dropdown - visible only on desktop (hidden on tablet/mobile via media query) -->
                 <div class="profile-dropdown">
                     <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
                     <div class="profile-dropdown-content">
-                        <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-                        <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+                        <a href="./login.html">Login</a>
+                        <a href="./Registeration.html">Signup</a>
                     </div>
                 </div>
                 <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -1151,8 +1126,8 @@
             </div>
             <!-- Mobile Profile Section (visible only on tablet/mobile) -->
             <div class="mobile-profile-section">
-                <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-                <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+                <a href="./login.html">Login</a>
+                <a href="./Registeration.html">Signup</a>
             </div>
         </div>
     </nav>
@@ -1308,42 +1283,36 @@
                 <div class="faq-item fade-up">
                     <div class="faq-question">
                         <span>🌱 How do I get started with vertical farming?</span>
-                        <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">Schedule a free consultation with our team. We'll assess your space, budget, and goals to design a custom solution. Most farms are operational within 60-90 days.</div>
                 </div>
                 <div class="faq-item fade-up">
                     <div class="faq-question">
                         <span>💰 What is the typical ROI for your systems?</span>
-                        <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">Our clients typically see ROI within 14-24 months. Commercial operations achieve 45-60% gross margins with payback periods varying based on scale and crop selection.</div>
                 </div>
                 <div class="faq-item fade-up">
                     <div class="faq-question">
                         <span>🚚 Do you offer international shipping?</span>
-                        <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">Yes! We ship to 28+ countries worldwide. Our logistics team handles customs clearance and provides on-site installation support for international clients.</div>
                 </div>
                 <div class="faq-item fade-up">
                     <div class="faq-question">
                         <span>🛠️ What kind of support do you provide?</span>
-                        <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">24/7 technical support, remote monitoring, quarterly performance reviews, software updates, and annual on-site maintenance. Plus, you get a dedicated account manager.</div>
                 </div>
                 <div class="faq-item fade-up">
                     <div class="faq-question">
                         <span>📦 How to become an authorized supplier?</span>
-                        <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">Visit our supplier portal at suppliers.hvfs.com. Complete the application with your certifications and product catalog. Our procurement team reviews within 2-3 business days.</div>
                 </div>
                 <div class="faq-item fade-up">
                     <div class="faq-question">
                         <span>🔧 Do you offer training for my team?</span>
-                        <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">Absolutely! We provide comprehensive on-site training, certification programs, and ongoing educational resources. Our training center in Oregon hosts monthly workshops.</div>
                 </div>
@@ -1372,7 +1341,7 @@
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="./index.html" class="logo" id="wow" style="color:white"><i class="fas fa-leaf"></i>Hydro<span>Vertical</span></a>
+                    <a href="./index.html" class="logo" id="wow" style="color:white"><i class="fas fa-leaf"></i>HydroVertical</a>
                     <p>Leading supplier of innovative vertical hydroponic solutions for sustainable agriculture since 2015. Helping farms around the world grow smarter.</p>
                     <div class="footer-socials">
                         <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>

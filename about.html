@@ -18,6 +18,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            --page-padding: clamp(1rem, 5vw, 2.5rem);
         }
 
         body {
@@ -103,7 +104,7 @@
         }
 
         .section {
-            padding: 80px 24px;
+            padding: 80px var(--page-padding);
             width: 100%;
         }
 
@@ -111,25 +112,7 @@
             max-width: 1280px;
             margin: 0 auto;
             width: 100%;
-        }
-
-        .section-title {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 16px;
-            background: linear-gradient(125deg, #1b4d1b, #2e7d32);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .section-sub {
-            text-align: center;
-            color: #416e41;
-            max-width: 680px;
-            margin: 0 auto 48px auto;
-            font-size: clamp(0.95rem, 2vw, 1.05rem);
+            padding: 0 var(--page-padding);
         }
 
         .fade-up {
@@ -211,9 +194,12 @@
         .story-image {
             border-radius: 36px;
             width: 100%;
+            max-width: 300px;
             height: auto;
             object-fit: cover;
             box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 0 auto;
         }
 
         .mission-vision {
@@ -312,7 +298,7 @@
             background: linear-gradient(125deg, #e2f0e2, #cde3cd);
             border-radius: 48px;
             margin: 0 24px 80px 24px;
-            padding: 60px 32px;
+            padding: 60px var(--page-padding);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -321,7 +307,7 @@
         /* ---------- FULLY RESPONSIVE MEDIA QUERIES ---------- */
         @media (max-width: 1024px) {
             .section {
-                padding: 70px 20px;
+                padding: 70px var(--page-padding);
             }
 
             .container {
@@ -352,7 +338,7 @@
 
         @media (max-width: 768px) {
             .section {
-                padding: 60px 16px;
+                padding: 60px var(--page-padding);
             }
 
             .section-title {
@@ -470,7 +456,7 @@
             }
 
             .section {
-                padding: 100px 32px;
+                padding: 100px var(--page-padding);
             }
 
             .hero-content h1 {
@@ -515,13 +501,36 @@
         .footer .logo span {
             color: #4ade80 !important;
             /* Premium Emerald for Icon andSuffix */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
 
         .navbar .logo:hover,
         .footer .logo:hover {
             opacity: 0.9;
             transform: scale(1.02);
+        }
+        .team-card.hidden {
+            display: none;
+        }
+        
+        .view-all-wrap {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .view-all-btn {
+            background: transparent;
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .view-all-btn:hover {
+            background: var(--accent-green);
+            color: white;
         }
     </style>
 </head>
@@ -530,7 +539,7 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-inner">
-            <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+            <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> HydroVertical</a>
             <div class="nav-links">
                 <div class="nav-item">
                     <a href="#" class="nav-link">Home <i class="fas fa-chevron-down"></i></a>
@@ -557,16 +566,16 @@
                     <button class="btn-icon" id="themeToggle" title="Toggle theme">
                         <i class="fa-solid fa-moon"></i>
                     </button>
-                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
-                        <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                    <button class="btn-icon" id="rtlToggle" title="Toggle RTL">
+                        <i class="fas fa-exchange-alt"></i>
                     </button>
                 </div>
                 <!-- Profile dropdown - visible only on desktop (hidden on tablet/mobile via media query) -->
                 <div class="profile-dropdown">
                     <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
                     <div class="profile-dropdown-content">
-                        <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-                        <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+                        <a href="./login.html">Login</a>
+                        <a href="./Registeration.html">Signup</a>
                     </div>
                 </div>
                 <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -626,7 +635,7 @@
         <div class="container story-grid">
             <div class="fade-up">
                 <span style="font-size: 0.8rem; letter-spacing: 2px; color: #2e7d32;">OUR ROOTS</span>
-                <h2 style="font-size: clamp(1.6rem, 4vw, 2rem); margin: 16px 0; font-weight: 700;">From a single lab to
+                <h2>From a single lab to
                     a global movement</h2>
                 <p class="story-text">HydroNex was born in 2019 inside a modest university greenhouse — a collaboration
                     between agronomists and software engineers who believed that fresh, nutritious produce should thrive
@@ -777,6 +786,28 @@
                     <p>Head of Global Operations</p>
                     <p style="font-size: 0.8rem; margin-top: 6px;">Supply chain & vertical farm deployment expert</p>
                 </div>
+                <div class="team-card glass-card fade-up">
+                    <div class="avatar">JL</div>
+                    <h3>Jasper Ling</h3>
+                    <p>Director of Design</p>
+                    <p style="font-size: 0.8rem; margin-top: 6px;">Industrial design lead for hydroponic towers</p>
+                </div>
+                <div class="team-card glass-card fade-up">
+                    <div class="avatar">EB</div>
+                    <h3>Elena Becker</h3>
+                    <p>Head of Sustainability</p>
+                    <p style="font-size: 0.8rem; margin-top: 6px;">Focusing on carbon-neutral farming practices</p>
+                </div>
+                <div class="team-card glass-card fade-up">
+                    <div class="avatar">DO</div>
+                    <h3>David Okafor</h3>
+                    <p>Customer Success Lead</p>
+                    <p style="font-size: 0.8rem; margin-top: 6px;">Managing partner relations in 20+ countries</p>
+                </div>
+            </div>
+            
+            <div class="view-all-wrap fade-up" id="teamViewAllWrap">
+                <button class="view-all-btn" id="viewAllTeam">Meet Full Team <i class="fas fa-chevron-down"></i></button>
             </div>
         </div>
     </section>
@@ -831,7 +862,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="./index.html" class="logo" id="wow" style="color:white"><i
-                            class="fas fa-leaf"></i>Hydro<span>Vertical</span></a>
+                            class="fas fa-leaf"></i>HydroVertical</a>
                     <p>Leading supplier of innovative vertical hydroponic solutions for sustainable agriculture since
                         2015. Helping farms around the world grow smarter.</p>
                     <div class="footer-socials">
@@ -846,12 +877,9 @@
                     <h4>Products</h4>
                     <ul class="footer-links">
                         <li><a href="./products.html">All Systems</a></li>
-                        <li><a href="./products.html" onclick="filterProducts('home'); return false;">Home & Starter</a>
-                        </li>
-                        <li><a href="./products.html"
-                                onclick="filterProducts('commercial'); return false;">Commercial</a></li>
-                        <li><a href="./products.html"
-                                onclick="filterProducts('industrial'); return false;">Industrial</a></li>
+                        <li><a href="./products.html#home">Home & Starter</a></li>
+                        <li><a href="./products.html#commercial">Commercial</a></li>
+                        <li><a href="./products.html#industrial">Industrial</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -919,68 +947,76 @@
             const styleEl = document.createElement('style');
             styleEl.innerHTML = `
                 body.dark {
-                    background: #0a1a0a !important;
-                    color: #e8f0e8 !important;
+                    background: #000000 !important;
+                    color: #ffffff !important;
                 }
-                body.dark .glass-card {
-                    background: rgba(20, 40, 20, 0.85) !important;
-                    border-color: rgba(70, 130, 70, 0.4) !important;
-                }
-                body.dark .btn-outline {
-                    background: rgba(30, 60, 30, 0.6) !important;
-                    color: #c8e6c8 !important;
-                    border-color: #4a8c4a !important;
-                }
-                body.dark .btn-outline:hover {
-                    background: #2e7d32 !important;
-                    color: white !important;
-                }
-                body.dark .section-title {
-                    background: linear-gradient(125deg, #8bc48b, #c8e6c8) !important;
-                    -webkit-background-clip: text !important;
-                    background-clip: text !important;
-                    color: transparent !important;
-                }
-                body.dark .section-sub,
-                body.dark .story-text {
-                    color: #bcd0bc !important;
-                }
+                body.dark .glass-card,
                 body.dark .mv-card,
                 body.dark .service-card,
                 body.dark .team-card,
                 body.dark .milestone-item {
-                    background: rgba(25, 50, 25, 0.8) !important;
-                    border-color: rgba(70, 130, 70, 0.3) !important;
+                    background: #121212 !important;
+                    border-color: rgba(255, 255, 255, 0.1) !important;
                 }
-                body.dark .service-icon {
-                    background: rgba(70, 130, 70, 0.2) !important;
-                    color: #8bc48b !important;
+                body.dark .btn-outline {
+                    background: rgba(255, 255, 255, 0.05) !important;
+                    color: #ffffff !important;
+                    border-color: rgba(255, 255, 255, 0.2) !important;
                 }
-                body.dark .avatar {
-                    background: linear-gradient(145deg, #2e7d32, #1b5e20) !important;
+                body.dark .section-title {
+                    color: #ffffff !important;
+                    background: none !important;
+                    -webkit-background-clip: initial !important;
+                    background-clip: initial !important;
                 }
-                body.dark .cta-banner {
-                    background: rgba(25, 55, 25, 0.95) !important;
+                body.dark .section-sub,
+                body.dark .story-text {
+                    color: #b0b0b0 !important;
+                }
+                body.dark section {
+                    background: #000000 !important;
                 }
                 body.dark section[style*="background: #eef7ee"],
                 body.dark section[style*="background: #fafffa"] {
-                    background: #0e1a0e !important;
+                    background: #0a0a0a !important;
                 }
                 body.dark .hero-overlay {
-                    background: radial-gradient(circle at 30% 40%, rgba(10, 30, 10, 0.7), rgba(0, 10, 0, 0.85)) !important;
+                    background: radial-gradient(circle at 30% 40%, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85)) !important;
                 }
                 body.dark .milestone-number {
-                    color: #8bc48b !important;
+                    color: #ffffff !important;
                 }
                 body.dark ::-webkit-scrollbar-track {
-                    background: #1a2a1a !important;
+                    background: #000000 !important;
                 }
                 body.dark ::-webkit-scrollbar-thumb {
-                    background: #4a8c4a !important;
+                    background: #333333 !important;
                 }
             `;
             document.head.appendChild(styleEl);
         });
+
+        // Team View All Logic
+        (function() {
+            const teamCards = document.querySelectorAll('.team-grid .team-card');
+            const viewAllBtn = document.getElementById('viewAllTeam');
+            const teamLimit = 3;
+
+            if (teamCards && teamCards.length > teamLimit) {
+                teamCards.forEach((card, index) => {
+                    if (index >= teamLimit) card.classList.add('hidden');
+                });
+            } else if (document.getElementById('teamViewAllWrap')) {
+                document.getElementById('teamViewAllWrap').style.display = 'none';
+            }
+
+            if (viewAllBtn) {
+                viewAllBtn.addEventListener('click', () => {
+                    teamCards.forEach(card => card.classList.remove('hidden'));
+                    document.getElementById('teamViewAllWrap').style.display = 'none';
+                });
+            }
+        })();
     </script>
 </body>
 

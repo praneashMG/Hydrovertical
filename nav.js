@@ -32,8 +32,11 @@
     if (desktopThemeBtn) desktopThemeBtn.addEventListener('click', toggleTheme);
     if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
     
-    // Load saved theme
-    if (localStorage.getItem('theme') === 'dark') {
+    // Load saved theme or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
         document.body.classList.add('dark');
         if (desktopThemeBtn) {
             const icon = desktopThemeBtn.querySelector('i');
@@ -46,9 +49,24 @@
             mobileThemeBtn.innerHTML = '<i class="fas fa-sun"></i> <span>Light</span>';
         }
     }
+
+    // Listen for system theme changes
+    if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) {
+                    document.body.classList.add('dark');
+                    if (mobileThemeBtn) mobileThemeBtn.innerHTML = '<i class="fas fa-sun"></i> <span>Light</span>';
+                } else {
+                    document.body.classList.remove('dark');
+                    if (mobileThemeBtn) mobileThemeBtn.innerHTML = '<i class="fas fa-moon"></i> <span>Dark</span>';
+                }
+            }
+        });
+    }
     
     // RTL Toggle (Desktop + Mobile)
-    const desktopRtlBtn = document.querySelector('.desktop-rtl-dark .btn-icon:last-child');
+    const desktopRtlBtn = document.getElementById('rtlToggle');
     const mobileRtlBtn = document.getElementById('mobileRtlToggle');
     
     function toggleRTL() {
@@ -70,6 +88,8 @@
     if (localStorage.getItem('dir') === 'rtl') {
         document.body.setAttribute('dir', 'rtl');
         if (mobileRtlBtn) mobileRtlBtn.innerHTML = '<i class="fas fa-exchange-alt"></i> <span>LTR</span>';
+    } else {
+        if (mobileRtlBtn) mobileRtlBtn.innerHTML = '<i class="fas fa-exchange-alt"></i> <span>RTL</span>';
     }
     
     // Hamburger Menu Toggle

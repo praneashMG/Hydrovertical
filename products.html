@@ -393,6 +393,73 @@
                 min-height: 48px;
             }
         }
+
+        /* Dark Mode Overrides for Products Page */
+        body.dark {
+            background: #000000 !important;
+            color: #e8f0e8 !important;
+        }
+        
+        body.dark .glass-card {
+            background: rgba(30, 30, 30, 0.85) !important;
+            border-color: rgba(70, 130, 70, 0.4) !important;
+            color: #e8f0e8 !important;
+        }
+
+        body.dark .section-title {
+            background: linear-gradient(125deg, #8bc48b, #c8e6c8) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            color: transparent !important;
+        }
+
+        body.dark .section-sub, 
+        body.dark .product-card p,
+        body.dark .spec-list li,
+        body.dark .usecase-card p,
+        body.dark .testi-card p {
+            color: #bcd0bc !important;
+        }
+
+        body.dark .compare-table th {
+            background: #1a2a1a !important;
+            color: #ffffff !important;
+        }
+
+        body.dark .compare-table td {
+            color: #e8f0e8 !important;
+            border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        body.dark .cta-banner {
+            background: rgba(30, 30, 30, 0.95) !important;
+            color: #ffffff !important;
+        }
+
+        body.dark .btn-outline {
+            background: rgba(45, 45, 45, 0.6) !important;
+            color: #c8e6c8 !important;
+            border-color: #4a8c4a !important;
+        }
+
+        body.dark .btn-outline:hover {
+            background: #2e7d32 !important;
+            color: white !important;
+        }
+
+        /* Handle sections with inline backgrounds */
+        body.dark section[style*="background: #eef7ee"],
+        body.dark section[style*="background: #fafffa"] {
+            background: #121212 !important;
+        }
+
+        body.dark .hero-overlay {
+            background: radial-gradient(circle at 30% 40%, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)) !important;
+        }
+
+        body.dark .spec-list li {
+            border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+        }
     </style>
     
 </head>
@@ -427,8 +494,8 @@
                     <button class="btn-icon" id="themeToggle" title="Toggle theme">
                     <i class="fa-solid fa-moon"></i>
                     </button>
-                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
-                    <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                    <button class="btn-icon" id="rtlToggle" title="Toggle RTL">
+                    <i class="fas fa-exchange-alt"></i>
                     </button>
                 </div>
                 <!-- Profile dropdown - visible only on desktop (hidden on tablet/mobile via media query) -->
@@ -746,210 +813,6 @@
 
         // initial render
         renderProducts();
-        // Complete Dark/Light Mode Toggle Solution
-(function() {
-    // Create style element for dark mode
-    const darkModeStyle = document.createElement('style');
-    darkModeStyle.id = 'dark-mode-styles';
-    darkModeStyle.textContent = `
-        /* Dark mode global overrides */
-        body.dark-mode {
-            background: #0a1a0a !important;
-            color: #e8f0e8 !important;
-        }
-        
-        body.dark-mode .glass-card {
-            background: rgba(20, 40, 20, 0.85) !important;
-            border-color: rgba(70, 130, 70, 0.4) !important;
-        }
-        
-        body.dark-mode .btn-outline {
-            background: rgba(30, 60, 30, 0.6) !important;
-            color: #c8e6c8 !important;
-            border-color: #4a8c4a !important;
-        }
-        
-        body.dark-mode .btn-outline:hover {
-            background: #2e7d32 !important;
-            color: white !important;
-        }
-        
-        body.dark-mode .section-title {
-            background: linear-gradient(125deg, #8bc48b, #c8e6c8) !important;
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            color: transparent !important;
-        }
-        
-        body.dark-mode .section-sub,
-        body.dark-mode .story-text {
-            color: #bcd0bc !important;
-        }
-        
-        body.dark-mode .mv-card,
-        body.dark-mode .service-card,
-        body.dark-mode .team-card,
-        body.dark-mode .milestone-item {
-            background: rgba(25, 50, 25, 0.8) !important;
-            border-color: rgba(70, 130, 70, 0.3) !important;
-        }
-        
-        body.dark-mode .service-icon {
-            background: rgba(70, 130, 70, 0.2) !important;
-            color: #8bc48b !important;
-        }
-        
-        body.dark-mode .avatar {
-            background: linear-gradient(145deg, #2e7d32, #1b5e20) !important;
-        }
-        
-        body.dark-mode .cta-banner {
-            background: rgba(25, 55, 25, 0.95) !important;
-        }
-        
-        body.dark-mode section[style*="background: #eef7ee"],
-        body.dark-mode section[style*="background: #fafffa"] {
-            background: #0e1a0e !important;
-        }
-        
-        body.dark-mode .hero-overlay {
-            background: radial-gradient(circle at 30% 40%, rgba(10, 30, 10, 0.7), rgba(0, 10, 0, 0.85)) !important;
-        }
-        
-        body.dark-mode .milestone-number {
-            color: #8bc48b !important;
-        }
-        
-        body.dark-mode ::-webkit-scrollbar-track {
-            background: #1a2a1a !important;
-        }
-        
-        body.dark-mode ::-webkit-scrollbar-thumb {
-            background: #4a8c4a !important;
-        }
-        
-        body.dark-mode input,
-        body.dark-mode textarea {
-            background: #1a2a1a !important;
-            color: #e8f0e8 !important;
-            border-color: #4a8c4a !important;
-        }
-        
-        body.dark-mode input::placeholder {
-            color: #8a9a8a !important;
-        }
-    `;
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    
-    // Function to apply dark mode
-    function enableDarkMode() {
-        document.body.classList.add('dark-mode');
-        if (!document.getElementById('dark-mode-styles')) {
-            document.head.appendChild(darkModeStyle);
-        }
-        
-        // Update theme toggle button icon
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            const icon = themeToggle.querySelector('i');
-            if (icon) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            }
-        }
-        
-        // Update mobile theme toggle if exists
-        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
-        if (mobileThemeToggle) {
-            mobileThemeToggle.innerHTML = '<i class="fas fa-sun"></i> <span>Light</span>';
-        }
-        
-        localStorage.setItem('theme', 'dark');
-    }
-    
-    // Function to apply light mode
-    function enableLightMode() {
-        document.body.classList.remove('dark-mode');
-        
-        // Remove dark mode styles if they exist
-        const styleElement = document.getElementById('dark-mode-styles');
-        if (styleElement) {
-            styleElement.remove();
-        }
-        
-        // Update theme toggle button icon
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            const icon = themeToggle.querySelector('i');
-            if (icon) {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        }
-        
-        // Update mobile theme toggle if exists
-        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
-        if (mobileThemeToggle) {
-            mobileThemeToggle.innerHTML = '<i class="fas fa-moon"></i> <span>Dark</span>';
-        }
-        
-        localStorage.setItem('theme', 'light');
-    }
-    
-    // Toggle function
-    function toggleTheme() {
-        if (document.body.classList.contains('dark-mode')) {
-            enableLightMode();
-        } else {
-            enableDarkMode();
-        }
-    }
-    
-    // Get all theme toggle buttons (desktop and any others with same ID)
-    const themeToggleBtns = document.querySelectorAll('#themeToggle');
-    
-    // Add click event listeners to all theme toggle buttons
-    themeToggleBtns.forEach(btn => {
-        btn.addEventListener('click', toggleTheme);
-    });
-    
-    // Also handle mobile theme toggle if it exists separately
-    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
-    if (mobileThemeToggle && !mobileThemeToggle.hasAttribute('data-theme-listener')) {
-        mobileThemeToggle.setAttribute('data-theme-listener', 'true');
-        mobileThemeToggle.addEventListener('click', toggleTheme);
-    }
-    
-    // Apply saved theme on page load
-    if (savedTheme === 'dark') {
-        enableDarkMode();
-    } else if (savedTheme === 'light') {
-        enableLightMode();
-    } else {
-        // Check system preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            enableDarkMode();
-        } else {
-            enableLightMode();
-        }
-    }
-    
-    // Listen for system theme changes
-    if (window.matchMedia) {
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            // Only apply if user hasn't manually set a preference
-            if (!localStorage.getItem('theme')) {
-                if (e.matches) {
-                    enableDarkMode();
-                } else {
-                    enableLightMode();
-                }
-            }
-        });
-    }
-})();
     </script>
 </body>
 </html>

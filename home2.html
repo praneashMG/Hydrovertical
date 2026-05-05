@@ -23,15 +23,16 @@
             --border: rgba(0, 0, 0, 0.08);
             --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.05);
             --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --page-padding: clamp(1rem, 5vw, 2.5rem);
         }
 
         body.dark {
-            --surface-color: #122215;
-            --bg-color: #070d08;
-            --text-main: #f0f7f1;
-            --text-sec: #9db5a1;
-            --border: rgba(255, 255, 255, 0.08);
-            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --surface-color: #121212;
+            --bg-color: #000000;
+            --text-main: #ffffff;
+            --text-sec: #b0b0b0;
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.7);
         }
 
         * {
@@ -75,7 +76,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 120px 5% 60px 5%;
+            padding: 120px var(--page-padding) 60px var(--page-padding);
             position: relative;
             background: radial-gradient(circle at 10% 20%, rgba(160, 220, 40, 0.08) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(56, 163, 66, 0.08) 0%, transparent 40%);
@@ -181,7 +182,7 @@
 
         /* ====== BENTO GRID FEATURES ====== */
         .bento-section {
-            padding: 100px 5%;
+            padding: 100px var(--page-padding);
         }
 
         .section-tag {
@@ -202,10 +203,6 @@
             margin-bottom: 60px;
         }
 
-        .bento-header h2 {
-            font-size: clamp(2.2rem, 4vw, 3.5rem);
-            margin-bottom: 16px;
-        }
 
         .bento-grid {
             display: grid;
@@ -322,7 +319,7 @@
 
         /* ====== UNIQUE STATS ROWS ====== */
         .stats-row {
-            padding: 80px 5%;
+            padding: 80px var(--page-padding);
             background: var(--surface-color);
             display: flex;
             justify-content: space-around;
@@ -429,7 +426,7 @@
 
         /* ====== TIMELINE PROCESS ====== */
         .timeline-section {
-            padding: 100px 5%;
+            padding: 100px var(--page-padding);
         }
 
         .timeline-header {
@@ -495,7 +492,7 @@
 
         /* ====== FAQ SECTION ====== */
         .faq-section {
-            padding: 100px 5%;
+            padding: 100px var(--page-padding);
             background: var(--surface-color);
         }
 
@@ -563,7 +560,7 @@
 
         /* ====== IMPACT GRID ====== */
         .impact-section {
-            padding: 100px 5%;
+            padding: 100px var(--page-padding);
         }
 
         .impact-grid {
@@ -634,7 +631,7 @@
 <body>
     <nav class="navbar">
         <div class="nav-inner">
-            <a href="#" class="logo"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+            <a href="#" class="logo"><i class="fas fa-leaf"></i> HydroVertical</a>
             <div class="nav-links">
                 <div class="nav-item">
                     <a href="#" class="nav-link active">Home <i class="fas fa-chevron-down"></i></a>
@@ -661,16 +658,16 @@
                     <button class="btn-icon" id="themeToggle" title="Toggle theme">
                         <i class="fa-solid fa-moon"></i>
                     </button>
-                    <button class="btn-icon" id="themeToggle" title="Toggle theme">
-                        <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                    <button class="btn-icon" id="rtlToggle" title="Toggle RTL">
+                        <i class="fas fa-exchange-alt"></i>
                     </button>
                 </div>
                 <!-- Profile dropdown - visible only on desktop (hidden on tablet/mobile via media query) -->
                 <div class="profile-dropdown">
                     <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
                     <div class="profile-dropdown-content">
-                        <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-                        <a href="./signup.html"><i class="fas fa-user-plus"></i> Signup</a>
+                        <a href="./login.html">Login</a>
+                        <a href="./Registeration.html">Signup</a>
                     </div>
                 </div>
                 <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -708,8 +705,8 @@
             </div>
             <!-- Mobile Profile Section (visible only on tablet/mobile) -->
             <div class="mobile-profile-section">
-                <a href="./login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-                <a href="./Registeration.html"><i class="fas fa-user-plus"></i> Signup</a>
+                <a href="./login.html">Login</a>
+                <a href="./Registeration.html">Signup</a>
             </div>
         </div>
     </nav>
@@ -722,7 +719,7 @@
             <h1>Redefining Growth.<br>Zero Boundaries.</h1>
             <p>Experience the most advanced AI-powered vertical farming ecosystem on the planet. Maximum yield, pure
                 automation, zero soil.</p>
-            <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;" >
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-start;">
                 <a href="#explore" class="btn-modern btn-neon">Explore System <i class="fas fa-arrow-right"></i></a>
                 <a href="#stats" class="btn-modern">View Data <i class="fas fa-chart-pie"></i></a>
             </div>
@@ -762,7 +759,7 @@
         <div class="bento-header fade-up">
             <span class="section-tag">Ecosystem Features</span>
             <h2>Cultivation, Perfected.</h2>
-            <p style="color:var(--text-sec);">A symphony of hardware and software working in unison.</p>
+            <p>A symphony of hardware and software working in unison.</p>
         </div>
 
         <div class="bento-grid">
@@ -779,6 +776,7 @@
             </div>
 
             <div class="bento-card fade-up">
+                <img class="bento-img-bg" src="./images/Aero-Nutrient Delivery.jpg" alt="BG">
                 <div class="bento-icon"><i class="fas fa-droplet"></i></div>
                 <div class="bento-content">
                     <h3>Aero-Nutrient Delivery</h3>
@@ -799,6 +797,7 @@
             </div>
 
             <div class="bento-card fade-up">
+                <img class="bento-img-bg" src="./images/Dynamic Photonics.jpg" alt="BG">
                 <div class="bento-icon"><i class="fas fa-sun"></i></div>
                 <div class="bento-content">
                     <h3>Dynamic Photonics</h3>
@@ -807,6 +806,7 @@
             </div>
 
             <div class="bento-card wide fade-up">
+                <img class="bento-img-bg" src="./images/Bio-Secure Architecture.jpg" alt="BG">
                 <div class="bento-icon"><i class="fas fa-shield-halved"></i></div>
                 <div class="bento-content">
                     <h3>Bio-Secure Architecture</h3>
@@ -823,7 +823,7 @@
         <div class="timeline-header fade-up">
             <span class="section-tag">Implementation</span>
             <h2>Seamless Integration.</h2>
-            <p style="color:var(--text-sec); max-width:600px; margin: 0 auto;">From conceptual modeling to the final
+            <p>From conceptual modeling to the final
                 autonomous harvest, our modular timeline guarantees frictionless scaling.</p>
         </div>
 
@@ -953,7 +953,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="#" class="logo" id="wow" style="color:white"><i
-                            class="fas fa-leaf"></i>Hydro<span>Vertical</span></a>
+                            class="fas fa-leaf"></i>HydroVertical</a>
                     <p>Leading supplier of innovative vertical hydroponic solutions for sustainable agriculture since
                         2015. Helping farms around the world grow smarter.</p>
                     <div class="footer-socials">

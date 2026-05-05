@@ -15,6 +15,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            --page-padding: clamp(1rem, 5vw, 2.5rem);
         }
 
         body {
@@ -27,102 +28,110 @@
 
         /* Dark Mode Overrides - Applied to entire page */
         body.dark {
-            background: #0a1a0a !important;
-            color: #e8f0e8 !important;
+            background: #000000 !important;
+            color: #e0e0e0 !important;
         }
         body.dark .sidebar {
-            background: linear-gradient(180deg, #05160b 0%, #082212 100%) !important;
-            border-right: 1px solid #1a331a;
+            background: #111111 !important;
+            border-right: 1px solid #222222;
         }
         body.dark .stat-card,
         body.dark .module-card,
         body.dark .user-profile,
-        body.dark .roi-calculator {
-            background: #112814 !important;
-            border-color: #1a361c !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+        body.dark .roi-calculator,
+        body.dark .top-bar-search {
+            background: #1a1a1a !important;
+            border-color: #262626 !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6) !important;
         }
         body.dark h1, body.dark h2, body.dark h3, body.dark strong {
-            color: #c8e6c8 !important;
+            color: #ffffff !important;
         }
-        body.dark p, body.dark .insight-text, body.dark small, body.dark span, body.dark .stat-info h3 {
-            color: #a4c4a4 !important;
+        body.dark p, body.dark .insight-text, body.dark small, body.dark span, body.dark .stat-info h3, body.dark .greeting p {
+            color: #cccccc !important;
         }
         body.dark .card-header {
-            border-bottom-color: #1a361c !important;
+            border-bottom-color: #333333 !important;
         }
         body.dark .stat-number {
-            color: #e8f0e8 !important;
+            color: #4ade80 !important;
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
         }
-        body.dark .stat-icon, body.dark .card-header i {
-            background: #0d1e0d !important;
-            color: #8bc48b !important;
-        }
-        body.dark .badge {
-            background: #0d1e0d !important;
-            color: #8bc48b !important;
+        body.dark .stat-icon, body.dark .card-header i, body.dark .badge {
+            background: #262626 !important;
+            color: #4ade80 !important;
         }
         body.dark .roi-input {
-            background: #0b1f0d !important;
-            border-color: #1a361c !important;
+            background: #262626 !important;
+            border-color: #444444 !important;
         }
         body.dark .roi-input input {
             background: transparent !important;
-            color: #e8f0e8 !important;
+            color: #ffffff !important;
+        }
+        body.dark .roi-input input::placeholder {
+            color: #888888 !important;
         }
         body.dark .btn-calc {
-            background: #1b5e20 !important;
-            color: #e8f0e8 !important;
-        }
-        body.dark .top-bar-search {
-            background: #112814 !important;
-            border-color: #1a361c !important;
+            background: #2e7d32 !important;
+            color: #ffffff !important;
         }
         body.dark .top-bar-search input {
-            color: #e8f0e8 !important;
+            color: #ffffff !important;
+        }
+        body.dark .top-bar-search input::placeholder {
+            color: #888888 !important;
         }
         body.dark .dropdown-menu {
-            background: #112814 !important;
-            border-color: #1a361c !important;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+            background: #1a1a1a !important;
+            border-color: #333333 !important;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8) !important;
         }
         body.dark .dropdown-header {
-            border-bottom-color: #1a361c !important;
-            color: #c8e6c8 !important;
+            border-bottom-color: #333333 !important;
+            color: #ffffff !important;
         }
         body.dark .dropdown-item {
-            color: #a4c4a4 !important;
+            color: #eeeeee !important;
         }
         body.dark .dropdown-item:hover {
-            background: rgba(46,125,50,0.2) !important;
-            color: #c8f04a !important;
+            background: #262626 !important;
+            color: #4ade80 !important;
         }
         body.dark .nav-badge {
-            border-color: #112814 !important;
+            border-color: #1a1a1a !important;
         }
         body.dark .nav-btn:hover {
-            background: rgba(200, 240, 74, 0.1) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
         }
         body.dark .contact-line i.fa-map-marker-alt,
         body.dark .contact-line i.fa-calendar-alt {
-            color: #8bc48b !important;
+            color: #4ade80 !important;
         }
         body.dark .cta-banner {
-            background: linear-gradient(115deg, #0a2a18, #0f3a20) !important;
+            background: linear-gradient(115deg, #111111, #1a1a1a) !important;
+            border: 1px solid #262626;
         }
         body.dark .greeting h1 {
-            color: #c8e6c8 !important;
-        }
-        body.dark .greeting p {
-            color: #a4c4a4 !important;
+            color: #ffffff !important;
         }
         body.dark .hamburger-btn {
-            color: #e8f0e8;
-            background: rgba(17, 40, 20, 0.8);
-            border-color: #1a361c;
+            color: #ffffff;
+            background: #1a1a1a;
+            border-color: #262626;
         }
         body.dark .hamburger-btn:hover {
-            background: #1a361c;
+            background: #262626;
+        }
+        body.dark .nav-item {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        body.dark .nav-item.active, body.dark .nav-item:hover {
+            background: rgba(74, 222, 128, 0.1) !important;
+            color: #4ade80 !important;
+        }
+        body.dark .nav-divider {
+            background: rgba(255, 255, 255, 0.05);
         }
 
         /* RTL Overrides - Applied to entire page */
@@ -324,16 +333,13 @@
             font-weight: 800;
             text-decoration: none;
             color: #4ade80 !important; /* Premium Emerald */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
         .logo i {
             font-size: 1.3rem;
             color: #4ade80 !important; /* Premium Emerald */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
         .logo span {
             color: #4ade80 !important; /* Premium Emerald */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
         .nav-menu {
             padding: 0 16px;
@@ -378,7 +384,7 @@
         /* ========== MAIN CONTENT ========== */
         .main-content {
             flex: 1;
-            padding: 28px 32px;
+            padding: 28px var(--page-padding);
             overflow-x: auto;
         }
 
@@ -709,7 +715,7 @@
                 margin: 16px 16px;
             }
             .main-content {
-                padding: 24px 20px;
+                padding: 24px var(--page-padding);
                 width: 100%;
             }
             .stats-grid {
@@ -790,7 +796,6 @@
             font-size: 1.5rem;
             font-weight: 900;
             color: #4ade80 !important; /* Premium Emerald for "Hydro" */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
             text-decoration: none;
             white-space: nowrap;
             display: flex;
@@ -801,11 +806,9 @@
         .logo i {
             font-size: 1.5rem;
             color: #4ade80 !important; /* Premium Emerald for Icon */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
         .logo span {
             color: #4ade80 !important; /* Premium Emerald for "Vertical" */
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
         .logo:hover {
             opacity: 0.9;
@@ -819,7 +822,7 @@
     <!-- Sidebar Navigation -->
     <aside class="sidebar">
         <div class="sidebar-header">
-            <a href="./index.html" class="logo" style="font-size: 1.4rem;"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
+            <a href="./index.html" class="logo" style="font-size: 1.4rem;"><i class="fas fa-leaf"></i> HydroVertical</a>
         </div>
         <div class="nav-menu">
             <div class="nav-item active" data-section="dashboard-main"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></div>
@@ -849,7 +852,6 @@
                 <span class="mobile-notif-badge">2</span>
             </div>
             <div class="mobile-control-item" id="mobileProfile">
-                <i class="fas fa-user-circle"></i>
                 <span>My Profile</span>
             </div>
         </div>
@@ -897,11 +899,11 @@
                         </button>
                         <div class="dropdown-menu" id="profDropdownUser" style="width:220px;">
                             <div class="dropdown-header">Alex Morgan <br><small style="color:#6c8e6c; font-weight:400;">Pro Grower</small></div>
-                            <div class="dropdown-item"><i class="fas fa-user"></i> My Profile</div>
-                            <div class="dropdown-item"><i class="fas fa-box"></i> Orders</div>
-                            <div class="dropdown-item"><i class="fas fa-cog"></i> Account Settings</div>
+                            <div class="dropdown-item">My Profile</div>
+                            <div class="dropdown-item">Orders</div>
+                            <div class="dropdown-item">Account Settings</div>
                             <div class="dropdown-divider"></div>
-                            <a href="./login.html" class="dropdown-item" style="color: #ff5252;"><i class="fas fa-sign-out-alt" style="color:#ff5252;"></i> Sign Out</a>
+                            <a href="./login.html" class="dropdown-item" style="color: #ff5252;">Sign Out</a>
                         </div>
                     </div>
                 </div>
