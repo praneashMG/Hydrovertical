@@ -33,7 +33,7 @@
         /* glassmorphism core */
         .glass-card {
             background: rgba(255, 255, 245, 0.7);
-            backdrop-filter: blur(12px);
+        
             border-radius: 32px;
             border: 1px solid rgba(46, 125, 50, 0.25);
             box-shadow: 0 12px 28px -12px rgba(0, 32, 0, 0.12);
@@ -42,7 +42,42 @@
         .glass-card:hover {
             transform: translateY(-5px);
             border-color: rgba(46, 125, 50, 0.5);
-            box-shadow: 0 24px 40px -16px rgba(46, 125, 50, 0.25);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Skeleton Loader */
+        .skeleton {
+            background: linear-gradient(90deg, #e0eee0 25%, #f0f7f0 50%, #e0eee0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 28px;
+        }
+
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .img-container {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            margin-bottom: 8px;
+            grid-column: 1 / span 2;
+            overflow: hidden;
+            border-radius: 28px;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .product-img.loaded {
+            opacity: 1;
         }
 
         .btn-primary {
@@ -89,6 +124,9 @@
         .section {
             padding: 80px 24px;
             width: 100%;
+            contain: content; /* Isolate rendering for better performance */
+            content-visibility: auto; /* Skip rendering for off-screen sections */
+            contain-intrinsic-size: 0 500px; /* Placeholder size for layout stability */
         }
         .container {
             max-width: 1280px;
@@ -101,6 +139,8 @@
             opacity: 0;
             transform: translateY(35px);
             transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            will-change: transform, opacity; /* Hint to browser for GPU acceleration */
+            backface-visibility: hidden;
         }
         .fade-up.visible {
             opacity: 1;
@@ -190,15 +230,10 @@
             grid-template-rows: auto auto 1fr auto;
             gap: 12px;
             height: 100%;
+            transform: translateZ(0); /* Force GPU layer */
         }
-        .product-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 28px;
-            margin-bottom: 8px;
-            grid-column: 1 / span 2;
-        }
+        /* Product Image is now inside .img-container */
+
         .product-card h3 {
             grid-column: 1 / span 2;
             margin: 0;
@@ -309,13 +344,14 @@
 
         /* Products Explorer Container */
         .products-explorer {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.8); /* More opaque background */
+            backdrop-filter: blur(8px); /* Reduced blur for performance */
             border-radius: 48px;
             padding: 48px 32px;
             border: 1px solid rgba(46, 125, 50, 0.15);
             box-shadow: 0 30px 60px -20px rgba(0, 40, 0, 0.1);
             margin-top: 2rem;
+            contain: layout;
         }
 
         .stats-row {
@@ -445,10 +481,9 @@
             .products-grid { gap: 36px; }
         }
 
-        /* prevent any horizontal overflow */
-        img, video, .glass-card, .container, .section, .product-card, .usecase-card, .testi-card {
+        /* prevent any horizontal overflow - removed blanket overflow-x: hidden to prevent unintended scrollbars */
+        img, video {
             max-width: 100%;
-            overflow-x: hidden;
         }
         
         /* ensure buttons are touch-friendly on mobile */
@@ -511,12 +546,21 @@
         body.dark .spec-list li {
             border-bottom-color: rgba(255, 255, 255, 0.1) !important;
         }
+        @media (max-width:768px){
+
+    .fade-up{
+        opacity:1 !important;
+        transform:none !important;
+        transition:none !important;
+    }
+
+}
     </style>
     
 </head>
 <body>
         <!-- NAVBAR -->
-    <nav class="navbar">
+    <nav class="navbar" style="transform: translateZ(0);">
         <div class="nav-inner">
             <a href="./index.html" class="logo"><i class="fas fa-leaf"></i> Hydro<span>Vertical</span></a>
             <div class="nav-links">
@@ -599,9 +643,8 @@
     </nav>
     <!-- Product Hero (no navbar) -->
     <section class="product-hero">
-        <video class="hero-video-bg" autoplay muted loop playsinline>
-            <source src="./images/Hydroponic Plants.jpg" type="video/mp4">
-        </video>
+        <!-- Hero Background optimization -->
+        <img src="./images/Hydroponic Plants.jpg" alt="" class="hero-video-bg" style="opacity: 0.4;" fetchpriority="high" decoding="async">
         <div class="hero-overlay"></div>
         <div class="hero-content fade-up">
             <h1>Vertical farming systems<br>for every scale</h1>
@@ -861,9 +904,13 @@
         function renderProducts() {
             const container = document.getElementById("productsContainer");
             const filtered = currentFilter === "all" ? products : products.filter(p => p.category === currentFilter);
-            container.innerHTML = filtered.map(p => `
+            
+            // Only update if content changed or for initial render
+            const productHTML = filtered.map(p => `
                 <div class="product-card glass-card fade-up">
-                    <img class="product-img" src="${p.image}" alt="${p.name}" loading="lazy">
+                    <div class="img-container skeleton">
+                        <img class="product-img" src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" onload="this.classList.add('loaded'); this.parentElement.classList.remove('skeleton')">
+                    </div>
                     <h3>${p.name}</h3>
                     <ul class="spec-list">
                         <li><i class="fas fa-check-circle" style="color:#2e7d32;"></i> ${p.features}</li>
@@ -873,10 +920,12 @@
                     <a href="#" class="btn-primary" style="padding: 10px 20px; font-size:0.85rem;">Request quote <i class="fas fa-arrow-right"></i></a>
                 </div>
             `).join("");
+            
+            container.innerHTML = productHTML;
+            
             // re-trigger fade-up for new elements
             document.querySelectorAll('.products-grid .fade-up').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('visible');
-                else appearOnScroll.observe(el);
+                appearOnScroll.observe(el);
             });
         }
 
@@ -892,7 +941,10 @@
 
         // Intersection Observer
         const faders = document.querySelectorAll('.fade-up');
-        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -30px 0px" };
+        const appearOptions = { 
+            threshold: 0, 
+            rootMargin: "0px 0px 200px 0px" // Start loading/animating 200px before it enters view
+        };
         const appearOnScroll = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {

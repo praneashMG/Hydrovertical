@@ -917,11 +917,8 @@
             background: rgba(255, 255, 255, 0.05);
             border-color: rgba(255, 255, 255, 0.1);
         }
-                /* ========== ADDITIONAL RESPONSIVE ENHANCEMENTS ========== */
-        /* Ensure proper viewport scaling */
-        * {
-            max-width: 100%;
-        }
+        /* ========== ADDITIONAL RESPONSIVE ENHANCEMENTS ========== */
+        /* Ensure proper viewport scaling - removed dangerous global * max-width */
         
         /* Responsive images and media */
         img, picture, video, canvas, svg {
