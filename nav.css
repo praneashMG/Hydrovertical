@@ -128,30 +128,55 @@
         }
 
         /* ========== GLOBAL HEADING STANDARDIZATION ========== */
-        .section-title, 
-        .bento-header h2, 
-        .timeline-header h2, 
-        .faq-section h2, 
-        .impact-section h2 {
-            font-size: var(--heading-size) !important;
-            color: var(--heading-color) !important;
+        /* ========== GLOBAL HEADING STANDARDIZATION ========== */
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem) !important;
             font-weight: 800 !important;
             text-align: center !important;
             margin-bottom: 20px !important;
+            background: linear-gradient(125deg, #1b4d1b, #2e7d32);
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            color: transparent !important;
+            line-height: 1.2 !important;
             letter-spacing: -1px;
-            line-height: 1.1;
+            display: block;
+            width: 100%;
         }
 
-        .section-sub, 
-        .bento-header p, 
-        .timeline-header p, 
-        .faq-section p {
-            font-size: 1.1rem !important;
-            color: var(--accent) !important;
+        body.dark .section-title {
+            background: linear-gradient(125deg, #8bc48b, #c8e6c8) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            color: transparent !important;
+        }
+
+        .section-sub {
+            font-size: clamp(1rem, 2.5vw, 1.15rem) !important;
+            color: var(--text-muted) !important;
             text-align: center !important;
-            max-width: 700px !important;
-            margin: 0 auto 60px auto !important;
+            max-width: 750px !important;
+            margin: 0 auto 50px auto !important;
+            line-height: 1.6 !important;
+            display: block;
+        }
+
+        /* Standard Heading Spacing */
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
             line-height: 1.6;
+        }
+
+        /* Reset for containers that might have specific needs */
+        .glass-card p:last-child, 
+        .benefit-card p:last-child,
+        .product-card p:last-child {
+            margin-bottom: 0;
         }
 
         /* Internal paragraph spacing inside sections */
@@ -167,7 +192,11 @@
         .bento-card h3 + p,
         .impact-card h3 + p,
         .timeline-info h3 + p,
-        .feature-content h3 + p {
+        .feature-content h3 + p,
+        .advantage-card h3 + p,
+        .milestone-item h3 + p,
+        .info-card h4 + p,
+        .quick-card h4 + p {
             margin-top: 12px !important;
             margin-bottom: 24px !important;
         }
@@ -645,22 +674,25 @@
         }
 
         .social-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 9px;
-            background: rgba(255, 255, 255, 0.06);
-            color: rgba(255, 255, 255, 0.85);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
-            transition: var(--transition);
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
             text-decoration: none;
         }
-
+        
         .social-btn:hover {
-            background: var(--accent);
-            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--lime);
+            color: var(--lime);
+            transform: translateY(-3px);
         }
 
         .footer-col h4 {

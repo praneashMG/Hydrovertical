@@ -279,9 +279,24 @@
             box-shadow: 0 12px 24px rgba(0,0,0,0.08);
         }
         .popular-card i {
-            font-size: 2rem;
-            color: #2e7d32;
-            margin-bottom: 12px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1b4d1b, #2e7d32);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: white;
+            margin: 0 auto 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .popular-card:hover i {
+            background: #2e7d32;
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(46, 125, 50, 0.2);
         }
         .popular-card h4 {
             font-size: clamp(0.85rem, 2.5vw, 1rem);
@@ -296,6 +311,11 @@
             padding: clamp(35px, 6vw, 50px) clamp(24px, 5vw, 40px);
             text-align: center;
             margin-top: 20px;
+        }
+        .support-section p {
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* CTA Banner */
@@ -343,8 +363,6 @@
             .faq-answer p { font-size: 0.85rem; }
             .hero-content h1 { font-size: 1.8rem; }
             .hero-content p { font-size: 0.9rem; }
-            .section-title { font-size: 1.5rem; }
-            .section-sub { font-size: 0.9rem; margin-bottom: 32px; }
             .popular-card { padding: 18px; }
             .cta-banner h2 { font-size: 1.3rem; }
         }
@@ -379,10 +397,18 @@
             transform: translateY(-5px);
         }
         .support-link-item i {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            color: #2e7d32;
-            margin-bottom: 12px;
-            display: block;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0d2e0d, #1b4d1b);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            margin: 0 auto 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         .support-link-item p {
             font-size: clamp(0.7rem, 2vw, 0.8rem);
@@ -419,10 +445,18 @@
             border: 1px solid rgba(46, 125, 50, 0.15);
         }
         .cta-banner i.banner-icon {
+            width: 80px;
+            height: 80px;
+            background: #1b4d1b;
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 3rem;
-            color: #2e7d32;
-            margin-bottom: 16px;
-            display: inline-block;
+            color: white;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
         }
         .cta-banner h2 {
             font-size: clamp(1.6rem, 4vw, 2.2rem);

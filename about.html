@@ -194,12 +194,41 @@
         .story-image {
             border-radius: 36px;
             width: 100%;
-            max-width: 300px;
+            max-width: 500px;
             height: auto;
             object-fit: cover;
-            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
             display: block;
             margin: 0 auto;
+        }
+
+        .story-text-col .roots-tag {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: #2e7d32;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .story-text-col h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.15;
+            margin-bottom: 24px;
+            color: #132e13;
+        }
+
+        .story-text-col p {
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+
+        @media (max-width: 860px) {
+            .story-text-col p {
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
 
         .mission-vision {
@@ -225,16 +254,18 @@
         }
 
         .service-icon {
-            font-size: 2.5rem;
-            background: rgba(46, 125, 50, 0.12);
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #1b4d1b, #2e7d32);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 28px;
             margin: 0 auto 20px;
-            color: #2c6e2c;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(11, 46, 26, 0.15);
         }
 
         .tech-showcase {
@@ -341,9 +372,6 @@
                 padding: 60px var(--page-padding);
             }
 
-            .section-title {
-                font-size: 1.8rem;
-            }
 
             .mv-card,
             .service-card,
@@ -412,14 +440,7 @@
                 font-size: 0.95rem;
             }
 
-            .section-title {
-                font-size: 1.5rem;
-            }
 
-            .section-sub {
-                font-size: 0.9rem;
-                margin-bottom: 32px;
-            }
 
             .story-text {
                 font-size: 0.9rem;
@@ -633,15 +654,14 @@
     <!-- 2. Our Story -->
     <section class="section">
         <div class="container story-grid">
-            <div class="fade-up">
-                <span style="font-size: 0.8rem; letter-spacing: 2px; color: #2e7d32;">OUR ROOTS</span>
-                <h2>From a single lab to
-                    a global movement</h2>
+            <div class="story-text-col fade-up">
+                <span class="roots-tag">OUR ROOTS</span>
+                <h2>From a single lab to<br>a global movement</h2>
                 <p class="story-text">HydroNex was born in 2019 inside a modest university greenhouse — a collaboration
                     between agronomists and software engineers who believed that fresh, nutritious produce should thrive
                     even in dense urban cores. Facing climate uncertainties and soil degradation, we set out to build
                     vertical farming ecosystems that are scalable, autonomous, and regenerative.</p>
-                <p class="story-text" style="margin-top: 20px;">Today, our systems operate across four continents,
+                <p class="story-text">Today, our systems operate across four continents,
                     empowering communities to grow hyper-local food with 90% less water and zero chemical runoff. Our
                     vision remains unchanged: democratize access to controlled-environment agriculture.</p>
             </div>
@@ -656,14 +676,14 @@
         <div class="container">
             <div class="section-title fade-up">Mission & Vision</div>
             <div class="mission-vision">
-                <div class="mv-card glass-card fade-up"><i class="fas fa-bullseye"
-                        style="font-size: 2.5rem; color: #2e7d32; margin-bottom: 20px;"></i>
+                <div class="mv-card glass-card fade-up">
+                    <div class="service-icon"><i class="fas fa-bullseye"></i></div>
                     <h3>Our Mission</h3>
                     <p>To make year‑round, pesticide‑free farming accessible to every community by deploying intelligent
                         vertical hydroponic systems that respect planetary boundaries.</p>
                 </div>
-                <div class="mv-card glass-card fade-up"><i class="fas fa-eye"
-                        style="font-size: 2.5rem; color: #2e7d32; margin-bottom: 20px;"></i>
+                <div class="mv-card glass-card fade-up">
+                    <div class="service-icon"><i class="fas fa-eye"></i></div>
                     <h3>Our Vision</h3>
                     <p>A world where fresh produce travels meters, not miles — where every rooftop, basement, and vacant
                         lot becomes a thriving farm powered by AI and nature.</p>
@@ -710,20 +730,20 @@
             <div class="section-title fade-up">Our Technology</div>
             <div class="section-sub fade-up">Where biology meets real‑time intelligence</div>
             <div class="tech-showcase">
-                <div class="glass-card fade-up" style="padding: 32px 28px;"><i class="fas fa-robot"
-                        style="font-size: 2.2rem; color: #2e7d32; margin-bottom: 16px; display: inline-block;"></i>
+                <div class="glass-card fade-up" style="padding: 32px 28px;">
+                    <div class="service-icon" style="width: 50px; height: 50px; font-size: 1.4rem; margin: 0 0 16px 0;"><i class="fas fa-robot"></i></div>
                     <h3>AI Growth Engine</h3>
                     <p>Machine learning models analyze 30+ parameters (EC, pH, VPD, light spectrum) and adjust recipes
                         autonomously, boosting yield consistency by 38%.</p>
                 </div>
-                <div class="glass-card fade-up" style="padding: 32px 28px;"><i class="fas fa-leaf"
-                        style="font-size: 2.2rem; color: #2e7d32; margin-bottom: 16px; display: inline-block;"></i>
+                <div class="glass-card fade-up" style="padding: 32px 28px;">
+                    <div class="service-icon" style="width: 50px; height: 50px; font-size: 1.4rem; margin: 0 0 16px 0;"><i class="fas fa-leaf"></i></div>
                     <h3>Closed-Loop Hydroponics</h3>
                     <p>Our patented recirculation system reduces water consumption by up to 92% and eliminates
                         agricultural runoff.</p>
                 </div>
-                <div class="glass-card fade-up" style="padding: 32px 28px;"><i class="fas fa-charging-station"
-                        style="font-size: 2.2rem; color: #2e7d32; margin-bottom: 16px; display: inline-block;"></i>
+                <div class="glass-card fade-up" style="padding: 32px 28px;">
+                    <div class="service-icon" style="width: 50px; height: 50px; font-size: 1.4rem; margin: 0 0 16px 0;"><i class="fas fa-charging-station"></i></div>
                     <h3>Energy-Smart Infrastructure</h3>
                     <p>Tunable LED arrays with heat recovery cut electricity costs by 30% while optimizing
                         photosynthesis.</p>

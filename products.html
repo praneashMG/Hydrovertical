@@ -96,23 +96,6 @@
             width: 100%;
             padding: 0 16px;
         }
-        .section-title {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 16px;
-            background: linear-gradient(125deg, #1b4d1b, #2e7d32);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .section-sub {
-            text-align: center;
-            color: #416e41;
-            max-width: 680px;
-            margin: 0 auto 48px auto;
-            font-size: clamp(0.95rem, 2vw, 1.05rem);
-        }
 
         .fade-up {
             opacity: 0;
@@ -318,9 +301,55 @@
         .cta-banner {
             background: linear-gradient(125deg, #e2f0e2, #cde3cd);
             border-radius: 48px;
-            margin: 0 24px 80px 24px;
+            margin-bottom: 80px;
             padding: 60px 32px;
             text-align: center;
+            width: 100%;
+        }
+
+        /* Products Explorer Container */
+        .products-explorer {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 48px;
+            padding: 48px 32px;
+            border: 1px solid rgba(46, 125, 50, 0.15);
+            box-shadow: 0 30px 60px -20px rgba(0, 40, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: clamp(20px, 5vw, 60px);
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 10px 20px;
+        }
+        .stat-num {
+            display: block;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 800;
+            color: #2e7d32;
+            line-height: 1.2;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: #416e41;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        body.dark .products-explorer {
+            background: rgba(20, 25, 20, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        body.dark .stat-label {
+            color: #8bc48b;
         }
 
         /* ---------- FULLY RESPONSIVE MEDIA QUERIES (no design changes) ---------- */
@@ -375,6 +404,41 @@
             .smart-farming .fade-up h2 { font-size: 1.4rem; }
         }
 
+        /* Usecase Icon Styling */
+        .usecase-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1b4d1b, #2e7d32);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 20px rgba(11, 46, 26, 0.15);
+        }
+
+        .usecase-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* CTA Icon Styling */
+        .cta-icon-wrap {
+            width: 80px;
+            height: 80px;
+            background: #1b4d1b;
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
         @media (min-width: 1400px) {
             .container { max-width: 1400px; }
             .section { padding: 100px 32px; }
@@ -406,20 +470,7 @@
             color: #e8f0e8 !important;
         }
 
-        body.dark .section-title {
-            background: linear-gradient(125deg, #8bc48b, #c8e6c8) !important;
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            color: transparent !important;
-        }
 
-        body.dark .section-sub, 
-        body.dark .product-card p,
-        body.dark .spec-list li,
-        body.dark .usecase-card p,
-        body.dark .testi-card p {
-            color: #bcd0bc !important;
-        }
 
         body.dark .compare-table th {
             background: #1a2a1a !important;
@@ -562,14 +613,38 @@
     <section class="section" id="products-section">
         <div class="container">
             <div class="section-title fade-up">Explore our ecosystem</div>
-            <div class="filter-bar fade-up" id="filterBar">
-                <button class="filter-btn active" data-filter="all">All Systems (21+)</button>
-                <button class="filter-btn" data-filter="home">Home & Starter (7)</button>
-                <button class="filter-btn" data-filter="commercial">Commercial (7)</button>
-                <button class="filter-btn" data-filter="industrial">Industrial (7)</button>
+            <div class="section-sub fade-up">Precision-engineered systems for sustainable, high-yield vertical farming.</div>
+            
+            <!-- Stats Bar to utilize space -->
+            <div class="stats-row fade-up">
+                <div class="stat-item">
+                    <span class="stat-num">21+</span>
+                    <span class="stat-label">Active Systems</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">95%</span>
+                    <span class="stat-label">Water Saved</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">2x</span>
+                    <span class="stat-label">Growth Speed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">24/7</span>
+                    <span class="stat-label">AI Monitoring</span>
+                </div>
             </div>
-            <div class="products-grid" id="productsContainer">
-                <!-- Product cards will be injected via JS -->
+
+            <div class="products-explorer fade-up">
+                <div class="filter-bar" id="filterBar">
+                    <button class="filter-btn active" data-filter="all">All Systems (21+)</button>
+                    <button class="filter-btn" data-filter="home">Home & Starter (7)</button>
+                    <button class="filter-btn" data-filter="commercial">Commercial (7)</button>
+                    <button class="filter-btn" data-filter="industrial">Industrial (7)</button>
+                </div>
+                <div class="products-grid" id="productsContainer">
+                    <!-- Product cards will be injected via JS -->
+                </div>
             </div>
         </div>
     </section>
@@ -620,10 +695,26 @@
         <div class="container">
             <div class="section-title fade-up">Where our systems thrive</div>
             <div class="usecase-grid">
-                <div class="usecase-card glass-card fade-up"><i class="fas fa-home" style="font-size: 2.5rem; color:#2e7d32; margin-bottom: 16px;"></i><h3>Home & Apartment</h3><p>Compact vertical racks that fit on countertops or balconies. Grow fresh herbs, lettuce, and microgreens year-round.</p></div>
-                <div class="usecase-card glass-card fade-up"><i class="fas fa-store" style="font-size: 2.5rem; color:#2e7d32; margin-bottom: 16px;"></i><h3>Restaurants & Hotels</h3><p>On-site produce for farm-to-table experiences. Reduce supply chain costs while offering hyper-fresh ingredients.</p></div>
-                <div class="usecase-card glass-card fade-up"><i class="fas fa-building" style="font-size: 2.5rem; color:#2e7d32; margin-bottom: 16px;"></i><h3>Urban Rooftop Farms</h3><p>Turn unused city rooftops into profitable green spaces. Modular systems adapt to any roof load.</p></div>
-                <div class="usecase-card glass-card fade-up"><i class="fas fa-tractor" style="font-size: 2.5rem; color:#2e7d32; margin-bottom: 16px;"></i><h3>Commercial Greenhouses</h3><p>Integrate vertical towers into existing greenhouses to triple production per square foot.</p></div>
+                <div class="usecase-card glass-card fade-up">
+                    <div class="usecase-icon"><i class="fas fa-home"></i></div>
+                    <h3>Home & Apartment</h3>
+                    <p>Compact vertical racks that fit on countertops or balconies. Grow fresh herbs, lettuce, and microgreens year-round.</p>
+                </div>
+                <div class="usecase-card glass-card fade-up">
+                    <div class="usecase-icon"><i class="fas fa-store"></i></div>
+                    <h3>Restaurants & Hotels</h3>
+                    <p>On-site produce for farm-to-table experiences. Reduce supply chain costs while offering hyper-fresh ingredients.</p>
+                </div>
+                <div class="usecase-card glass-card fade-up">
+                    <div class="usecase-icon"><i class="fas fa-building"></i></div>
+                    <h3>Urban Rooftop Farms</h3>
+                    <p>Turn unused city rooftops into profitable green spaces. Modular systems adapt to any roof load.</p>
+                </div>
+                <div class="usecase-card glass-card fade-up">
+                    <div class="usecase-icon"><i class="fas fa-tractor"></i></div>
+                    <h3>Commercial Greenhouses</h3>
+                    <p>Integrate vertical towers into existing greenhouses to triple production per square foot.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -640,18 +731,19 @@
         </div>
     </section>
 
-    <!-- Strong CTA Banner -->
-    <div>
-        <div class="cta-banner glass-card fade-up" style="background: rgba(230,245,230,0.9);">
-            <i class="fas fa-file-invoice" style="font-size: 3rem; color:#2e7d32; margin-bottom: 16px;"></i>
-            <h2 style="font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 800;">Ready to scale your farm?</h2>
-            <p style="max-width: 580px; margin: 20px auto;">Get a custom quote, system design consultation, and ROI projection.</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="#" class="btn-primary"><i class="fas fa-calculator"></i> Request pricing</a>
-                <a href="#" class="btn-outline"><i class="fas fa-video"></i> Book a demo</a>
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="cta-banner glass-card fade-up" style="background: rgba(230,245,230,0.9);">
+                <div class="cta-icon-wrap"><i class="fas fa-file-invoice"></i></div>
+                <h2 style="font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 800;">Ready to scale your farm?</h2>
+                <p style="max-width: 580px; margin: 20px auto;">Get a custom quote, system design consultation, and ROI projection.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" class="btn-primary"><i class="fas fa-calculator"></i> Request pricing</a>
+                    <a href="#" class="btn-outline"><i class="fas fa-video"></i> Book a demo</a>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-inner">
